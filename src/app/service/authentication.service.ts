@@ -24,8 +24,8 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(API_URL + '/login', {username, password})
+  login(email: string, password: string) {
+    return this.http.post<any>(API_URL + '/login', {email, password})
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
