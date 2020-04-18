@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ListStudentComponent} from './list-student/list-student.component';
+import {AdminAuthGuard} from '../helper/admin-auth-guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ListStudentComponent
+    component: ListStudentComponent,
+    canActivate: [AdminAuthGuard]
   }
 ];
 

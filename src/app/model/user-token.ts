@@ -10,4 +10,5 @@ export interface UserToken {
   notice?: string;
   password?: string;
   roles?: [Role];
+  accessToken?: string;
 }
