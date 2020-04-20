@@ -5,8 +5,8 @@ import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {
-    path: 'students',
-    loadChildren: () => import('./student/student.module').then(module => module.StudentModule)
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
   },
   {
     path: 'login',
@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: ''
+  },
+  {
+    path: 'coach',
+    loadChildren: () => import('./coach/coach.module').then(module => module.CoachModule)
   }
 ];
 

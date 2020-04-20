@@ -14,7 +14,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
