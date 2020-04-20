@@ -7,8 +7,7 @@ import {AdminAuthGuard} from '../helper/admin-auth-guard';
 const routes: Routes = [
   {
     path: '',
-    component: ListCoachComponent,
-    canActivate: [AdminAuthGuard]
+    component: ListCoachComponent
   }
 ];
 

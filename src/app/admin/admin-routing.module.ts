@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'coach-management',
     canActivate: [AdminAuthGuard],
     loadChildren: () => import('../coach/coach.module').then(module => module.CoachModule)
+  },
+  {
+    path: 'classes-management',
+    canActivate: [AdminAuthGuard],
+    loadChildren: () => import('../classes/classes.module').then(module => module.ClassesModule)
   }
 ];
 
