@@ -1,16 +1,8 @@
 //Install express server
 const express = require('express');
 const path = require('path');
-
+const favicon = require('serve-favicon');
 const app = express();
-
-// Serve only the static files form the dist directory
-app.use(express.static('./dist/ePortfolio'));
-
-app.get('/*', function (req, res) {
-
-  res.sendFile(path.join('ePortfolio', '/dist/ePortfolio/index.html'));
-});
 
 const forceSSL = function () {
   return function (req, res, next) {
@@ -21,9 +13,15 @@ const forceSSL = function () {
     }
     next();
   }
-}
+};
+
+app.use(express.static('./dist/ePortfolio'));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join('ePortfolio', '/dist/ePortfolio/index.html'));
+});
 
 app.use(forceSSL());
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 4200);
