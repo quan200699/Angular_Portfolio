@@ -1,43 +1,41 @@
 <section class="content">
-  <div class="container-fluid">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Bordered Table</h3>
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th style="width: 10px">#</th>
-            <th>Mã giảng viên</th>
-            <th>Họ tên giảng viên</th>
-            <th>Email</th>
-            <th>Địa chỉ</th>
-            <th>Ghi chú</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let coach of coachList; index as i">
-            <td>{{i + 1}}</td>
-            <td>{{coach.coachId}}</td>
-            <td>{{coach.name}}</td>
-            <td>{{coach.email}}</td>
-            <td>{{coach.address}}</td>
-            <td>{{coach.notice}}</td>
-          </tr>
-          <tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-          <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
-      </div>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Bordered Table</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Mã giảng viên</th>
+          <th>Họ tên giảng viên</th>
+          <th>Email</th>
+          <th>Địa chỉ</th>
+          <th>Ghi chú</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let coach of coachList; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{coach.coachId}}</td>
+          <td>{{coach.name}}</td>
+          <td>{{coach.email}}</td>
+          <td>{{coach.address}}</td>
+          <td>{{coach.notice}}</td>
+        </tr>
+        <tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer clearfix">
+      <ul class="pagination pagination-sm m-0 float-right">
+        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+      </ul>
     </div>
   </div>
 </section>
