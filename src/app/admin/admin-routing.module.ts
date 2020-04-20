@@ -12,8 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'coach-management',
-    component: ListCoachComponent,
-    canActivate: [AdminAuthGuard]
+    canActivate: [AdminAuthGuard],
+    loadChildren: () => import('../coach/coach.module').then(module => module.CoachModule)
   }
 ];
 
