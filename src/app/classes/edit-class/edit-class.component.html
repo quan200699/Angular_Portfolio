@@ -1,0 +1,21 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Cập nhật thông tin lớp</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form [formGroup]="classForm" (ngSubmit)="editClass(classId)" id="class-form">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-name">Tên lớp</label>
+        <input type="text" formControlName="name" name="name" [value]="className" class="form-control" id="class-name"
+               placeholder="tên lớp">
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>

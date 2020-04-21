@@ -4,12 +4,14 @@ import {ListClassComponent} from './list-class/list-class.component';
 import {ClassesRoutingModule} from './classes-routing.module';
 import {CreateClassComponent} from './create-class/create-class.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EditClassComponent} from './edit-class/edit-class.component';
 
 
 @NgModule({
   declarations: [
     ListClassComponent,
-    CreateClassComponent
+    CreateClassComponent,
+    EditClassComponent,
   ],
   imports: [
     CommonModule,
