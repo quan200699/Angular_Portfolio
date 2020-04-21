@@ -5,6 +5,7 @@ import {ListCoachComponent} from './list-coach/list-coach.component';
 import {CreateCoachComponent} from './create-coach/create-coach.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditCoachComponent} from './edit-coach/edit-coach.component';
+import {DeleteCoachComponent} from './delete-coach/delete-coach.component';
 
 
 
@@ -13,6 +14,7 @@ import {EditCoachComponent} from './edit-coach/edit-coach.component';
     ListCoachComponent,
     CreateCoachComponent,
     EditCoachComponent,
+    DeleteCoachComponent,
   ],
   imports: [
     CommonModule,

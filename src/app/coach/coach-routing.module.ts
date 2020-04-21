@@ -4,6 +4,7 @@ import {ListCoachComponent} from './list-coach/list-coach.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {CreateCoachComponent} from './create-coach/create-coach.component';
 import {EditCoachComponent} from './edit-coach/edit-coach.component';
+import {DeleteCoachComponent} from './delete-coach/delete-coach.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditCoachComponent
+  },
+  {
+    path: 'delete/:id',
+    component: DeleteCoachComponent
   }
 ];
 

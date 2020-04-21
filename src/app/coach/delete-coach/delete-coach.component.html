@@ -1,0 +1,48 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Xóa thông tin giảng viên</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-coach-id">Coach Id:</label>
+      <span id="class-coach-id"> {{coachId}}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-name">Tên coach:</label>
+      <span id="class-name"> {{name}}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-email">Email:</label>
+      <span id="class-email"> {{email}}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-phoneNumber">Số điện thoại:</label>
+      <span id="class-phoneNumber">{{phoneNumber}}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-address">Địa chỉ:</label>
+      <span id="class-address">{{address}}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-notice">Ghi chú:</label>
+      <span id="class-notice">{{notice}}</span>
+    </div>
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" (click)="deleteCoach(id)">Xóa</button>
+  </div>
+</div>
