@@ -4,12 +4,8 @@ import {CoachService} from '../../service/coach.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Coach} from '../../model/coach';
-import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
-const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
-const SUCCESS = 'Thành công';
-const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-edit-coach',
@@ -35,8 +31,7 @@ export class EditCoachComponent implements OnInit {
   sub: Subscription;
 
   constructor(private coachService: CoachService,
-              private activatedRoute: ActivatedRoute,
-              private notificationService: NotificationService) {
+              private activatedRoute: ActivatedRoute) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCoachInfo(id);
@@ -119,9 +114,7 @@ export class EditCoachComponent implements OnInit {
       notice: this.coachForm.value.notice
     };
     this.coachService.updateCoachInfo(id, coach).subscribe(() => {
-      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

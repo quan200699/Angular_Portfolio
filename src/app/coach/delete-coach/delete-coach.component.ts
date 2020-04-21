@@ -2,11 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CoachService} from '../../service/coach.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {NotificationService} from '../../service/notification.service';
-
-const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
-const SUCCESS = 'Thành công';
-const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-delete-coach',
@@ -24,8 +19,7 @@ export class DeleteCoachComponent implements OnInit {
   sub: Subscription;
 
   constructor(private coachService: CoachService,
-              private activatedRoute: ActivatedRoute,
-              private notificationService: NotificationService) {
+              private activatedRoute: ActivatedRoute) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCoachInfo(id);
@@ -49,9 +43,7 @@ export class DeleteCoachComponent implements OnInit {
 
   deleteCoach(id: number) {
     this.coachService.deleteCoach(id).subscribe(() => {
-      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

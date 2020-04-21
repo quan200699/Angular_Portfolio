@@ -4,12 +4,8 @@ import {ClassesService} from '../../service/classes.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Classes} from '../../model/classes';
-import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
-const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
-const SUCCESS = 'Thành công';
-const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-edit-class',
@@ -25,8 +21,7 @@ export class EditClassComponent implements OnInit {
   sub: Subscription;
 
   constructor(private classesService: ClassesService,
-              private activatedRoute: ActivatedRoute,
-              private notificationService: NotificationService) {
+              private activatedRoute: ActivatedRoute) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCurrentClass(id);
@@ -79,9 +74,7 @@ export class EditClassComponent implements OnInit {
       name: this.classForm.value.name
     };
     this.classesService.updateClassesInfo(id, classes).subscribe(() => {
-      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

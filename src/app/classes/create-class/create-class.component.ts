@@ -2,12 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClassesService} from '../../service/classes.service';
 import {Classes} from '../../model/classes';
-import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
-const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
-const SUCCESS = 'Thành công';
-const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-create-class',
@@ -19,8 +15,7 @@ export class CreateClassComponent implements OnInit {
     name: new FormControl('', Validators.required)
   });
 
-  constructor(private classesService: ClassesService,
-              private notificationService: NotificationService) {
+  constructor(private classesService: ClassesService) {
   }
 
   ngOnInit() {
@@ -58,9 +53,7 @@ export class CreateClassComponent implements OnInit {
     };
     this.classesService.createNewClasses(classes).subscribe(() => {
       this.classForm.reset();
-      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

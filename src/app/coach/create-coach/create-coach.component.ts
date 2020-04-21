@@ -5,9 +5,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
-const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
-const SUCCESS = 'Thành công';
-const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-create-coach',
@@ -25,8 +22,7 @@ export class CreateCoachComponent implements OnInit {
     notice: new FormControl(''),
   });
 
-  constructor(private coachService: CoachService,
-              private notificationService: NotificationService) {
+  constructor(private coachService: CoachService) {
   }
 
   ngOnInit() {
@@ -92,10 +88,8 @@ export class CreateCoachComponent implements OnInit {
       notice: this.coachForm.value.notice
     };
     this.coachService.createNewCoach(coach).subscribe(() => {
-      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
       this.coachForm.reset();
     }, () => {
-      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }
