@@ -4,6 +4,12 @@ import {CoachService} from '../../service/coach.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Coach} from '../../model/coach';
+import {NotificationService} from '../../service/notification.service';
+
+declare var $: any;
+const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
+const SUCCESS = 'Thành công';
+const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-edit-coach',
@@ -29,7 +35,8 @@ export class EditCoachComponent implements OnInit {
   sub: Subscription;
 
   constructor(private coachService: CoachService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private notificationService: NotificationService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCoachInfo(id);
@@ -37,6 +44,56 @@ export class EditCoachComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).ready(function() {
+      $('#coach-form').validate({
+        rules: {
+          coachId: {
+            required: true
+          },
+          name: {
+            required: true
+          },
+          email: {
+            required: true,
+            email: true,
+          },
+          phoneNumber: {
+            required: true
+          },
+          address: {
+            required: true
+          }
+        },
+        messages: {
+          coachId: {
+            required: 'Nhập mã giảng viên'
+          }, name: {
+            required: 'Nhập tên giảng viên'
+          },
+          email: {
+            required: 'Nhập địa chỉ email',
+            email: 'Nhập đúng định dạng email'
+          },
+          phoneNumber: {
+            required: 'Nhập số điện thoại'
+          },
+          address: {
+            required: 'Nhập địa chỉ nhà'
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function(element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
   }
 
   getCoachInfo(id: number) {
@@ -62,8 +119,9 @@ export class EditCoachComponent implements OnInit {
       notice: this.coachForm.value.notice
     };
     this.coachService.updateCoachInfo(id, coach).subscribe(() => {
+      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      console.log('Xảy ra lỗi khi cập nhật thông tin');
+      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

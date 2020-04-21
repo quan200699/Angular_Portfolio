@@ -2,8 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClassesService} from '../../service/classes.service';
 import {Classes} from '../../model/classes';
+import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
+const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
+const SUCCESS = 'Thành công';
+const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-create-class',
@@ -15,16 +19,12 @@ export class CreateClassComponent implements OnInit {
     name: new FormControl('', Validators.required)
   });
 
-  constructor(private classesService: ClassesService) {
+  constructor(private classesService: ClassesService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
-    $(document).ready(function () {
-      $.validator.setDefaults({
-        submitHandler: function () {
-          alert( "Tạo thành công" );
-        }
-      });
+    $(document).ready(function() {
       $('#class-form').validate({
         rules: {
           name: {
@@ -33,18 +33,18 @@ export class CreateClassComponent implements OnInit {
         },
         messages: {
           name: {
-            required: "Hãy nhập đầy đủ tên lớp"
+            required: 'Hãy nhập đầy đủ tên lớp'
           }
         },
         errorElement: 'span',
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
           error.addClass('invalid-feedback');
           element.closest('.form-group').append(error);
         },
-        highlight: function (element, errorClass, validClass) {
+        highlight: function(element, errorClass, validClass) {
           $(element).addClass('is-invalid');
         },
-        unhighlight: function (element, errorClass, validClass) {
+        unhighlight: function(element, errorClass, validClass) {
           $(element).removeClass('is-invalid');
         }
       });
@@ -58,8 +58,9 @@ export class CreateClassComponent implements OnInit {
     };
     this.classesService.createNewClasses(classes).subscribe(() => {
       this.classForm.reset();
+      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      console.log('Lỗi tạo mới lớp học');
+      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

@@ -2,8 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {CoachService} from '../../service/coach.service';
 import {Coach} from '../../model/coach';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
+const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
+const SUCCESS = 'Thành công';
+const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-create-coach',
@@ -21,16 +25,12 @@ export class CreateCoachComponent implements OnInit {
     notice: new FormControl(''),
   });
 
-  constructor(private coachService: CoachService) {
+  constructor(private coachService: CoachService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
     $(document).ready(function() {
-      $.validator.setDefaults({
-        submitHandler: function() {
-          alert('Tạo mới thành công!');
-        }
-      });
       $('#coach-form').validate({
         rules: {
           coachId: {
@@ -44,8 +44,7 @@ export class CreateCoachComponent implements OnInit {
             email: true,
           },
           phoneNumber: {
-            required: true,
-            size: 10
+            required: true
           },
           address: {
             required: true
@@ -62,8 +61,7 @@ export class CreateCoachComponent implements OnInit {
             email: 'Nhập đúng định dạng email'
           },
           phoneNumber: {
-            required: 'Nhập số điện thoại',
-            size: 'Số điện thoại phải gồm 10 số'
+            required: 'Nhập số điện thoại'
           },
           address: {
             required: 'Nhập địa chỉ nhà'
@@ -94,9 +92,10 @@ export class CreateCoachComponent implements OnInit {
       notice: this.coachForm.value.notice
     };
     this.coachService.createNewCoach(coach).subscribe(() => {
+      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
       this.coachForm.reset();
     }, () => {
-      console.log('Tạo mới coach xảy ra lỗi');
+      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }

@@ -2,6 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ClassesService} from '../../service/classes.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {NotificationService} from '../../service/notification.service';
+
+const FAIL = 'Có lỗi xảy ra trong quá trình thực hiện';
+const SUCCESS = 'Thành công';
+const NOTIFICATION = 'Thông báo';
 
 @Component({
   selector: 'app-delete-class',
@@ -14,7 +19,8 @@ export class DeleteClassComponent implements OnInit {
   sub: Subscription;
 
   constructor(private classesService: ClassesService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private notificationService: NotificationService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCurrentClass(id);
@@ -33,8 +39,9 @@ export class DeleteClassComponent implements OnInit {
 
   deleteClass(id: number) {
     this.classesService.deleteClasses(id).subscribe(() => {
+      this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
     }, () => {
-      console.log('xảy ra lỗi khi xóa lớp học');
+      this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
     });
   }
 }
