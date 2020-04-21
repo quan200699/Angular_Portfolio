@@ -106,12 +106,12 @@ export class EditCoachComponent implements OnInit {
   updateCoachInfo(id: number) {
     const coach: Coach = {
       id: this.coachForm.value.id,
-      coachId: this.coachForm.value.coachId,
-      name: this.coachForm.value.name,
-      email: this.coachForm.value.email,
-      phoneNumber: this.coachForm.value.phone,
-      address: this.coachForm.value.address,
-      notice: this.coachForm.value.notice
+      coachId: this.coachForm.value.coachId === "" ? this.coachId : this.coachForm.value.coachId,
+      name: this.coachForm.value.name === "" ? this.name : this.coachForm.value.name,
+      email: this.coachForm.value.email === "" ? this.email : this.coachForm.value.email,
+      phoneNumber: this.coachForm.value.phoneNumber === "" ? this.phoneNumber : this.coachForm.value.phoneNumber,
+      address: this.coachForm.value.address === "" ? this.address : this.coachForm.value.address,
+      notice: this.coachForm.value.notice === "" ? this.address : this.coachForm.value.notice
     };
     this.coachService.updateCoachInfo(id, coach).subscribe(() => {
     }, () => {

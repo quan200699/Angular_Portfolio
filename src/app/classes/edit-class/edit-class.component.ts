@@ -71,7 +71,7 @@ export class EditClassComponent implements OnInit {
   editClass(id: number) {
     const classes: Classes = {
       id: this.classForm.value.id,
-      name: this.classForm.value.name
+      name: this.classForm.value.name === '' ? this.className : this.classForm.value.name
     };
     this.classesService.updateClassesInfo(id, classes).subscribe(() => {
     }, () => {
