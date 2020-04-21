@@ -111,7 +111,7 @@ export class EditCoachComponent implements OnInit {
       email: this.coachForm.value.email === "" ? this.email : this.coachForm.value.email,
       phoneNumber: this.coachForm.value.phoneNumber === "" ? this.phoneNumber : this.coachForm.value.phoneNumber,
       address: this.coachForm.value.address === "" ? this.address : this.coachForm.value.address,
-      notice: this.coachForm.value.notice === "" ? this.address : this.coachForm.value.notice
+      notice: this.coachForm.value.notice
     };
     this.coachService.updateCoachInfo(id, coach).subscribe(() => {
     }, () => {
