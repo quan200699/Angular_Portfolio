@@ -1,0 +1,56 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Tạo coach mới</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form [formGroup]="coachForm" (ngSubmit)="updateCoachInfo(coachId)" id="coach-form">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-coach-id">Coach Id:</label>
+        <input type="text" formControlName="coachId" [value]="coachId" disabled name="coachId" class="form-control" id="class-coach-id"
+               placeholder="Coach Id">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-name">Tên coach:</label>
+        <input type="text" formControlName="name" [value]="name" name="name" class="form-control" id="class-name"
+               placeholder="Họ và tên">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-email">Email:</label>
+        <input type="text" formControlName="email" [value]="email" disabled name="email" class="form-control" id="class-email"
+               placeholder="Địa chỉ email">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-phoneNumber">Số điện thoại:</label>
+        <input type="text" formControlName="phoneNumber" [value]="phoneNumber" name="phoneNumber" class="form-control" id="class-phoneNumber"
+               placeholder="Số điện thoại">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-address">Địa chỉ:</label>
+        <input type="text" formControlName="address" [value]="address" name="address" class="form-control" id="class-address"
+               placeholder="Địa chỉ nhà">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-notice">Ghi chú:</label>
+        <input type="text" formControlName="notice" [value]="notice" name="notice" class="form-control" id="class-notice"
+               placeholder="Ghi chú">
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>

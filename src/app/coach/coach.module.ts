@@ -4,6 +4,7 @@ import {CoachRoutingModule} from './coach-routing.module';
 import {ListCoachComponent} from './list-coach/list-coach.component';
 import {CreateCoachComponent} from './create-coach/create-coach.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EditCoachComponent} from './edit-coach/edit-coach.component';
 
 
 
@@ -11,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ListCoachComponent,
     CreateCoachComponent,
+    EditCoachComponent,
   ],
   imports: [
     CommonModule,
