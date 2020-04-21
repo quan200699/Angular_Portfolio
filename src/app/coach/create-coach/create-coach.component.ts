@@ -1,0 +1,102 @@
+import {Component, OnInit} from '@angular/core';
+import {CoachService} from '../../service/coach.service';
+import {Coach} from '../../model/coach';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+declare var $: any;
+
+@Component({
+  selector: 'app-create-coach',
+  templateUrl: './create-coach.component.html',
+  styleUrls: ['./create-coach.component.css']
+})
+export class CreateCoachComponent implements OnInit {
+  coach: Coach;
+  coachForm: FormGroup = new FormGroup({
+    coachId: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    notice: new FormControl(''),
+  });
+
+  constructor(private coachService: CoachService) {
+  }
+
+  ngOnInit() {
+    $(document).ready(function() {
+      $.validator.setDefaults({
+        submitHandler: function() {
+          alert('Tạo mới thành công!');
+        }
+      });
+      $('#coach-form').validate({
+        rules: {
+          coachId: {
+            required: true
+          },
+          name: {
+            required: true
+          },
+          email: {
+            required: true,
+            email: true,
+          },
+          phoneNumber: {
+            required: true,
+            size: 10
+          },
+          address: {
+            required: true
+          }
+        },
+        messages: {
+          coachId: {
+            required: 'Nhập mã giảng viên'
+          }, name: {
+            required: 'Nhập tên giảng viên'
+          },
+          email: {
+            required: 'Nhập địa chỉ email',
+            email: 'Nhập đúng định dạng email'
+          },
+          phoneNumber: {
+            required: 'Nhập số điện thoại',
+            size: 'Số điện thoại phải gồm 10 số'
+          },
+          address: {
+            required: 'Nhập địa chỉ nhà'
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function(element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+  }
+
+  createCoach() {
+    const coach: Coach = {
+      id: this.coachForm.value.id,
+      name: this.coachForm.value.name,
+      email: this.coachForm.value.email,
+      phoneNumber: this.coachForm.value.phoneNumber,
+      address: this.coachForm.value.address,
+      notice: this.coachForm.value.notice
+    };
+    this.coachService.createNewCoach(coach).subscribe(() => {
+      this.coachForm.reset();
+    }, () => {
+      console.log('Tạo mới coach xảy ra lỗi');
+    });
+  }
+}
