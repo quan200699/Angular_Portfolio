@@ -1,7 +1,12 @@
 <section class="content">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Bordered Table</h3>
+      <h3 class="card-title">Danh sách các Coach</h3>
+      <div class="card-tools">
+        <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
+          Tạo mới
+        </a>
+      </div>
     </div>
     <div class="card-body">
       <table class="table table-bordered">
@@ -13,6 +18,7 @@
           <th>Email</th>
           <th>Địa chỉ</th>
           <th>Ghi chú</th>
+          <th style="width: 160px"></th>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +29,20 @@
           <td>{{coach.email}}</td>
           <td>{{coach.address}}</td>
           <td>{{coach.notice}}</td>
+          <td>
+            <div class="row">
+              <div class="col-6">
+                <a [routerLink]="['edit',coach.id]" class="btn btn-block btn-primary" style="color: white">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </div>
+              <div class="col-6">
+                <a [routerLink]="['delete',coach.id]" class="btn btn-block btn-danger" style="color: white">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </div>
+            </div>
+          </td>
         </tr>
         <tr>
         </tbody>
