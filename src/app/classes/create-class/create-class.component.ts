@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClassesService} from '../../service/classes.service';
 import {Classes} from '../../model/classes';
 
+declare var $: any;
+
 @Component({
   selector: 'app-create-class',
   templateUrl: './create-class.component.html',
@@ -17,6 +19,36 @@ export class CreateClassComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).ready(function () {
+      $.validator.setDefaults({
+        submitHandler: function () {
+          alert( "Tạo thành công" );
+        }
+      });
+      $('#class-form').validate({
+        rules: {
+          name: {
+            required: true
+          }
+        },
+        messages: {
+          name: {
+            required: "Hãy nhập đầy đủ tên lớp"
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
   }
 
   createClass() {
@@ -25,6 +57,7 @@ export class CreateClassComponent implements OnInit {
       name: this.classForm.value.name
     };
     this.classesService.createNewClasses(classes).subscribe(() => {
+      this.classForm.reset();
     }, () => {
       console.log('Lỗi tạo mới lớp học');
     });

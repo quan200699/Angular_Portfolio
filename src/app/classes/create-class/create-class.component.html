@@ -4,11 +4,11 @@
   </div>
   <!-- /.card-header -->
   <!-- form start -->
-  <form [formGroup]="classForm" (ngSubmit)="createClass()">
+  <form [formGroup]="classForm" (ngSubmit)="createClass()" id="class-form">
     <div class="card-body">
       <div class="form-group">
         <label for="class-name">Tên lớp</label>
-        <input type="text" formControlName="name" class="form-control" id="class-name" placeholder="tên lớp">
+        <input type="text" formControlName="name" name="name" class="form-control" id="class-name" placeholder="tên lớp">
       </div>
     </div>
     <!-- /.card-body -->
