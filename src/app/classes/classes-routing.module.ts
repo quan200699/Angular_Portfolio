@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ListClassComponent} from './list-class/list-class.component';
+import {CreateClassComponent} from './create-class/create-class.component';
 
 
 
@@ -8,6 +9,10 @@ const routes: Routes = [
   {
     path: '',
     component: ListClassComponent
+  },
+  {
+    path: 'create',
+    component: CreateClassComponent
   }
 ];
 

@@ -1,0 +1,20 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Tạo lớp học mới</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form [formGroup]="classForm" (ngSubmit)="createClass()">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-name">Tên lớp</label>
+        <input type="text" formControlName="name" class="form-control" id="class-name" placeholder="tên lớp">
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Tạo mới</button>
+    </div>
+  </form>
+</div>
