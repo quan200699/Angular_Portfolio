@@ -5,6 +5,7 @@ import {ClassesRoutingModule} from './classes-routing.module';
 import {CreateClassComponent} from './create-class/create-class.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditClassComponent} from './edit-class/edit-class.component';
+import {DeleteClassComponent} from './delete-class/delete-class.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import {EditClassComponent} from './edit-class/edit-class.component';
     ListClassComponent,
     CreateClassComponent,
     EditClassComponent,
+    DeleteClassComponent,
   ],
   imports: [
     CommonModule,
