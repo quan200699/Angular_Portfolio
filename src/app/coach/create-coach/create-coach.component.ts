@@ -80,6 +80,7 @@ export class CreateCoachComponent implements OnInit {
   createCoach() {
     const coach: Coach = {
       id: this.coachForm.value.id,
+      coachId: this.coachForm.value.coachId,
       name: this.coachForm.value.name,
       email: this.coachForm.value.email,
       phoneNumber: this.coachForm.value.phoneNumber,
