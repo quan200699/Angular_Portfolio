@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CoachService} from '../../service/coach.service';
 import {Coach} from '../../model/coach';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NotificationService} from '../../service/notification.service';
 
 declare var $: any;
 
