@@ -6,28 +6,34 @@ import {CreateCoachComponent} from './create-coach/create-coach.component';
 import {EditCoachComponent} from './edit-coach/edit-coach.component';
 import {DeleteCoachComponent} from './delete-coach/delete-coach.component';
 import {InfoCoachComponent} from './info-coach/info-coach.component';
+import {AuthGuard} from '../helper/auth-guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ListCoachComponent
+    component: ListCoachComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create',
-    component: CreateCoachComponent
+    component: CreateCoachComponent,
+    canActivate: [AdminAuthGuard],
   },
   {
     path: 'edit/:id',
-    component: EditCoachComponent
+    component: EditCoachComponent,
+    canActivate: [AdminAuthGuard],
   },
   {
     path: 'delete/:id',
-    component: DeleteCoachComponent
+    component: DeleteCoachComponent,
+    canActivate: [AdminAuthGuard],
   },
   {
     path: 'info/:id',
-    component: InfoCoachComponent
+    component: InfoCoachComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
