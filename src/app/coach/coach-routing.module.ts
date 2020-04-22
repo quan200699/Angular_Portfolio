@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: ListCoachComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AdminAuthGuard]
   },
   {
     path: 'create',
