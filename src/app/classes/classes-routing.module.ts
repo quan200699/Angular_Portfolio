@@ -5,12 +5,14 @@ import {CreateClassComponent} from './create-class/create-class.component';
 import {EditClassComponent} from './edit-class/edit-class.component';
 import {DeleteClassComponent} from './delete-class/delete-class.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
+import {AuthGuard} from '../helper/auth-guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ListClassComponent
+    component: ListClassComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create',
