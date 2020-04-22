@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Coach} from '../model/coach';
+import {Classes} from '../model/classes';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -32,5 +33,9 @@ export class CoachService {
 
   deleteCoach(id: number): Observable<Coach> {
     return this.http.delete<Coach>(API_URL + `/coaches/${id}`);
+  }
+
+  getAllClassByCoach(id: number): Observable<Classes[]>{
+    return this.http.get<Classes[]>(API_URL + `/coaches/${id}/classes`)
   }
 }

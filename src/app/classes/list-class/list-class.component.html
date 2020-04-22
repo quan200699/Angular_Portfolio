@@ -1,7 +1,8 @@
 <section class="content">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Danh sách các lớp</h3>
+      <h3 class="card-title" *ngIf="hasRoleAdmin">Danh sách các lớp</h3>
+      <h3 class="card-title" *ngIf="!hasRoleAdmin">Danh sách các lớp đang phụ trách</h3>
       <div class="card-tools">
         <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
           Tạo mới

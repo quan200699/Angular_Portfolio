@@ -6,6 +6,7 @@ import {AdminAuthGuard} from '../helper/admin-auth-guard';
 const routes: Routes = [
   {
     path: 'student-management',
+    canActivate: [AdminAuthGuard],
     loadChildren: () => import('../student/student.module').then(module => module.StudentModule)
   },
   {
@@ -15,7 +16,6 @@ const routes: Routes = [
   },
   {
     path: 'classes-management',
-    canActivate: [AdminAuthGuard],
     loadChildren: () => import('../classes/classes.module').then(module => module.ClassesModule)
   }
 ];

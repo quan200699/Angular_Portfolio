@@ -15,7 +15,7 @@ import {AuthenticationService} from '../service/authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CoachAuthGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   currentUser: UserToken;
 
   constructor(private router: Router,
@@ -28,40 +28,18 @@ export class CoachAuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let hasRoleCoach = false;
     if (this.currentUser) {
-      const roleList = this.currentUser.roles;
-      for (const role of roleList) {
-        if (role.authority === 'COACH') {
-          hasRoleCoach = true;
-          break;
-        }
-      }
-      if (hasRoleCoach) {
-        return true;
-      } else {
-        this.authService.logout();
-        this.router.navigate(['/', 'coach'], {queryParams: {login: true}, queryParamsHandling: 'merge'});
-        return false;
-      }
+      return true;
     } else {
       // not logged in so redirect to login page with the return url
-      this.router.navigate(['/', 'coach', 'login'], {queryParams: {returnUrl: state.url}});
+      this.router.navigate(['/', 'login'], {queryParams: {returnUrl: state.url}});
       return false;
     }
   }
 
   canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.currentUser) {
-      const roleList = this.currentUser.roles;
-      let hasRoleCoach = false;
-      for (const role of roleList) {
-        if (role.authority === 'COACH') {
-          hasRoleCoach = true;
-          break;
-        }
-      }
-      return hasRoleCoach;
+      return true;
     } else {
       // not logged in so redirect to login page with the return url
       this.router.navigate(['/', 'coach', 'login'], {queryParams: {returnUrl: state.url}});
