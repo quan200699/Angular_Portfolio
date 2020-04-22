@@ -6,6 +6,7 @@ import {EditClassComponent} from './edit-class/edit-class.component';
 import {DeleteClassComponent} from './delete-class/delete-class.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {AuthGuard} from '../helper/auth-guard';
+import {InfoClassComponent} from './info-class/info-class.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: 'delete/:id',
     canActivate: [AdminAuthGuard],
     component: DeleteClassComponent,
+  },
+  {
+    path: 'info/:id',
+    canActivate: [AuthGuard],
+    component: InfoClassComponent
   }
 ];
 
