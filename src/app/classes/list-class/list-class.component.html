@@ -15,14 +15,14 @@
         <tr>
           <th style="width: 10px">#</th>
           <th>Tên lớp</th>
-          <th style="width: 160px"></th>
+          <th style="width: 160px" *ngIf="hasRoleAdmin"></th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let classes of listClass; index as i">
           <td>{{i + 1}}</td>
           <td>{{classes.name}}</td>
-          <td>
+          <td *ngIf="hasRoleAdmin">
             <div class="row">
               <div class="col-6">
                 <a [routerLink]="['edit',classes.id]" class="btn btn-block btn-primary" style="color: white">
