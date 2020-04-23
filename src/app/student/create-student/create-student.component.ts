@@ -15,6 +15,9 @@ export class CreateStudentComponent implements OnInit {
     studentId: new FormControl(''),
     name: new FormControl('')
   });
+  copyDataFromAndyForm: FormGroup = new FormGroup({
+    data: new FormControl('')
+  });
 
   constructor(private studentService: StudentService) {
   }
@@ -23,18 +26,12 @@ export class CreateStudentComponent implements OnInit {
     $(document).ready(function() {
       $('#student-form').validate({
         rules: {
-          studentId: {
-            required: true
-          },
-          name: {
+          data: {
             required: true
           }
         },
         messages: {
-          studentId: {
-            required: 'Hãy nhập mã học viên'
-          },
-          name: {
+          data: {
             required: 'Hãy nhập họ tên học viên'
           }
         },
@@ -53,15 +50,29 @@ export class CreateStudentComponent implements OnInit {
     });
   }
 
-  createStudent() {
+  createStudent(students: string[]) {
     const student: Student = {
       id: this.studentForm.value.id,
-      studentId: this.studentForm.value.studentId,
-      name: this.studentForm.value.name
+      studentId: students[1],
+      name: students[2]
     };
     this.studentService.createStudent(student).subscribe(() => {
       this.studentForm.reset();
     }, () => {
     });
+  }
+
+  createManyStudent() {
+    let data = this.copyDataFromAndyForm.value.data;
+    let students;
+    let studentRows = [];
+    students = data.split('\n');
+    for (let student of students) {
+      let row = student.split('\t');
+      if (row.length >= 3) {
+        studentRows = row;
+        this.createStudent(studentRows);
+      }
+    }
   }
 }
