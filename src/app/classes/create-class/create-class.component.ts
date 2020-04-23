@@ -30,11 +30,17 @@ export class CreateClassComponent implements OnInit {
         rules: {
           name: {
             required: true
+          },
+          program: {
+            required: true
           }
         },
         messages: {
           name: {
             required: 'Hãy nhập đầy đủ tên lớp'
+          },
+          program: {
+            required: 'Chọn chương trình học '
           }
         },
         errorElement: 'span',
@@ -60,10 +66,12 @@ export class CreateClassComponent implements OnInit {
         id: this.classForm.value.program
       }
     };
-    this.classesService.createNewClasses(classes).subscribe(() => {
-      this.classForm.reset();
-    }, () => {
-    });
+    if (classes.name != '') {
+      this.classesService.createNewClasses(classes).subscribe(() => {
+        this.classForm.reset();
+      }, () => {
+      });
+    }
   }
 
   getAllProgram() {
