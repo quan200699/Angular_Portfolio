@@ -26,7 +26,7 @@
           <td>
             <a [routerLink]="['info', classes.id]">{{classes.name}}</a>
           </td>
-          <td></td>
+          <td><span *ngIf="classes.programs != null">{{classes.programs.name}}</span></td>
           <td>{{classes.students.length}}</td>
           <td *ngIf="hasRoleAdmin">
             <div class="row">
