@@ -1,0 +1,26 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Cập nhật chương trình học</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form [formGroup]="programForm" (ngSubmit)="updateProgram(id)" id="program-form">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="program-name">Tên chương trình học</label>
+        <input type="text" formControlName="name" name="name" [value]="name" class="form-control" id="program-name"
+               placeholder="Tên chương trình học">
+      </div>
+      <div class="form-group">
+        <label for="program-description">Mô tả</label>
+        <input type="text" formControlName="description" name="description" [value]="name" class="form-control"
+               id="program-description" placeholder="Mô tả">
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>

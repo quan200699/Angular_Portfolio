@@ -4,6 +4,7 @@ import {ListProgramComponent} from './list-program/list-program.component';
 import {ProgramRoutingModule} from './program-routing.module';
 import {CreateProgramComponent} from './create-program/create-program.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EditProgramComponent} from './edit-program/edit-program.component';
 
 
 
@@ -11,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ListProgramComponent,
     CreateProgramComponent,
+    EditProgramComponent,
   ],
   exports: [
     ListProgramComponent,
