@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {EditClassComponent} from './edit-class/edit-class.component';
 import {DeleteClassComponent} from './delete-class/delete-class.component';
 import {InfoClassComponent} from './info-class/info-class.component';
+import {AddStudentToClassComponent} from './add-student-to-class/add-student-to-class.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {InfoClassComponent} from './info-class/info-class.component';
     EditClassComponent,
     DeleteClassComponent,
     InfoClassComponent,
+    AddStudentToClassComponent,
   ],
   imports: [
     CommonModule,

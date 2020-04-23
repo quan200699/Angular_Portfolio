@@ -7,6 +7,7 @@ import {DeleteClassComponent} from './delete-class/delete-class.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {AuthGuard} from '../helper/auth-guard';
 import {InfoClassComponent} from './info-class/info-class.component';
+import {AddStudentToClassComponent} from './add-student-to-class/add-student-to-class.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
     path: 'info/:id',
     canActivate: [AuthGuard],
     component: InfoClassComponent
+  },
+  {
+    path: 'info/:id/add-student',
+    canActivate: [AdminAuthGuard],
+    component: AddStudentToClassComponent
   }
 ];
 
