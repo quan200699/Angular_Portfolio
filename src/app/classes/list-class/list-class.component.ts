@@ -40,6 +40,11 @@ export class ListClassComponent implements OnInit {
   getAllClass() {
     this.classesService.getAllClasses().subscribe(listClass => {
       this.listClass = listClass;
+      for (let i = 0; i < listClass.length; i++) {
+        this.classesService.getAllStudentByClass(this.listClass[i].id).subscribe(listStudent => {
+          this.listClass[i].students = listStudent;
+        });
+      }
     });
   }
 
