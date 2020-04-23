@@ -40,22 +40,24 @@ export class ListClassComponent implements OnInit {
   getAllClass() {
     this.classesService.getAllClasses().subscribe(listClass => {
       this.listClass = listClass;
-      this.numberOfStudentInClass(listClass);
+      for (let i = 0; i < this.listClass.length; i++) {
+        this.numberOfStudentInClass(listClass[i]);
+      }
     });
   }
 
   getAllClassByCoach(id: number) {
     this.coachService.getAllClassByCoach(id).subscribe(listClass => {
       this.listClass = listClass;
-      this.numberOfStudentInClass(listClass);
+      for (let i = 0; i < this.listClass.length; i++) {
+        this.numberOfStudentInClass(listClass[i]);
+      }
     });
   }
 
-  numberOfStudentInClass(listClass: Classes[]) {
-    for (let i = 0; i < listClass.length; i++) {
-      this.classesService.getAllStudentByClass(listClass[i].id).subscribe(listStudent => {
-        listClass[i].students = listStudent;
-      });
-    }
+  numberOfStudentInClass(classes: Classes) {
+    this.classesService.getAllStudentByClass(classes.id).subscribe(listStudent => {
+      classes.students = listStudent;
+    });
   }
 }
