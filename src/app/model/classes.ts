@@ -3,4 +3,5 @@ export interface Classes {
   name?: string;
   coach?: any;
   students?: any[];
+  program?: any;
 }
