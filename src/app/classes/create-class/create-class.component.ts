@@ -15,7 +15,7 @@ declare var $: any;
 export class CreateClassComponent implements OnInit {
   classForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    program: new FormControl('')
+    program: new FormControl()
   });
   programList: Program[];
 

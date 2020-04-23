@@ -82,7 +82,7 @@ export class EditClassComponent implements OnInit {
       id: this.classForm.value.id,
       name: this.classForm.value.name === '' ? this.className : this.classForm.value.name,
       programs: {
-        id: this.classForm.value.program === '' ? this.programId : this.classForm.value.program
+        id: this.classForm.value.program === null ? this.programId : this.classForm.value.program
       }
     };
     this.classesService.updateClassesInfo(id, classes).subscribe(() => {
