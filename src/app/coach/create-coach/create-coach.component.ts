@@ -87,9 +87,11 @@ export class CreateCoachComponent implements OnInit {
       address: this.coachForm.value.address,
       notice: this.coachForm.value.notice
     };
-    this.coachService.createNewCoach(coach).subscribe(() => {
-      this.coachForm.reset();
-    }, () => {
-    });
+    if (coach.name !== '') {
+      this.coachService.createNewCoach(coach).subscribe(() => {
+        this.coachForm.reset();
+      }, () => {
+      });
+    }
   }
 }
