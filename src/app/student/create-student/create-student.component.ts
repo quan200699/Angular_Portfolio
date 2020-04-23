@@ -15,7 +15,7 @@ export class CreateStudentComponent implements OnInit {
     studentId: new FormControl(''),
     name: new FormControl('')
   });
-  copyDataFromAndyForm: FormGroup = new FormGroup({
+  copyStudentDataFromAndyForm: FormGroup = new FormGroup({
     data: new FormControl('')
   });
 
@@ -63,7 +63,7 @@ export class CreateStudentComponent implements OnInit {
   }
 
   createManyStudent() {
-    let data = this.copyDataFromAndyForm.value.data;
+    let data = this.copyStudentDataFromAndyForm.value.data;
     let students;
     let studentRows = [];
     students = data.split('\n');
