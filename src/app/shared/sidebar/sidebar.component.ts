@@ -14,9 +14,8 @@ export class SidebarComponent implements OnInit {
   user: Coach;
   hasRoleAdmin = false;
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService) {
+  constructor(private router: Router,
+              private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
     if (this.currentUser) {
       const roleList = this.currentUser.roles;

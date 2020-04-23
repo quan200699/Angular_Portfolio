@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Danh sách học viên lớp {{className}}</h3>
-      <div class="card-tools">
+      <div class="card-tools" *ngIf="hasRoleAdmin">
         <a routerLink="add-student" class="btn btn-xs btn-primary float-lg-right">
           Thêm học viên
         </a>
