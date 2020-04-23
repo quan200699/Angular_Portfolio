@@ -14,6 +14,10 @@ const routes: Routes = [
     loadChildren: () => import('../coach/coach.module').then(module => module.CoachModule)
   },
   {
+    path: 'program-management',
+    loadChildren: () => import('../program/program.module').then(module => module.ProgramModule)
+  },
+  {
     path: 'classes-management',
     loadChildren: () => import('../classes/classes.module').then(module => module.ClassesModule)
   }
