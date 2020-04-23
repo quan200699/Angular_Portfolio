@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClassesService} from '../../service/classes.service';
 import {Classes} from '../../model/classes';
+import {ProgramService} from '../../service/program.service';
+import {Program} from '../../model/program';
 
 declare var $: any;
 
@@ -12,10 +14,14 @@ declare var $: any;
 })
 export class CreateClassComponent implements OnInit {
   classForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    program: new FormControl('')
   });
+  programList: Program[];
 
-  constructor(private classesService: ClassesService) {
+  constructor(private classesService: ClassesService,
+              private programService: ProgramService) {
+    this.getAllProgram();
   }
 
   ngOnInit() {
@@ -49,11 +55,20 @@ export class CreateClassComponent implements OnInit {
   createClass() {
     const classes: Classes = {
       id: this.classForm.value.id,
-      name: this.classForm.value.name
+      name: this.classForm.value.name,
+      programs: {
+        id: this.classForm.value.program
+      }
     };
     this.classesService.createNewClasses(classes).subscribe(() => {
       this.classForm.reset();
     }, () => {
+    });
+  }
+
+  getAllProgram() {
+    this.programService.getAllProgram().subscribe(listProgram => {
+      this.programList = listProgram;
     });
   }
 }

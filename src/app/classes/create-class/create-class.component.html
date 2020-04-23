@@ -10,6 +10,13 @@
         <label for="class-name">Tên lớp</label>
         <input type="text" formControlName="name" name="name" class="form-control" id="class-name" placeholder="tên lớp">
       </div>
+      <div class="form-group">
+        <label for="program">Danh mục:</label>
+        <select class="custom-select custom-select-sm" id="program" formControlName="program">
+          <option [ngValue]="null" disabled>Chọn danh mục câu hỏi</option>
+          <option *ngFor="let program of programList" [value]="program.id">{{program.name}}</option>
+        </select>
+      </div>
     </div>
     <!-- /.card-body -->
 
