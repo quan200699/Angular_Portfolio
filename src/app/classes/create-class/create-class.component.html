@@ -4,18 +4,23 @@
   </div>
   <!-- /.card-header -->
   <!-- form start -->
-  <form [formGroup]="classForm" (ngSubmit)="createClass()" id="class-form">
+  <form [formGroup]="copyClassDataFromAndyForm" (ngSubmit)="createManyClasses()" id="class-form">
     <div class="card-body">
+<!--      <div class="form-group">-->
+<!--        <label for="class-name">Tên lớp</label>-->
+<!--        <input type="text" formControlName="name" name="name" class="form-control" id="class-name" placeholder="tên lớp">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="program">Chương trình học:</label>-->
+<!--        <select class="custom-select" id="program" name="program" formControlName="program">-->
+<!--          <option [ngValue]="null" disabled>Chọn chương trình học</option>-->
+<!--          <option *ngFor="let program of programList" [value]="program.id">{{program.name}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
       <div class="form-group">
-        <label for="class-name">Tên lớp</label>
-        <input type="text" formControlName="name" name="name" class="form-control" id="class-name" placeholder="tên lớp">
-      </div>
-      <div class="form-group">
-        <label for="program">Chương trình học:</label>
-        <select class="custom-select" id="program" name="program" formControlName="program">
-          <option [ngValue]="null" disabled>Chọn chương trình học</option>
-          <option *ngFor="let program of programList" [value]="program.id">{{program.name}}</option>
-        </select>
+        <label for="data">Nội dung</label>
+        <textarea class="form-control" rows="20" placeholder="Paste ..." id="data" name="data"
+                  formControlName="data"></textarea>
       </div>
     </div>
     <!-- /.card-body -->

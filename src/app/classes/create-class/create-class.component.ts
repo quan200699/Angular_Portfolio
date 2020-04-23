@@ -17,6 +17,9 @@ export class CreateClassComponent implements OnInit {
     name: new FormControl('', Validators.required),
     program: new FormControl()
   });
+  copyClassDataFromAndyForm: FormGroup = new FormGroup({
+    data: new FormControl('')
+  });
   programList: Program[];
 
   constructor(private classesService: ClassesService,
@@ -58,13 +61,10 @@ export class CreateClassComponent implements OnInit {
     });
   }
 
-  createClass() {
+  createClass(classList: string[]) {
     const classes: Classes = {
       id: this.classForm.value.id,
-      name: this.classForm.value.name,
-      programs: {
-        id: this.classForm.value.program
-      }
+      name: classList[1]
     };
     if (classes.name != '') {
       this.classesService.createNewClasses(classes).subscribe(() => {
@@ -78,5 +78,19 @@ export class CreateClassComponent implements OnInit {
     this.programService.getAllProgram().subscribe(listProgram => {
       this.programList = listProgram;
     });
+  }
+
+  createManyClasses() {
+    let data = this.copyClassDataFromAndyForm.value.data;
+    let listClass;
+    let classesRows = [];
+    listClass = data.split('\n');
+    for (let classes of listClass) {
+      let row = classes.split('\t');
+      if (row.length >= 3) {
+        classesRows = row;
+        this.createClass(classesRows);
+      }
+    }
   }
 }
