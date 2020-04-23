@@ -15,7 +15,7 @@
         <tr>
           <th style="width: 10px">#</th>
           <th>Tên lớp</th>
-<!--          <th>Chương trình học</th>-->
+          <th>Chương trình học</th>
           <th style="width: 80px">Sĩ số</th>
           <th style="width: 160px" *ngIf="hasRoleAdmin"></th>
         </tr>
@@ -26,7 +26,7 @@
           <td>
             <a [routerLink]="['info', classes.id]">{{classes.name}}</a>
           </td>
-<!--          <td></td>-->
+          <td></td>
           <td>{{classes.students.length}}</td>
           <td *ngIf="hasRoleAdmin">
             <div class="row">
