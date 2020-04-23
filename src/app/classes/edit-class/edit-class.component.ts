@@ -4,6 +4,8 @@ import {ClassesService} from '../../service/classes.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Classes} from '../../model/classes';
+import {ProgramService} from '../../service/program.service';
+import {Program} from '../../model/program';
 
 declare var $: any;
 
@@ -15,13 +17,18 @@ declare var $: any;
 export class EditClassComponent implements OnInit {
   className: string;
   classId: number;
+  programId: number;
   classForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    program: new FormControl('')
   });
   sub: Subscription;
+  programList: Program[];
 
   constructor(private classesService: ClassesService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private programService: ProgramService) {
+    this.getAllProgram();
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCurrentClass(id);
@@ -30,20 +37,21 @@ export class EditClassComponent implements OnInit {
 
   ngOnInit() {
     $(document).ready(function() {
-      $.validator.setDefaults({
-        submitHandler: function() {
-          alert('Cập nhật thành công');
-        }
-      });
       $('#class-form').validate({
         rules: {
           name: {
+            required: true
+          },
+          program: {
             required: true
           }
         },
         messages: {
           name: {
             required: 'Hãy nhập đầy đủ tên lớp'
+          },
+          program: {
+            required: 'Chọn chương trình học '
           }
         },
         errorElement: 'span',
@@ -65,16 +73,26 @@ export class EditClassComponent implements OnInit {
     this.classesService.getClasses(id).subscribe(classes => {
       this.className = classes.name;
       this.classId = classes.id;
+      this.programId = classes.programs.id;
     });
   }
 
   editClass(id: number) {
     const classes: Classes = {
       id: this.classForm.value.id,
-      name: this.classForm.value.name === '' ? this.className : this.classForm.value.name
+      name: this.classForm.value.name === '' ? this.className : this.classForm.value.name,
+      programs: {
+        id: this.classForm.value.program === '' ? this.programId : this.classForm.value.program
+      }
     };
     this.classesService.updateClassesInfo(id, classes).subscribe(() => {
     }, () => {
+    });
+  }
+
+  getAllProgram() {
+    this.programService.getAllProgram().subscribe(listProgram => {
+      this.programList = listProgram;
     });
   }
 }
