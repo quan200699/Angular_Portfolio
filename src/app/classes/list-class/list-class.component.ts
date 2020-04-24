@@ -5,6 +5,8 @@ import {AuthenticationService} from '../../service/authentication.service';
 import {CoachService} from '../../service/coach.service';
 import {UserToken} from '../../model/user-token';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-class',
   templateUrl: './list-class.component.html',
@@ -35,6 +37,16 @@ export class ListClassComponent implements OnInit {
     } else {
       this.getAllClassByCoach(this.currentUser.id);
     }
+    $(function () {
+      $('#table-class').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
   }
 
   getAllClass() {

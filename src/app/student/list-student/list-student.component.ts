@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {StudentService} from '../../service/student.service';
 import {Student} from '../../model/student';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-student',
   templateUrl: './list-student.component.html',
@@ -14,6 +16,16 @@ export class ListStudentComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(function () {
+      $('#table-student').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
     this.getStudentList();
   }
 
