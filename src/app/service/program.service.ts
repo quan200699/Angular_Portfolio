@@ -33,4 +33,8 @@ export class ProgramService {
   deleteProgram(id: number): Observable<Program> {
     return this.http.delete<Program>(API_URL + `/programs/${id}`);
   }
+
+  getProgramByName(name: string): Observable<Program> {
+    return this.http.get<Program>(API_URL + '/programs/name?name=' + name);
+  }
 }

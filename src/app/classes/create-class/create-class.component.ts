@@ -62,16 +62,21 @@ export class CreateClassComponent implements OnInit {
   }
 
   createClass(classList: string[]) {
-    const classes: Classes = {
-      id: this.classForm.value.id,
-      name: classList[1]
-    };
-    if (classes.name != '') {
-      this.classesService.createNewClasses(classes).subscribe(() => {
-        this.classForm.reset();
-      }, () => {
-      });
-    }
+    this.programService.getProgramByName(classList[5]).subscribe(program => {
+      const classes: Classes = {
+        id: this.classForm.value.id,
+        name: classList[1],
+        programs: {
+          id: program.id
+        }
+      };
+      if (classes.name != '') {
+        this.classesService.createNewClasses(classes).subscribe(() => {
+          this.classForm.reset();
+        }, () => {
+        });
+      }
+    });
   }
 
   getAllProgram() {
