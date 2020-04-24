@@ -8,6 +8,7 @@ import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {AuthGuard} from '../helper/auth-guard';
 import {InfoClassComponent} from './info-class/info-class.component';
 import {AddStudentToClassComponent} from './add-student-to-class/add-student-to-class.component';
+import {ChangeStudentClassComponent} from './change-student-class/change-student-class.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,11 @@ const routes: Routes = [
     path: 'info/:id/add-student',
     canActivate: [AdminAuthGuard],
     component: AddStudentToClassComponent
+  },
+  {
+    path: 'info/:id/info-student/:studentId',
+    canActivate: [AuthGuard],
+    component: ChangeStudentClassComponent
   }
 ];
 

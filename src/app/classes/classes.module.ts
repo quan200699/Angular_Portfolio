@@ -8,6 +8,7 @@ import {EditClassComponent} from './edit-class/edit-class.component';
 import {DeleteClassComponent} from './delete-class/delete-class.component';
 import {InfoClassComponent} from './info-class/info-class.component';
 import {AddStudentToClassComponent} from './add-student-to-class/add-student-to-class.component';
+import {ChangeStudentClassComponent} from './change-student-class/change-student-class.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {AddStudentToClassComponent} from './add-student-to-class/add-student-to-
     DeleteClassComponent,
     InfoClassComponent,
     AddStudentToClassComponent,
+    ChangeStudentClassComponent,
   ],
   imports: [
     CommonModule,
