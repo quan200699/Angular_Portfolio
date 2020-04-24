@@ -16,7 +16,7 @@ export class ChangeStudentClassComponent implements OnInit {
   studentForm: FormGroup = new FormGroup({
     studentId: new FormControl(''),
     name: new FormControl(''),
-    classes: new FormControl('')
+    classes: new FormControl()
   });
   sub: Subscription;
   studentName: string;
@@ -55,7 +55,7 @@ export class ChangeStudentClassComponent implements OnInit {
       name: this.studentName,
       studentId: this.idStudent,
       classes: {
-        id: this.studentForm.value.classes === null ? this.studentClass : this.studentForm.value.classes
+        id: this.studentForm.value.classes == null ? this.studentClass : this.studentForm.value.classes
       }
     };
     this.studentService.updateStudent(id, student).subscribe(() => {

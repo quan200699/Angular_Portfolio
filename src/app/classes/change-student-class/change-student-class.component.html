@@ -16,8 +16,8 @@
       </div>
       <div class="form-group" *ngIf="!buttonChangeClicked">
         <label for="classes1">Lớp học: </label>
-        <span id="classes1">{{studentClass.name}}</span>
-        <button type="button" (click)="changeButtonStatus()">Đổi lớp</button>
+        <span id="classes1" *ngIf="studentClass!=null">{{studentClass.name}}</span>
+        <button type="button" class="btn btn-primary btn-sm ml-3" (click)="changeButtonStatus()">Đổi lớp</button>
       </div>
       <div class="form-group" *ngIf="buttonChangeClicked">
         <label for="classes">Lớp học: </label>
