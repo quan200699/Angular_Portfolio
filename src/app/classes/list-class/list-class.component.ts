@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ClassesService} from '../../service/classes.service';
 import {Classes} from '../../model/classes';
 import {AuthenticationService} from '../../service/authentication.service';
@@ -19,7 +19,8 @@ export class ListClassComponent implements OnInit {
 
   constructor(private classesService: ClassesService,
               private authenticationService: AuthenticationService,
-              private coachService: CoachService) {
+              private coachService: CoachService,
+              private chRef: ChangeDetectorRef) {
     this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
     if (this.currentUser) {
       const roleList = this.currentUser.roles;
@@ -37,24 +38,25 @@ export class ListClassComponent implements OnInit {
     } else {
       this.getAllClassByCoach(this.currentUser.id);
     }
-    $(function () {
-      $('#table-class').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
   }
 
   getAllClass() {
     this.classesService.getAllClasses().subscribe(listClass => {
       this.listClass = listClass;
+      this.chRef.detectChanges();
       for (let i = 0; i < this.listClass.length; i++) {
         this.numberOfStudentInClass(listClass[i]);
       }
+      $(function() {
+        $('#table-class').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': false,
+          'ordering': true,
+          'info': true,
+          'autoWidth': false,
+        });
+      });
     });
   }
 
