@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Program} from '../model/program';
+import {Classes} from '../model/classes';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -36,5 +37,9 @@ export class ProgramService {
 
   getProgramByName(name: string): Observable<Program> {
     return this.http.get<Program>(API_URL + '/programs/name?name=' + name);
+  }
+
+  getAllClassByProgram(id: number): Observable<Classes[]> {
+    return this.http.get<Classes[]>(API_URL + `/programs/${id}/classes`);
   }
 }

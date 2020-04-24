@@ -5,6 +5,7 @@ import {AuthGuard} from '../helper/auth-guard';
 import {CreateProgramComponent} from './create-program/create-program.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {EditProgramComponent} from './edit-program/edit-program.component';
+import {InfoProgramComponent} from './info-program/info-program.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,11 @@ const routes: Routes = [
     path: 'edit/:id',
     component: EditProgramComponent,
     canActivate: [AdminAuthGuard]
+  },
+  {
+    path: 'info/:id',
+    component: InfoProgramComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
