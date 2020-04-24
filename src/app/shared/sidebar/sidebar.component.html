@@ -15,8 +15,11 @@
             <div class="image">
               <i class="fa fa-user fa-2x" style="color: white"></i>
             </div>
-      <div class="info" *ngIf="currentUser">
+      <div class="info" *ngIf="currentUser && hasRoleAdmin">
         <a [routerLink]="'/admin/coach-management/info/'+currentUser.id" class="d-block">{{currentUser.email}}</a>
+      </div>
+      <div class="info" *ngIf="currentUser && !hasRoleAdmin">
+        <a [routerLink]="'/admin/coach-management/info/'+currentUser.id" class="d-block">{{currentUser.name}}</a>
       </div>
     </div>
 
