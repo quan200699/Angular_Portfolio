@@ -35,7 +35,11 @@ export class CoachService {
     return this.http.delete<Coach>(API_URL + `/coaches/${id}`);
   }
 
-  getAllClassByCoach(id: number): Observable<Classes[]>{
-    return this.http.get<Classes[]>(API_URL + `/coaches/${id}/classes`)
+  getAllClassByCoach(id: number): Observable<Classes[]> {
+    return this.http.get<Classes[]>(API_URL + `/coaches/${id}/classes`);
+  }
+
+  changePassword(id: number, coach: Coach): Observable<Coach> {
+    return this.http.put<Coach>(API_URL + `/coaches/change-password/${id}`, coach);
   }
 }

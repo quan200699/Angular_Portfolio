@@ -7,6 +7,7 @@ import {EditCoachComponent} from './edit-coach/edit-coach.component';
 import {DeleteCoachComponent} from './delete-coach/delete-coach.component';
 import {InfoCoachComponent} from './info-coach/info-coach.component';
 import {AuthGuard} from '../helper/auth-guard';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'info/:id',
     component: InfoCoachComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'info/:id/change-password',
+    component: ChangePasswordComponent,
     canActivate: [AuthGuard]
   }
 ];
