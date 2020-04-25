@@ -4,6 +4,7 @@ import {TemplateRoutingModule} from './template-routing.module';
 import {ListTemplateComponent} from './list-template/list-template.component';
 import {CreateTemplateComponent} from './create-template/create-template.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EditTemplateComponent} from './edit-template/edit-template.component';
 
 
 
@@ -11,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ListTemplateComponent,
     CreateTemplateComponent,
+    EditTemplateComponent,
   ],
   imports: [
     CommonModule,
