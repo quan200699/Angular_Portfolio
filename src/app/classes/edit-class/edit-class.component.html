@@ -14,8 +14,9 @@
       <div class="form-group">
         <label for="program">Chương trình học:</label>
         <select class="custom-select custom-select-sm" id="program" name="program" formControlName="program">
-          <option [ngValue]="null" disabled>Chọn danh mục câu hỏi</option>
-          <option *ngFor="let program of programList" [value]="program.id">{{program.name}}</option>
+          <option [ngValue]="null" disabled>Chọn chương trình học</option>
+          <option *ngFor="let program of programList" [value]="program.id"
+                  [selected]="program.id === programId">{{program.name}}</option>
         </select>
       </div>
     </div>

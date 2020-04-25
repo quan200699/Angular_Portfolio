@@ -23,7 +23,8 @@
         <label for="classes">Lớp học: </label>
         <select class="custom-select" id="classes" name="classes" formControlName="classes">
           <option [ngValue]="null" disabled>Chọn lớp học</option>
-          <option *ngFor="let classes of listClass" [value]="classes.id">{{classes.name}}</option>
+          <option *ngFor="let classes of listClass" [value]="classes.id"
+                  [selected]="classes.id === studentClassId">{{classes.name}}</option>
         </select>
       </div>
     </div>

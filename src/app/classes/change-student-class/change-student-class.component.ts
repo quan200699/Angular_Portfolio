@@ -23,6 +23,7 @@ export class ChangeStudentClassComponent implements OnInit {
   idStudent: string;
   id: number;
   studentClass: Classes;
+  studentClassId: number;
   listClass: Classes[];
   buttonChangeClicked: boolean;
 
@@ -46,6 +47,7 @@ export class ChangeStudentClassComponent implements OnInit {
       this.studentName = student.name;
       this.idStudent = student.studentId;
       this.studentClass = student.classes;
+      this.studentClassId = student.classes.id;
     });
   }
 
@@ -55,7 +57,7 @@ export class ChangeStudentClassComponent implements OnInit {
       name: this.studentName,
       studentId: this.idStudent,
       classes: {
-        id: this.studentForm.value.classes == null ? this.studentClass : this.studentForm.value.classes
+        id: this.studentForm.value.classes == null ? this.studentClassId : this.studentForm.value.classes
       }
     };
     this.studentService.updateStudent(id, student).subscribe(() => {
