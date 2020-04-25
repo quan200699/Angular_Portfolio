@@ -6,6 +6,7 @@ import {ListTemplateComponent} from './list-template/list-template.component';
 import {CreateTemplateComponent} from './create-template/create-template.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {EditTemplateComponent} from './edit-template/edit-template.component';
+import {DeleteTemplateComponent} from './delete-template/delete-template.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditTemplateComponent,
+    canActivate: [AdminAuthGuard]
+  },
+  {
+    path: 'delete/:id',
+    component: DeleteTemplateComponent,
     canActivate: [AdminAuthGuard]
   }];
 
