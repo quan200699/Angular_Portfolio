@@ -98,9 +98,11 @@ export class ChangePasswordComponent implements OnInit {
         notice: this.notice,
         password: newPassword === '' ? this.password : newPassword
       };
-      this.coachService.changePassword(id, coach).subscribe(() => {
-      }, () => {
-      });
+      if (newPassword !== null) {
+        this.coachService.changePassword(id, coach).subscribe(() => {
+        }, () => {
+        });
+      }
     } else {
       alert('Nhập lại mật khẩu không đúng');
     }
