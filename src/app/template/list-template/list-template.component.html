@@ -1,0 +1,48 @@
+<section class="content">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Danh sách bảnh đánh giá</h3>
+      <div class="card-tools">
+        <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
+          Tạo mới
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Tên bản đánh giá</th>
+<!--          <th>Chương trình học</th>-->
+          <th style="width: 160px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let template of listTemplate; index as i">
+          <td>{{i + 1}}</td>
+          <td>
+            <a [routerLink]="['info',template.id]">{{template.name}}</a>
+          </td>
+<!--          <td>{{template.programs}}</td>-->
+          <td>
+            <div class="row">
+              <div class="col-6">
+                <a [routerLink]="['edit',template.id]" class="btn btn-block btn-primary" style="color: white">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </div>
+              <div class="col-6">
+                <a [routerLink]="['delete',template.id]" class="btn btn-block btn-danger" style="color: white">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

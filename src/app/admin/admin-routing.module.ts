@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'classes-management',
     loadChildren: () => import('../classes/classes.module').then(module => module.ClassesModule)
+  },
+  {
+    path: 'template-management',
+    loadChildren: () => import('../template/template.module').then(module => module.TemplateModule)
   }
 ];
 
