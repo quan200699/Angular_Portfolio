@@ -1,0 +1,23 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Xóa thông tin chương trình học</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <div class="card-body">
+    <div class="form-group">
+      <label for="class-name">Tên chương trình học: </label>
+      <span id="class-name"> {{name}}</span>
+    </div>
+    <div class="form-group">
+      <label for="class-description">Mô tả: </label>
+      <span id="class-description"> {{description}}</span>
+    </div>
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" (click)="deleteProgram(id)">Xóa</button>
+  </div>
+</div>
+

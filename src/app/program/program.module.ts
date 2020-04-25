@@ -6,6 +6,7 @@ import {CreateProgramComponent} from './create-program/create-program.component'
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditProgramComponent} from './edit-program/edit-program.component';
 import {InfoProgramComponent} from './info-program/info-program.component';
+import {DeleteProgramComponent} from './delete-program/delete-program.component';
 
 
 
@@ -15,6 +16,7 @@ import {InfoProgramComponent} from './info-program/info-program.component';
     CreateProgramComponent,
     EditProgramComponent,
     InfoProgramComponent,
+    DeleteProgramComponent
   ],
   exports: [
     ListProgramComponent,

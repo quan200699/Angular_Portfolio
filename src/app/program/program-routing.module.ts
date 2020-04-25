@@ -6,6 +6,7 @@ import {CreateProgramComponent} from './create-program/create-program.component'
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {EditProgramComponent} from './edit-program/edit-program.component';
 import {InfoProgramComponent} from './info-program/info-program.component';
+import {DeleteProgramComponent} from './delete-program/delete-program.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: 'info/:id',
     component: InfoProgramComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'delete/:id',
+    component: DeleteProgramComponent,
+    canActivate: [AdminAuthGuard]
   }
 ];
 
