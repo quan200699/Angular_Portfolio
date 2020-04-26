@@ -31,19 +31,13 @@ export class CreateOutcomeComponent implements OnInit {
     $(document).ready(function() {
       $('#outcome-form').validate({
         rules: {
-          title: {
-            required: true
-          },
-          templates: {
+          data: {
             required: true
           }
         },
         messages: {
-          title: {
-            required: 'Hãy nhập tiêu đề'
-          },
-          templates: {
-            required: 'Chọn bản mẫu'
+          data: {
+            required: 'Hãy nhập dữ liệu'
           }
         },
         errorElement: 'span',
