@@ -10,6 +10,7 @@
       <tr>
         <th style="width: 10px">#</th>
         <th>Tên lớp</th>
+        <th>Chương trình học</th>
         <th style="width: 80px">Sĩ số</th>
       </tr>
       </thead>
@@ -17,10 +18,19 @@
       <tr *ngFor="let classes of listClass; index as i">
         <td>{{i + 1}}</td>
         <td>{{classes.name}}</td>
+        <td *ngIf="classes.programs !=null">{{classes.programs.name}}</td>
         <td *ngIf="classes.students !=null">{{classes.students.length}}</td>
       </tr>
       <tr>
       </tbody>
+      <tfoot>
+      <tr>
+        <th>#</th>
+        <th>Tên lớp</th>
+        <th>Chương trình học</th>
+        <th>Sĩ số</th>
+      </tr>
+      </tfoot>
     </table>
   </div>
 </section>

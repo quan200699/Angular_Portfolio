@@ -3,6 +3,7 @@ import {Classes} from '../../model/classes';
 import {Subscription} from 'rxjs';
 import {ProgramService} from '../../service/program.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ClassesService} from '../../service/classes.service';
 
 @Component({
   selector: 'app-info-program',
@@ -15,10 +16,12 @@ export class InfoProgramComponent implements OnInit {
   programName: string;
 
   constructor(private programService: ProgramService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private classesService: ClassesService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getAllClassByProgram(id);
+      this.getProgram(id);
     });
   }
 
@@ -34,7 +37,15 @@ export class InfoProgramComponent implements OnInit {
   getAllClassByProgram(id: number) {
     this.programService.getAllClassByProgram(id).subscribe(listClass => {
       this.listClass = listClass;
+      for (let i = 0; i < this.listClass.length; i++) {
+        this.numberOfStudentInClass(listClass[i]);
+      }
     });
   }
 
+  numberOfStudentInClass(classes: Classes) {
+    this.classesService.getAllStudentByClass(classes.id).subscribe(listStudent => {
+      classes.students = listStudent;
+    });
+  }
 }
