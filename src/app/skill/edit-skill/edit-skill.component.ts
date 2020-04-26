@@ -15,13 +15,13 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class EditSkillComponent implements OnInit {
   skillForm: FormGroup = new FormGroup({
     name: new FormControl(''),
-    categories: new FormControl()
+    // categories: new FormControl()
   });
-  skill: Skill;
   skillCategory: Category;
   sub: Subscription;
   listCategory: Category[];
   id: number;
+  name: string;
 
   constructor(private skillService: SkillService,
               private categoryService: CategoryService,
@@ -44,7 +44,7 @@ export class EditSkillComponent implements OnInit {
 
   getSkill(id: number) {
     this.skillService.getSkill(id).subscribe(skill => {
-      this.skill = skill;
+      this.name = skill.name;
       this.skillCategory = skill.categories;
       this.id = skill.id;
     });
@@ -53,10 +53,10 @@ export class EditSkillComponent implements OnInit {
   updateSkillInfo(id: number) {
     const skill: Skill = {
       id: this.skillForm.value.id,
-      name: this.skillForm.value.name === '' ? this.skill.name : this.skillForm.value.name,
-      categories: {
-        id: this.skillForm.value.categories === null ? this.skillCategory.id : this.skillForm.value.categories
-      }
+      name: this.skillForm.value.name === '' ? this.name : this.skillForm.value.name,
+      // categories: {
+      //   id: this.skillForm.value.categories === null ? this.skillCategory.id : this.skillForm.value.categories
+      // }
     };
     this.skillService.editSkill(id, skill).subscribe();
   }
