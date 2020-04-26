@@ -1,26 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CategoryService} from '../../service/category.service';
-import {Category} from '../../model/category';
+import {Skill} from '../../model/skill';
+import {SkillService} from '../../service/skill.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-create-category',
-  templateUrl: './create-category.component.html',
-  styleUrls: ['./create-category.component.css']
+  selector: 'app-create-skill',
+  templateUrl: './create-skill.component.html',
+  styleUrls: ['./create-skill.component.css']
 })
-export class CreateCategoryComponent implements OnInit {
+export class CreateSkillComponent implements OnInit {
   copyFromWordForm: FormGroup = new FormGroup({
     data: new FormControl('')
   });
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private skillService: SkillService) {
   }
 
   ngOnInit() {
     $(document).ready(function() {
-      $('#category-form').validate({
+      $('#skill-form').validate({
         rules: {
           data: {
             required: true
@@ -46,31 +46,28 @@ export class CreateCategoryComponent implements OnInit {
     });
   }
 
-  createCategory(categoryName: string[]) {
-    const category: Category = {
-      name: categoryName[1]
+  createSkill(skillRow: string[]) {
+    const skill: Skill = {
+      name: skillRow[1]
     };
-    if (category.name != '') {
-      this.categoryService.createNewCategory(category).subscribe(() => {
+    if (skill.name != '') {
+      this.skillService.createNewSkill(skill).subscribe(() => {
         this.copyFromWordForm.reset();
       });
     }
   }
 
-  createManyCategory() {
+  createManySkill() {
     let data = this.copyFromWordForm.value.data;
-    let listCategory;
-    let categoryRow = [];
-    let isCategory = /[1-9].[0-9]{1,2}[^.]/;
+    let listSkill;
+    let skillRow = [];
     let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
-    listCategory = data.split('\n');
-    for (let category of listCategory) {
-      if (category.search(isSkill) == -1) {
-        const row = category.split(isCategory);
-        if (row.length == 2) {
-          categoryRow = row;
-          this.createCategory(categoryRow);
-        }
+    listSkill = data.split('\n');
+    for (let category of listSkill) {
+      const row = category.split(isSkill);
+      if (row.length == 2) {
+        skillRow = row;
+        this.createSkill(skillRow);
       }
     }
   }
