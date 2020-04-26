@@ -1,0 +1,19 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Xóa thông tin danh mục</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <div class="card-body" *ngIf="category!=null">
+    <div class="form-group">
+      <label for="class-name">Tên danh mục: </label>
+      <span id="class-name"> {{category.name}}</span>
+    </div>
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" (click)="deleteCategory(category.id)">Xóa</button>
+  </div>
+</div>
+

@@ -5,6 +5,7 @@ import {ListCategoryComponent} from './list-category/list-category.component';
 import {CreateCategoryComponent} from './create-category/create-category.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditCategoryComponent} from './edit-category/edit-category.component';
+import {DeleteCategoryComponent} from './delete-category/delete-category.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import {EditCategoryComponent} from './edit-category/edit-category.component';
     ListCategoryComponent,
     CreateCategoryComponent,
     EditCategoryComponent,
+    DeleteCategoryComponent,
   ],
   imports: [
     CommonModule,
