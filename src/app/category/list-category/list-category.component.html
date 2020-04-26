@@ -14,7 +14,7 @@
         <tr>
           <th style="width: 10px">#</th>
           <th>Tên danh mục</th>
-          <th>Outcome</th>
+<!--          <th>Outcome</th>-->
           <th style="width: 160px"></th>
         </tr>
         </thead>
@@ -22,7 +22,7 @@
         <tr *ngFor="let category of listCategory; index as i">
           <td>{{i + 1}}</td>
           <td>{{category.name}}</td>
-          <td *ngIf="category.outComes != null">{{category.outComes.title}}</td>
+<!--          <td *ngIf="category.outComes != null">{{category.outComes.title}}</td>-->
           <td>
             <div class="row">
               <div class="col-6">

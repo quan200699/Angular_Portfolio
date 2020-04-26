@@ -13,9 +13,8 @@ declare var $: any;
   styleUrls: ['./create-category.component.css']
 })
 export class CreateCategoryComponent implements OnInit {
-  categoryForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    outcomes: new FormControl()
+  copyFromWordForm: FormGroup = new FormGroup({
+    data: new FormControl('')
   });
   listOutcome: Outcome[];
 
@@ -28,19 +27,13 @@ export class CreateCategoryComponent implements OnInit {
     $(document).ready(function() {
       $('#category-form').validate({
         rules: {
-          name: {
-            required: true
-          },
-          outcomes: {
+          data: {
             required: true
           }
         },
         messages: {
-          name: {
-            required: 'Hãy nhập tên danh mục'
-          },
-          outcomes: {
-            required: 'Chọn outcome'
+          data: {
+            required: 'Hãy nhập dữ liệu'
           }
         },
         errorElement: 'span',
@@ -64,17 +57,32 @@ export class CreateCategoryComponent implements OnInit {
     });
   }
 
-  createCategory() {
+  createCategory(categoryName: string[]) {
     const category: Category = {
-      name: this.categoryForm.value.name,
-      outComes: {
-        id: this.categoryForm.value.outcomes
-      }
+      name: categoryName[1]
     };
-    if (category.name != '' && category.outComes != null) {
+    if (category.name != '') {
       this.categoryService.createNewCategory(category).subscribe(() => {
-        this.categoryForm.reset();
+        this.copyFromWordForm.reset();
       });
+    }
+  }
+
+  createManyCategory() {
+    let data = this.copyFromWordForm.value.data;
+    let listCategory;
+    let categoryRow = [];
+    let isCategory = /[1-9].[0-9]{1,2}[^.]/;
+    let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
+    listCategory = data.split('\n');
+    for (let category of listCategory) {
+      if (category.search(isSkill) == -1) {
+        const row = category.split(isCategory);
+        if (row.length == 2) {
+          categoryRow = row;
+          this.createCategory(categoryRow);
+        }
+      }
     }
   }
 }
