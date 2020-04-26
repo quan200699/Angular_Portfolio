@@ -1,13 +1,13 @@
 <div class="card card-default">
   <div class="card-header">
-    <h3 class="card-title">Tạo bản đánh giá mới</h3>
+    <h3 class="card-title">Tạo bản mẫu mới</h3>
   </div>
   <!-- /.card-header -->
   <!-- form start -->
   <form [formGroup]="templateForm" (ngSubmit)="createTemplate()" id="template-form">
     <div class="card-body">
       <div class="form-group">
-        <label for="template-name">Tên bản đánh giá</label>
+        <label for="template-name">Tên bản mẫu</label>
         <input type="text" formControlName="name" name="name" class="form-control" id="template-name"
                placeholder="tên bản đánh giá">
       </div>

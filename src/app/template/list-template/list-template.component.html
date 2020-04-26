@@ -1,7 +1,7 @@
 <section class="content">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Danh sách bảnh đánh giá</h3>
+      <h3 class="card-title">Danh sách bản mẫu</h3>
       <div class="card-tools">
         <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
           Tạo mới
@@ -13,8 +13,8 @@
         <thead>
         <tr>
           <th style="width: 10px">#</th>
-          <th>Tên bản đánh giá</th>
-<!--          <th>Chương trình học</th>-->
+          <th>Tên bản mẫu</th>
+          <th>Chương trình học</th>
           <th style="width: 160px"></th>
         </tr>
         </thead>
@@ -24,7 +24,7 @@
           <td>
             <a [routerLink]="['info',template.id]">{{template.name}}</a>
           </td>
-<!--          <td>{{template.programs}}</td>-->
+          <td *ngIf="template.programs != null">{{template.programs.name}}</td>
           <td>
             <div class="row">
               <div class="col-6">
