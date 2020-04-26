@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'template-management',
     loadChildren: () => import('../template/template.module').then(module => module.TemplateModule)
+  },
+  {
+    path: 'outcome-management',
+    loadChildren: () => import('../outcome/outcome.module').then(module => module.OutcomeModule)
   }
 ];
 

@@ -1,9 +1,16 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {ListOutcomeComponent} from './list-outcome/list-outcome.component';
+import {AuthGuard} from '../helper/auth-guard';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: ListOutcomeComponent,
+    canActivate: [AuthGuard]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
