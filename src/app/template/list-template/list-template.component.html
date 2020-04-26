@@ -3,7 +3,7 @@
     <div class="card-header">
       <h3 class="card-title">Danh sách bản mẫu</h3>
       <div class="card-tools">
-        <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
+        <a routerLink="create" *ngIf="hasRoleAdmin" class="btn btn-xs btn-primary float-lg-right">
           Tạo mới
         </a>
       </div>
@@ -15,7 +15,7 @@
           <th style="width: 10px">#</th>
           <th>Tên bản mẫu</th>
           <th>Chương trình học</th>
-          <th style="width: 160px"></th>
+          <th style="width: 160px" *ngIf="hasRoleAdmin"></th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
           <td>{{i + 1}}</td>
           <td>{{template.name}}</td>
           <td *ngIf="template.programs != null">{{template.programs.name}}</td>
-          <td>
+          <td *ngIf="hasRoleAdmin">
             <div class="row">
               <div class="col-6">
                 <a [routerLink]="['edit',template.id]" class="btn btn-block btn-primary" style="color: white">

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Template} from '../../model/template';
 import {TemplateService} from '../../service/template.service';
+import {UserToken} from '../../model/user-token';
+import {AuthenticationService} from '../../service/authentication.service';
 
 @Component({
   selector: 'app-list-template',
@@ -9,9 +11,21 @@ import {TemplateService} from '../../service/template.service';
 })
 export class ListTemplateComponent implements OnInit {
   listTemplate: Template[];
+  currentUser: UserToken;
+  hasRoleAdmin = false;
 
-  constructor(private templateService: TemplateService) {
+  constructor(private templateService: TemplateService,
+              private authenticationService: AuthenticationService) {
     this.getAllTemplate();
+    this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
+    if (this.currentUser) {
+      const roleList = this.currentUser.roles;
+      for (const role of roleList) {
+        if (role.authority === 'ADMIN') {
+          this.hasRoleAdmin = true;
+        }
+      }
+    }
   }
 
   ngOnInit() {

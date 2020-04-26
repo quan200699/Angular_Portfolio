@@ -5,8 +5,6 @@ import {AuthenticationService} from '../../service/authentication.service';
 import {CoachService} from '../../service/coach.service';
 import {UserToken} from '../../model/user-token';
 
-declare var $: any;
-
 @Component({
   selector: 'app-list-class',
   templateUrl: './list-class.component.html',
@@ -19,8 +17,7 @@ export class ListClassComponent implements OnInit {
 
   constructor(private classesService: ClassesService,
               private authenticationService: AuthenticationService,
-              private coachService: CoachService,
-              private chRef: ChangeDetectorRef) {
+              private coachService: CoachService) {
     this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
     if (this.currentUser) {
       const roleList = this.currentUser.roles;
