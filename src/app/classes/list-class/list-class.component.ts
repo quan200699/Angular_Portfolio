@@ -43,20 +43,9 @@ export class ListClassComponent implements OnInit {
   getAllClass() {
     this.classesService.getAllClasses().subscribe(listClass => {
       this.listClass = listClass;
-      this.chRef.detectChanges();
       for (let i = 0; i < this.listClass.length; i++) {
         this.numberOfStudentInClass(listClass[i]);
       }
-      $(function() {
-        $('#table-class').DataTable({
-          'paging': true,
-          'lengthChange': false,
-          'searching': false,
-          'ordering': true,
-          'info': true,
-          'autoWidth': false,
-        });
-      });
     });
   }
 
