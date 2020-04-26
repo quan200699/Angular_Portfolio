@@ -5,6 +5,7 @@ import {AuthGuard} from '../helper/auth-guard';
 import {CreateSkillComponent} from './create-skill/create-skill.component';
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {EditSkillComponent} from './edit-skill/edit-skill.component';
+import {DeleteSkillComponent} from './delete-skill/delete-skill.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditSkillComponent,
+    canActivate: [AdminAuthGuard]
+  },
+  {
+    path: 'delete/:id',
+    component: DeleteSkillComponent,
     canActivate: [AdminAuthGuard]
   }
 ];

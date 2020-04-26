@@ -5,6 +5,7 @@ import {ListSkillComponent} from './list-skill/list-skill.component';
 import {CreateSkillComponent} from './create-skill/create-skill.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditSkillComponent} from './edit-skill/edit-skill.component';
+import {DeleteSkillComponent} from './delete-skill/delete-skill.component';
 
 
 
@@ -13,6 +14,7 @@ import {EditSkillComponent} from './edit-skill/edit-skill.component';
     ListSkillComponent,
     CreateSkillComponent,
     EditSkillComponent,
+    DeleteSkillComponent,
   ],
   imports: [
     CommonModule,
