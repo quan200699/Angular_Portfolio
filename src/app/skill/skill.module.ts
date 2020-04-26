@@ -4,6 +4,7 @@ import {SkillRoutingModule} from './skill-routing.module';
 import {ListSkillComponent} from './list-skill/list-skill.component';
 import {CreateSkillComponent} from './create-skill/create-skill.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EditSkillComponent} from './edit-skill/edit-skill.component';
 
 
 
@@ -11,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ListSkillComponent,
     CreateSkillComponent,
+    EditSkillComponent,
   ],
   imports: [
     CommonModule,
