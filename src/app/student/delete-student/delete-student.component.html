@@ -1,0 +1,23 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Xóa thông tin học viên</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <div class="card-body" *ngIf="student!=null">
+    <div class="form-group">
+      <label for="class-studentId">Mã học viên: </label>
+      <span id="class-studentId"> {{student.studentId}}</span>
+    </div>
+    <div class="form-group">
+      <label for="class-name">Tên học viên: </label>
+      <span id="class-name"> {{student.name}}</span>
+    </div>
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" (click)="deleteStudent(student.id)">Xóa</button>
+  </div>
+</div>
+
