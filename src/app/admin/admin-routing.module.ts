@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'outcome-management',
     loadChildren: () => import('../outcome/outcome.module').then(module => module.OutcomeModule)
+  },
+  {
+    path: 'category-management',
+    loadChildren: () => import('../category/category.module').then(module => module.CategoryModule)
   }
 ];
 
