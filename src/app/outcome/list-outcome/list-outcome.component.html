@@ -21,9 +21,7 @@
         <tbody>
         <tr *ngFor="let outcome of listOutcome; index as i">
           <td>{{i + 1}}</td>
-          <td>
-            <a [routerLink]="['info',outcome.id]">{{outcome.title}}</a>
-          </td>
+          <td>{{outcome.title}}</td>
           <td *ngIf="outcome.templates != null">{{outcome.templates.name}}</td>
           <td>
             <div class="row">
