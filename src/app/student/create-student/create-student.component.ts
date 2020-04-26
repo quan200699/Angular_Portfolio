@@ -32,7 +32,7 @@ export class CreateStudentComponent implements OnInit {
         },
         messages: {
           data: {
-            required: 'Hãy nhập họ tên học viên'
+            required: 'Hãy nhập thông tin học viên'
           }
         },
         errorElement: 'span',

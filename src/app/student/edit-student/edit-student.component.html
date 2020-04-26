@@ -1,0 +1,34 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Cập nhật thông tin học viên</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form [formGroup]="studentForm" *ngIf="student!=null" (ngSubmit)="updateStudentInfo(student.id)" id="student-form">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="student-id">Mã học viên</label>
+        <input type="text" formControlName="studentId" name="studentId" class="form-control" id="student-id"
+               placeholder="mã học viên" [value]="student.studentId">
+      </div>
+      <div class="form-group">
+        <label for="student-name">Tên học viên</label>
+        <input type="text" formControlName="name" name="name" class="form-control" id="student-name"
+               placeholder="tên học viên" [value]="student.name">
+      </div>
+      <div class="form-group">
+        <label for="classes">Lớp học: </label>
+        <select class="custom-select" id="classes" name="classes" formControlName="classes" *ngIf="studentClass!=null">
+          <option [ngValue]="null" disabled>Chọn lớp</option>
+          <option *ngFor="let classes of listClass" [value]="classes.id"
+                  [selected]="classes.id === studentClass.id">{{classes.name}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>
