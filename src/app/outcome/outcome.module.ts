@@ -5,6 +5,7 @@ import {ListOutcomeComponent} from './list-outcome/list-outcome.component';
 import {CreateOutcomeComponent} from './create-outcome/create-outcome.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditOutcomeComponent} from './edit-outcome/edit-outcome.component';
+import {DeleteOutcomeComponent} from './delete-outcome/delete-outcome.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import {EditOutcomeComponent} from './edit-outcome/edit-outcome.component';
     ListOutcomeComponent,
     CreateOutcomeComponent,
     EditOutcomeComponent,
+    DeleteOutcomeComponent,
   ],
   imports: [
     CommonModule,
