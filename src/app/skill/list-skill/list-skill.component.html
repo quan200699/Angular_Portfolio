@@ -1,7 +1,7 @@
 <section class="content">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Danh sách outcome</h3>
+      <h3 class="card-title">Danh sách các kỹ năng</h3>
       <div class="card-tools">
         <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
           Tạo mới
@@ -13,26 +13,26 @@
         <thead>
         <tr>
           <th style="width: 10px">#</th>
-          <th>Title</th>
-          <th>Bản mẫu</th>
+          <th>Tên kỹ năng</th>
+          <th>Danh mục</th>
           <th style="width: 160px"></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let outcome of listOutcome; index as i">
+        <tr *ngFor="let skill of listSkill; index as i">
           <td>{{i + 1}}</td>
-          <td>{{outcome.title}}</td>
-          <td *ngIf="outcome.templates != null">{{outcome.templates.name}}</td>
-          <td *ngIf="outcome.templates == null"></td>
+          <td>{{skill.name}}</td>
+          <td *ngIf="skill.categories != null">{{skill.categories.name}}</td>
+          <td *ngIf="skill.categories == null"></td>
           <td>
             <div class="row">
               <div class="col-6">
-                <a [routerLink]="['edit',outcome.id]" class="btn btn-block btn-primary" style="color: white">
+                <a [routerLink]="['edit',skill.id]" class="btn btn-block btn-primary" style="color: white">
                   <i class="fa fa-edit"></i>
                 </a>
               </div>
               <div class="col-6">
-                <a [routerLink]="['delete',outcome.id]" class="btn btn-block btn-danger" style="color: white">
+                <a [routerLink]="['delete',skill.id]" class="btn btn-block btn-danger" style="color: white">
                   <i class="fa fa-remove"></i>
                 </a>
               </div>

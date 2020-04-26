@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'category-management',
     loadChildren: () => import('../category/category.module').then(module => module.CategoryModule)
+  },
+  {
+    path: 'skill-management',
+    loadChildren: () => import('../skill/skill.module').then(module => module.SkillModule)
   }
 ];
 
