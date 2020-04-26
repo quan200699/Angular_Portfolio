@@ -7,6 +7,8 @@ import {CategoryService} from '../../service/category.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 
+declare var $: any;
+
 @Component({
   selector: 'app-edit-skill',
   templateUrl: './edit-skill.component.html',
@@ -34,6 +36,37 @@ export class EditSkillComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).ready(function() {
+      $('#skill-form').validate({
+        rules: {
+          name: {
+            required: true
+          },
+          categories: {
+            required: true
+          }
+        },
+        messages: {
+          name: {
+            required: 'Hãy nhập tiêu đề'
+          },
+          categories: {
+            required: 'Chọn bản mẫu'
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function(element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
   }
 
   getAllCategory() {
