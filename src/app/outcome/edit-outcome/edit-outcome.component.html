@@ -1,0 +1,31 @@
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Cập nhật thông tin outcome</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form [formGroup]="outcomeForm" (ngSubmit)="editOutcome(id)" id="template-form">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="class-title">Tiêu đề</label>
+        <input type="text" formControlName="title" name="title" class="form-control" id="class-title"
+               placeholder="tiêu đề" [value]="title">
+      </div>
+      <div class="form-group">
+        <label for="templates">Bản mẫu: </label>
+        <select class="custom-select" id="templates" name="templates" formControlName="templates"
+                *ngIf="outcomeTemplate != null">
+          <option [ngValue]="null" disabled>Chọn bản mẫu</option>
+          <option *ngFor="let template of listTemplate" [value]="template.id"
+                  [selected]="template.id === outcomeTemplate.id">{{template.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>
