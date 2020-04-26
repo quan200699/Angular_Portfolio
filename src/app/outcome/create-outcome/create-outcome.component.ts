@@ -17,6 +17,9 @@ export class CreateOutcomeComponent implements OnInit {
     title: new FormControl(''),
     templates: new FormControl()
   });
+  copyFromWordForm: FormGroup = new FormGroup({
+    data: new FormControl('')
+  });
   listTemplate: Template[];
 
   constructor(private templateService: TemplateService,
@@ -64,18 +67,29 @@ export class CreateOutcomeComponent implements OnInit {
     });
   }
 
-  createOutcome() {
+  createOutcome(outcomeTitle: string) {
     const outcome: Outcome = {
       id: this.outcomeForm.value.id,
-      title: this.outcomeForm.value.title,
+      title: outcomeTitle,
       templates: {
         id: this.outcomeForm.value.templates
       }
     };
-    if (outcome.title != '' && this.outcomeForm.value.templates != null) {
+    if (outcome.title != '') {
       this.outcomeService.createNewOutcome(outcome).subscribe(() => {
         this.outcomeForm.reset();
       });
+    }
+  }
+
+  createManyOutcome() {
+    let data = this.copyFromWordForm.value.data;
+    let listOutcome;
+    listOutcome = data.split('\n');
+    for (let outcome of listOutcome) {
+      if (outcome.includes('PHẦN ')) {
+        this.createOutcome(outcome);
+      }
     }
   }
 }
