@@ -48,7 +48,7 @@ export class CreateSkillComponent implements OnInit {
 
   createSkill(skillRow: string[]) {
     const skill: Skill = {
-      name: skillRow[1]
+      name: skillRow[1].trim()
     };
     if (skill.name != '') {
       this.skillService.createNewSkill(skill).subscribe(() => {
