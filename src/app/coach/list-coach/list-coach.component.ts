@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Coach} from '../../model/coach';
 import {CoachService} from '../../service/coach.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-coach',
   templateUrl: './list-coach.component.html',
@@ -20,6 +22,16 @@ export class ListCoachComponent implements OnInit {
   getAllCoach() {
     return this.coachService.getAllCoach().subscribe(listCoach => {
       this.coachList = listCoach;
+      $(function () {
+        $('#table-coach').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        });
+      });
     });
   }
 }

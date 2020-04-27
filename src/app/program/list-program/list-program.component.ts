@@ -4,6 +4,8 @@ import {ProgramService} from '../../service/program.service';
 import {UserToken} from '../../model/user-token';
 import {AuthenticationService} from '../../service/authentication.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-program',
   templateUrl: './list-program.component.html',
@@ -34,6 +36,16 @@ export class ListProgramComponent implements OnInit {
   getAllProgram() {
     this.programService.getAllProgram().subscribe(listProgram => {
       this.listProgram = listProgram;
+      $(function () {
+        $('#table-program').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        });
+      });
     });
   }
 }

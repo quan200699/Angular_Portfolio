@@ -4,6 +4,8 @@ import {TemplateService} from '../../service/template.service';
 import {UserToken} from '../../model/user-token';
 import {AuthenticationService} from '../../service/authentication.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-template',
   templateUrl: './list-template.component.html',
@@ -34,6 +36,16 @@ export class ListTemplateComponent implements OnInit {
   getAllTemplate() {
     this.templateService.getAllTemplate().subscribe(listTemplate => {
       this.listTemplate = listTemplate;
+      $(function () {
+        $('#table-template').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        });
+      });
     });
   }
 }

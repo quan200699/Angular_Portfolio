@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Outcome} from '../../model/outcome';
 import {OutcomeService} from '../../service/outcome.service';
 import {UserToken} from '../../model/user-token';
-import {TemplateService} from '../../service/template.service';
 import {AuthenticationService} from '../../service/authentication.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-list-outcome',
@@ -35,6 +36,16 @@ export class ListOutcomeComponent implements OnInit {
   getALlOutcome() {
     this.outcomeService.getAllOutcome().subscribe(listOutcome => {
       this.listOutcome = listOutcome;
+      $(function() {
+        $('#table-outcome').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': false,
+          'ordering': true,
+          'info': true,
+          'autoWidth': false,
+        });
+      });
     });
   }
 }

@@ -16,22 +16,22 @@ export class ListStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(function () {
-      $('#table-student').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
     this.getStudentList();
   }
 
   private getStudentList() {
     this.studentService.getAllStudents().subscribe(students => {
       this.studentList = students;
+      $(function () {
+        $('#table-student').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        });
+      });
     });
   }
 }

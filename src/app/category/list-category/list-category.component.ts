@@ -4,6 +4,8 @@ import {CategoryService} from '../../service/category.service';
 import {UserToken} from '../../model/user-token';
 import {AuthenticationService} from '../../service/authentication.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-category',
   templateUrl: './list-category.component.html',
@@ -34,6 +36,16 @@ export class ListCategoryComponent implements OnInit {
   getAllCategory() {
     this.categoryService.getAllCategory().subscribe(listCategory => {
       this.listCategory = listCategory;
+      $(function() {
+        $('#table-category').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': false,
+          'ordering': true,
+          'info': true,
+          'autoWidth': false,
+        });
+      });
     });
   }
 }
