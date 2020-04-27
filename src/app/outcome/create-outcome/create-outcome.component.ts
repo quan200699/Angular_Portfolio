@@ -13,10 +13,6 @@ declare var $: any;
   styleUrls: ['./create-outcome.component.css']
 })
 export class CreateOutcomeComponent implements OnInit {
-  outcomeForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    templates: new FormControl()
-  });
   copyFromWordForm: FormGroup = new FormGroup({
     data: new FormControl('')
   });
@@ -63,15 +59,11 @@ export class CreateOutcomeComponent implements OnInit {
 
   createOutcome(outcomeTitle: string) {
     const outcome: Outcome = {
-      id: this.outcomeForm.value.id,
-      title: outcomeTitle,
-      templates: {
-        id: this.outcomeForm.value.templates
-      }
+      title: outcomeTitle
     };
     if (outcome.title != '') {
       this.outcomeService.createNewOutcome(outcome).subscribe(() => {
-        this.outcomeForm.reset();
+        this.copyFromWordForm.reset();
       });
     }
   }
@@ -79,10 +71,13 @@ export class CreateOutcomeComponent implements OnInit {
   createManyOutcome() {
     let data = this.copyFromWordForm.value.data;
     let listOutcome;
+    let outcomeRow = [];
     listOutcome = data.split('\n');
     for (let outcome of listOutcome) {
+      const row = outcome.split('\t');
       if (outcome.includes('PHẦN ')) {
-        this.createOutcome(outcome);
+        outcomeRow = row
+        this.createOutcome(outcomeRow[0]);
       }
     }
   }

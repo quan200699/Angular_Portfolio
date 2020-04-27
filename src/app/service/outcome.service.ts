@@ -33,4 +33,8 @@ export class OutcomeService {
   deleteOutcome(id: number): Observable<Outcome> {
     return this.http.delete<Outcome>(API_URL + `/outcomes/${id}`);
   }
+
+  findByTitle(name: string): Observable<Outcome> {
+    return this.http.get<Outcome>(API_URL + '/outcomes/name?name=' + name);
+  }
 }
