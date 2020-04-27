@@ -33,4 +33,8 @@ export class CategoryService {
   deleteCategory(id: number): Observable<Category> {
     return this.http.delete<Category>(API_URL + `/categories/${id}`);
   }
+
+  findByCategoryName(name: string): Observable<Category> {
+    return this.http.get<Category>(API_URL + '/categories/name?name=' + name);
+  }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Skill} from '../../model/skill';
 import {SkillService} from '../../service/skill.service';
+import {CategoryService} from '../../service/category.service';
 
 declare var $: any;
 
@@ -15,7 +16,8 @@ export class CreateSkillComponent implements OnInit {
     data: new FormControl('')
   });
 
-  constructor(private skillService: SkillService) {
+  constructor(private skillService: SkillService,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit() {
@@ -46,29 +48,55 @@ export class CreateSkillComponent implements OnInit {
     });
   }
 
-  createSkill(skillRow: string[]) {
+  createSkill(skillRow: string) {
+    let listCategory = this.getCategoryName();
+    let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
+    let row = skillRow.split(isSkill);
     const skill: Skill = {
-      name: skillRow[1].trim()
+      name: row[1].trim()
     };
-    if (skill.name != '') {
-      this.skillService.createNewSkill(skill).subscribe(() => {
-        this.copyFromWordForm.reset();
-      });
+    for (let category of listCategory) {
+      const categoryRow = category.split('\t');
+      const skillId = skillRow.substring(0, 3);
+      if (skillId === categoryRow[0]) {
+        this.categoryService.findByCategoryName(categoryRow[1].trim()).subscribe(category => {
+          skill.categories = category;
+          if (skill.name != '') {
+            this.skillService.createNewSkill(skill).subscribe(() => {
+              this.copyFromWordForm.reset();
+            });
+          }
+        });
+      }
     }
   }
 
   createManySkill() {
     let data = this.copyFromWordForm.value.data;
     let listSkill;
-    let skillRow = [];
     let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
     listSkill = data.split('\n');
-    for (let category of listSkill) {
-      const row = category.split(isSkill);
-      if (row.length == 2) {
-        skillRow = row;
-        this.createSkill(skillRow);
+    for (let skill of listSkill) {
+      if (isSkill.test(skill)) {
+        this.createSkill(skill);
       }
     }
+  }
+
+  getCategoryName(): string[] {
+    let data = this.copyFromWordForm.value.data;
+    let listCategory;
+    let categoryName = [];
+    let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
+    listCategory = data.split('\n');
+    for (let category of listCategory) {
+      if (!isSkill.test(category)) {
+        const row = category.split('\t');
+        if (row.length == 2) {
+          categoryName.push(category);
+        }
+      }
+    }
+    return categoryName;
   }
 }
