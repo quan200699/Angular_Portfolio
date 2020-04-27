@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClassesService} from '../../service/classes.service';
 import {Classes} from '../../model/classes';
 import {AuthenticationService} from '../../service/authentication.service';

@@ -5,6 +5,8 @@ import {UserToken} from '../../model/user-token';
 import {CategoryService} from '../../service/category.service';
 import {AuthenticationService} from '../../service/authentication.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-skill',
   templateUrl: './list-skill.component.html',
@@ -35,6 +37,18 @@ export class ListSkillComponent implements OnInit {
   getAllSkill() {
     this.skillService.getAllSkill().subscribe(listSkill => {
       this.listSkill = listSkill;
+
+      $(function() {
+        $('#table-skill').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': false,
+          'ordering': true,
+          'info': true,
+          'autoWidth': false,
+        });
+      });
     });
+
   }
 }

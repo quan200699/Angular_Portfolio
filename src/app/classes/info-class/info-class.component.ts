@@ -6,6 +6,8 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {UserToken} from '../../model/user-token';
 
+declare var $: any;
+
 @Component({
   selector: 'app-info-class',
   templateUrl: './info-class.component.html',
@@ -50,6 +52,16 @@ export class InfoClassComponent implements OnInit {
   getAllStudentByClass(id: number) {
     this.classesService.getAllStudentByClass(id).subscribe(studentList => {
       this.studentList = studentList;
+      $(function() {
+        $('#table-student').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': false,
+          'ordering': true,
+          'info': true,
+          'autoWidth': false,
+        });
+      });
     });
   }
 }
