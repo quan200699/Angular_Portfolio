@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Coach} from '../../model/coach';
 import {CoachService} from '../../service/coach.service';
+import {UserToken} from '../../model/user-token';
+import {AuthenticationService} from '../../service/authentication.service';
 
 declare var $: any;
 
@@ -11,8 +13,20 @@ declare var $: any;
 })
 export class ListCoachComponent implements OnInit {
   coachList: Coach[];
+  currentUser: UserToken;
+  hasRoleAdmin = false;
 
-  constructor(private coachService: CoachService) {
+  constructor(private coachService: CoachService,
+              private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
+    if (this.currentUser) {
+      const roleList = this.currentUser.roles;
+      for (const role of roleList) {
+        if (role.authority === 'ADMIN') {
+          this.hasRoleAdmin = true;
+        }
+      }
+    }
   }
 
   ngOnInit() {

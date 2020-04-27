@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Danh sách các Coach</h3>
-      <div class="card-tools">
+      <div class="card-tools" *ngIf="!hasRoleAdmin">
         <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
           Tạo mới
         </a>
@@ -19,7 +19,7 @@
           <th>Số điện thoại</th>
           <th>Địa chỉ</th>
           <th>Ghi chú</th>
-          <th style="width: 160px"></th>
+          <th style="width: 160px" *ngIf="!hasRoleAdmin"></th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
           <td>{{coach.phoneNumber}}</td>
           <td>{{coach.address}}</td>
           <td>{{coach.notice}}</td>
-          <td>
+          <td *ngIf="!hasRoleAdmin">
             <div class="row">
               <div class="col-6">
                 <a [routerLink]="['edit',coach.id]" class="btn btn-block btn-primary" style="color: white">
