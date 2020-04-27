@@ -77,7 +77,7 @@ export class CreateOutcomeComponent implements OnInit {
       const row = outcome.split('\t');
       if (outcome.includes('PHẦN ')) {
         outcomeRow = row
-        this.createOutcome(outcomeRow[0]);
+        this.createOutcome(outcomeRow[0].trim());
       }
     }
   }

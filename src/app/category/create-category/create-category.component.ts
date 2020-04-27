@@ -56,7 +56,7 @@ export class CreateCategoryComponent implements OnInit {
     let isCategory = /[1-9].[0-9]{1,2}/;
     let row = categoryRow.split(isCategory);
     const category: Category = {
-      name: row[1]
+      name: row[1].trim()
     };
     if (isInOutcomeFirst.test(categoryRow)) {
       this.outcomeService.findByTitle(outcomeName[0]).subscribe(outcome => {
@@ -93,19 +93,14 @@ export class CreateCategoryComponent implements OnInit {
   createManyCategory() {
     let data = this.copyFromWordForm.value.data;
     let listCategory;
-    // let categoryRow = [];
     let isCategory = /[1-9].[0-9]{1,2}/;
     let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
     listCategory = data.split('\n');
     for (let category of listCategory) {
       if (!isSkill.test(category)) {
-        // const row = category.split(isCategory);
-        // if (row.length == 2) {
-        //   categoryRow = row;
         if (isCategory.test(category)) {
           this.createCategory(category);
         }
-        // }
       }
     }
   }
@@ -120,7 +115,7 @@ export class CreateCategoryComponent implements OnInit {
       const row = outcome.split('\t');
       if (outcome.includes('PHẦN ')) {
         outcomeRow = row;
-        outcomeName.push(outcomeRow[0]);
+        outcomeName.push(outcomeRow[0].trim());
       }
     }
     return outcomeName;
