@@ -8,6 +8,7 @@ import {Template} from '../../model/template';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-template',
@@ -91,6 +92,34 @@ export class EditTemplateComponent implements OnInit {
         id: this.templateForm.value.programs === '' ? this.templateProgram.id : this.templateForm.value.id
       }
     };
-    this.templateService.updateTemplate(id, template).subscribe();
+    this.templateService.updateTemplate(id, template).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
+    });
   }
 }

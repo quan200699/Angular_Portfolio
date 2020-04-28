@@ -8,6 +8,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-skill',
@@ -17,7 +18,7 @@ declare var $: any;
 export class EditSkillComponent implements OnInit {
   skillForm: FormGroup = new FormGroup({
     name: new FormControl(''),
-    // categories: new FormControl()
+    categories: new FormControl()
   });
   skillCategory: Category;
   sub: Subscription;
@@ -87,10 +88,38 @@ export class EditSkillComponent implements OnInit {
     const skill: Skill = {
       id: this.skillForm.value.id,
       name: this.skillForm.value.name === '' ? this.name : this.skillForm.value.name,
-      // categories: {
-      //   id: this.skillForm.value.categories === null ? this.skillCategory.id : this.skillForm.value.categories
-      // }
+      categories: {
+        id: this.skillForm.value.categories === null ? this.skillCategory.id : this.skillForm.value.categories
+      }
     };
-    this.skillService.editSkill(id, skill).subscribe();
+    this.skillService.editSkill(id, skill).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
+    });
   }
 }

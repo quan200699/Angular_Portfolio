@@ -8,6 +8,7 @@ import {Classes} from '../../model/classes';
 import {ClassesService} from '../../service/classes.service';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-student',
@@ -91,7 +92,35 @@ export class EditStudentComponent implements OnInit {
         id: this.studentForm.value.classes === null ? this.studentClass.id : this.studentForm.value.classes
       }
     };
-    this.studentService.updateStudent(id, student).subscribe();
+    this.studentService.updateStudent(id, student).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
+    });
   }
 
   getAllClasses() {

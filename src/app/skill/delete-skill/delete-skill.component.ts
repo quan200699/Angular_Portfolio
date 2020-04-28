@@ -3,6 +3,9 @@ import {Subscription} from 'rxjs';
 import {SkillService} from '../../service/skill.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-delete-skill',
   templateUrl: './delete-skill.component.html',
@@ -32,6 +35,34 @@ export class DeleteSkillComponent implements OnInit {
   }
 
   deleteSkill(id: number) {
-    this.skillService.deleteSkill(id).subscribe();
+    this.skillService.deleteSkill(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Xóa thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
+    });
   }
 }

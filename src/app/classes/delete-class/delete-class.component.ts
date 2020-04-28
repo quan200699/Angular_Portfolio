@@ -3,6 +3,9 @@ import {Subscription} from 'rxjs';
 import {ClassesService} from '../../service/classes.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-delete-class',
   templateUrl: './delete-class.component.html',
@@ -34,8 +37,34 @@ export class DeleteClassComponent implements OnInit {
 
   deleteClass(id: number) {
     this.classesService.deleteClasses(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Xóa thành công'
+        });
+      });
       this.router.navigate(['/admin/classes-management']);
     }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
     });
   }
 }

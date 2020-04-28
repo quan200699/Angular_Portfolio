@@ -5,6 +5,9 @@ import {ProgramService} from '../../service/program.service';
 import {Program} from '../../model/program';
 import {FormControl, FormGroup} from '@angular/forms';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-edit-program',
   templateUrl: './edit-program.component.html',
@@ -47,7 +50,33 @@ export class EditProgramComponent implements OnInit {
       description: this.programForm.value.description === '' ? this.description : this.programForm.value.description
     };
     this.programService.updateProgram(id, program).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
     }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
     });
   }
 }

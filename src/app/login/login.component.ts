@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../service/authentication.service';
 import {first} from 'rxjs/operators';
+
+declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-login',
@@ -42,10 +45,36 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]).finally(() => {
             location.reload();
           });
+          $(function() {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+
+            Toast.fire({
+              type: 'success',
+              title: 'Đăng nhập thành công'
+            });
+          });
         },
         () => {
           this.error = 'Sai tên đăng nhập hoặc mật khẩu';
           this.loading = false;
+          $(function() {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+
+            Toast.fire({
+              type: 'success',
+              title: 'Đăng nhập thất bại'
+            });
+          });
         });
   }
 }

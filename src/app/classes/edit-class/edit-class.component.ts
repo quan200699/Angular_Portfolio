@@ -8,6 +8,7 @@ import {ProgramService} from '../../service/program.service';
 import {Program} from '../../model/program';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-class',
@@ -86,7 +87,33 @@ export class EditClassComponent implements OnInit {
       }
     };
     this.classesService.updateClassesInfo(id, classes).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
     }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
     });
   }
 

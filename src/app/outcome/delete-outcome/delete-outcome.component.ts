@@ -3,6 +3,9 @@ import {Subscription} from 'rxjs';
 import {OutcomeService} from '../../service/outcome.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-delete-outcome',
   templateUrl: './delete-outcome.component.html',
@@ -32,6 +35,34 @@ export class DeleteOutcomeComponent implements OnInit {
   }
 
   deleteOutcome(id: number) {
-    this.outcomeService.deleteOutcome(id).subscribe();
+    this.outcomeService.deleteOutcome(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Xóa thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
+    });
   }
 }

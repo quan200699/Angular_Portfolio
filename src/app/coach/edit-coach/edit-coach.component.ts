@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {Coach} from '../../model/coach';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-coach',
@@ -114,7 +115,33 @@ export class EditCoachComponent implements OnInit {
       notice: this.coachForm.value.notice
     };
     this.coachService.updateCoachInfo(id, coach).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thông tin thành công'
+        });
+      });
     }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thông tin thất bại'
+        });
+      });
     });
   }
 }

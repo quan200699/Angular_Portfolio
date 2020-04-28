@@ -4,9 +4,9 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Coach} from '../../model/coach';
-import {Base64} from 'js-base64';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-change-password',
@@ -100,7 +100,33 @@ export class ChangePasswordComponent implements OnInit {
       };
       if (newPassword !== null) {
         this.coachService.changePassword(id, coach).subscribe(() => {
+          $(function() {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+
+            Toast.fire({
+              type: 'success',
+              title: 'Cập nhật mật khẩu thành công'
+            });
+          });
         }, () => {
+          $(function() {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+
+            Toast.fire({
+              type: 'error',
+              title: 'Cập nhật mật khẩu thất bại'
+            });
+          });
         });
       }
     } else {

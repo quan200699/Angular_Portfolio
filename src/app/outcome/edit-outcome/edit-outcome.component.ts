@@ -8,6 +8,7 @@ import {Subscription} from 'rxjs';
 import {Outcome} from '../../model/outcome';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-outcome',
@@ -92,6 +93,33 @@ export class EditOutcomeComponent implements OnInit {
       }
     };
     this.outcomeService.editOutcome(id, outcome).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
     });
   }
 }

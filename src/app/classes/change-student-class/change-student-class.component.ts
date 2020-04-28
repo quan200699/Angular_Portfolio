@@ -7,6 +7,9 @@ import {Classes} from '../../model/classes';
 import {Student} from '../../model/student';
 import {ClassesService} from '../../service/classes.service';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-change-student-class',
   templateUrl: './change-student-class.component.html',
@@ -61,7 +64,33 @@ export class ChangeStudentClassComponent implements OnInit {
       }
     };
     this.studentService.updateStudent(id, student).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật lớp cho học viên thành công'
+        });
+      });
     }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật lớp cho học viên thất bại'
+        });
+      });
     });
   }
 

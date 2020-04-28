@@ -8,6 +8,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-edit-category',
@@ -88,6 +89,34 @@ export class EditCategoryComponent implements OnInit {
         id: this.categoryForm.value.outcomes === null ? this.categoryOutcome.id : this.categoryForm.value.outcomes
       }
     };
-    this.categoryService.editCategory(id, category).subscribe();
+    this.categoryService.editCategory(id, category).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Cập nhật thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Cập nhật thất bại'
+        });
+      });
+    });
   }
 }

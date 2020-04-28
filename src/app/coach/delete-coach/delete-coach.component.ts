@@ -3,6 +3,9 @@ import {Subscription} from 'rxjs';
 import {CoachService} from '../../service/coach.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
+declare var Swal: any;
+declare var $: any;
+
 @Component({
   selector: 'app-delete-coach',
   templateUrl: './delete-coach.component.html',
@@ -43,7 +46,33 @@ export class DeleteCoachComponent implements OnInit {
 
   deleteCoach(id: number) {
     this.coachService.deleteCoach(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thành công'
+        });
+      });
     }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
     });
   }
 }

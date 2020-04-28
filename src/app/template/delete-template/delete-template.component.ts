@@ -3,6 +3,9 @@ import {Subscription} from 'rxjs';
 import {TemplateService} from '../../service/template.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-delete-template',
   templateUrl: './delete-template.component.html',
@@ -32,6 +35,34 @@ export class DeleteTemplateComponent implements OnInit {
   }
 
   deleteTemplate(id: number) {
-    this.templateService.deleteTemplate(id).subscribe();
+    this.templateService.deleteTemplate(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Xóa thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
+    });
   }
 }

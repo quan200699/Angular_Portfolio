@@ -4,6 +4,9 @@ import {Subscription} from 'rxjs';
 import {CategoryService} from '../../service/category.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-delete-category',
   templateUrl: './delete-category.component.html',
@@ -31,6 +34,34 @@ export class DeleteCategoryComponent implements OnInit {
   }
 
   deleteCategory(id: number) {
-    this.categoryService.deleteCategory(id).subscribe();
+    this.categoryService.deleteCategory(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Xóa thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
+    });
   }
 }

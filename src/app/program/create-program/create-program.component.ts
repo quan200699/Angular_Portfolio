@@ -4,6 +4,7 @@ import {ProgramService} from '../../service/program.service';
 import {Program} from '../../model/program';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-create-program',
@@ -55,8 +56,34 @@ export class CreateProgramComponent implements OnInit {
     };
     if (program.name !== "") {
       this.programService.createNewProgram(program).subscribe(() => {
+        $(function() {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          Toast.fire({
+            type: 'success',
+            title: 'Tạo mới thành công'
+          });
+        });
         this.programForm.reset();
       }, () => {
+        $(function() {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          Toast.fire({
+            type: 'error',
+            title: 'Tạo mới thất bại'
+          });
+        });
       });
     }
   }

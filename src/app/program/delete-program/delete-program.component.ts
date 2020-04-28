@@ -3,6 +3,9 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {ProgramService} from '../../service/program.service';
 
+declare var $: any;
+declare var Swal: any;
+
 @Component({
   selector: 'app-delete-program',
   templateUrl: './delete-program.component.html',
@@ -34,6 +37,34 @@ export class DeleteProgramComponent implements OnInit {
   }
 
   deleteProgram(id: number) {
-    this.programService.deleteProgram(id).subscribe();
+    this.programService.deleteProgram(id).subscribe(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Xóa thành công'
+        });
+      });
+    }, () => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Xóa thất bại'
+        });
+      });
+    });
   }
 }
