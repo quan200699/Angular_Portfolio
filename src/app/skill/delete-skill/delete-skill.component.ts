@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {SkillService} from '../../service/skill.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;
 declare var Swal: any;
@@ -17,7 +17,8 @@ export class DeleteSkillComponent implements OnInit {
   sub: Subscription;
 
   constructor(private skillService: SkillService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getSkill(id);
@@ -35,6 +36,7 @@ export class DeleteSkillComponent implements OnInit {
   }
 
   deleteSkill(id: number) {
+    this.router.navigate(['/admin/skill-management']);
     this.skillService.deleteSkill(id).subscribe(() => {
       $(function() {
         const Toast = Swal.mixin({

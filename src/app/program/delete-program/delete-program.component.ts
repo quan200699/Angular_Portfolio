@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ProgramService} from '../../service/program.service';
 
 declare var $: any;
@@ -18,7 +18,8 @@ export class DeleteProgramComponent implements OnInit {
   id: number;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private programService: ProgramService) {
+              private programService: ProgramService,
+              private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getProgramInfo(id);
@@ -38,6 +39,7 @@ export class DeleteProgramComponent implements OnInit {
 
   deleteProgram(id: number) {
     this.programService.deleteProgram(id).subscribe(() => {
+      this.router.navigate(['/admin/program-management']);
       $(function() {
         const Toast = Swal.mixin({
           toast: true,

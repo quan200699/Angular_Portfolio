@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {TemplateService} from '../../service/template.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;
 declare var Swal: any;
@@ -17,7 +17,8 @@ export class DeleteTemplateComponent implements OnInit {
   sub: Subscription;
 
   constructor(private templateService: TemplateService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getTemplate(id);
@@ -36,6 +37,7 @@ export class DeleteTemplateComponent implements OnInit {
 
   deleteTemplate(id: number) {
     this.templateService.deleteTemplate(id).subscribe(() => {
+      this.router.navigate(['/admin/template-management']);
       $(function() {
         const Toast = Swal.mixin({
           toast: true,
@@ -43,7 +45,6 @@ export class DeleteTemplateComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000
         });
-
         Toast.fire({
           type: 'success',
           title: 'Xóa thành công'

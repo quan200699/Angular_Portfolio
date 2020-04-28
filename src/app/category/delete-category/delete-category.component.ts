@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Category} from '../../model/category';
 import {Subscription} from 'rxjs';
 import {CategoryService} from '../../service/category.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;
 declare var Swal: any;
@@ -17,7 +17,8 @@ export class DeleteCategoryComponent implements OnInit {
   sub: Subscription;
 
   constructor(private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCategory(id);
@@ -35,6 +36,7 @@ export class DeleteCategoryComponent implements OnInit {
 
   deleteCategory(id: number) {
     this.categoryService.deleteCategory(id).subscribe(() => {
+      this.router.navigate(['/admin/category-management']);
       $(function() {
         const Toast = Swal.mixin({
           toast: true,

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CoachService} from '../../service/coach.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var Swal: any;
 declare var $: any;
@@ -22,7 +22,8 @@ export class DeleteCoachComponent implements OnInit {
   sub: Subscription;
 
   constructor(private coachService: CoachService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getCoachInfo(id);
@@ -46,6 +47,7 @@ export class DeleteCoachComponent implements OnInit {
 
   deleteCoach(id: number) {
     this.coachService.deleteCoach(id).subscribe(() => {
+      this.router.navigate(['/admin/coach-management']);
       $(function() {
         const Toast = Swal.mixin({
           toast: true,

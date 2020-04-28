@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {OutcomeService} from '../../service/outcome.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;
 declare var Swal: any;
@@ -17,7 +17,8 @@ export class DeleteOutcomeComponent implements OnInit {
   sub: Subscription;
 
   constructor(private outcomeService: OutcomeService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       this.getOutcome(id);
@@ -36,6 +37,7 @@ export class DeleteOutcomeComponent implements OnInit {
 
   deleteOutcome(id: number) {
     this.outcomeService.deleteOutcome(id).subscribe(() => {
+      this.router.navigate(['/admin/outcome-management']);
       $(function() {
         const Toast = Swal.mixin({
           toast: true,
