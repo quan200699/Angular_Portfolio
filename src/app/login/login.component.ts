@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
         data => {
           localStorage.setItem('ACCESS_TOKEN', data.accessToken);
           this.router.navigate([this.returnUrl]).finally(() => {
-            location.reload();
           });
           $(function() {
             const Toast = Swal.mixin({
@@ -71,7 +70,7 @@ export class LoginComponent implements OnInit {
             });
 
             Toast.fire({
-              type: 'success',
+              type: 'error',
               title: 'Đăng nhập thất bại'
             });
           });

@@ -10,6 +10,7 @@ import {JwtInterceptor} from './helper/jwt-interceptor';
 import {ErrorInterceptor} from './helper/error-interceptor';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { LayoutWithSharedComponent } from './layout/layout-with-shared/layout-with-shared.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     LoginComponent,
     NavbarComponent,
     SidebarComponent,
+    LayoutWithSharedComponent,
   ],
   imports: [
     BrowserModule,
