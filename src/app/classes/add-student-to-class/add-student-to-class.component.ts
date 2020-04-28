@@ -6,6 +6,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-add-student-to-class',
@@ -21,9 +22,13 @@ export class AddStudentToClassComponent implements OnInit {
     data: new FormControl('')
   });
   sub: Subscription;
+  id: number;
 
   constructor(private studentService: StudentService,
               private activatedRoute: ActivatedRoute) {
+    this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.id = +paramMap.get('id');
+    });
   }
 
   ngOnInit() {
@@ -55,21 +60,15 @@ export class AddStudentToClassComponent implements OnInit {
   }
 
   createStudent(students: string[]) {
-    this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      const id = +paramMap.get('id');
-      const student: Student = {
-        id: this.studentForm.value.id,
-        studentId: students[1],
-        name: students[2],
-        classes: {
-          id: id
-        }
-      };
-      this.studentService.createStudent(student).subscribe(() => {
-        this.studentForm.reset();
-      }, () => {
-      });
-    });
+    const student: Student = {
+      id: this.studentForm.value.id,
+      studentId: students[1],
+      name: students[2],
+      classes: {
+        id: this.id
+      }
+    };
+    return this.studentService.createStudent(student).toPromise();
   }
 
   createManyStudent() {
@@ -77,12 +76,43 @@ export class AddStudentToClassComponent implements OnInit {
     let students;
     let studentRows = [];
     students = data.split('\n');
-    for (let student of students) {
+
+    let createStudentsPromise = students.map(student => {
       let row = student.split('\t');
       if (row.length >= 3) {
         studentRows = row;
-        this.createStudent(studentRows);
+        return this.createStudent(studentRows);
       }
-    }
+    });
+    Promise.all(createStudentsPromise).then(() => {
+      this.copyStudentDataFromAndyForm.reset();
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Tạo mới thành công'
+        });
+      });
+    }).catch(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Tạo mới thất bại'
+        });
+      });
+    });
   }
 }
