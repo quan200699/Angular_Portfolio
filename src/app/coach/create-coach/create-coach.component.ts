@@ -4,6 +4,7 @@ import {Coach} from '../../model/coach';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-create-coach',
@@ -89,8 +90,34 @@ export class CreateCoachComponent implements OnInit {
     };
     if (coach.name !== '') {
       this.coachService.createNewCoach(coach).subscribe(() => {
+        $(function() {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          Toast.fire({
+            type: 'success',
+            title: 'Tạo mới thành công'
+          });
+        });
         this.coachForm.reset();
       }, () => {
+        $(function() {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          Toast.fire({
+            type: 'error',
+            title: 'Tạo thất bại'
+          });
+        });
       });
     }
   }
