@@ -6,6 +6,7 @@ import {OutcomeService} from '../../service/outcome.service';
 import {Outcome} from '../../model/outcome';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-create-outcome',
@@ -62,9 +63,7 @@ export class CreateOutcomeComponent implements OnInit {
       title: outcomeTitle
     };
     if (outcome.title != '') {
-      this.outcomeService.createNewOutcome(outcome).subscribe(() => {
-        this.copyFromWordForm.reset();
-      });
+      return this.outcomeService.createNewOutcome(outcome).toPromise();
     }
   }
 
@@ -73,12 +72,42 @@ export class CreateOutcomeComponent implements OnInit {
     let listOutcome;
     let outcomeRow = [];
     listOutcome = data.split('\n');
-    for (let outcome of listOutcome) {
+    let createOutcomesPromises = listOutcome.map(outcome => {
       const row = outcome.split('\t');
       if (outcome.includes('PHẦN ')) {
-        outcomeRow = row
+        outcomeRow = row;
         this.createOutcome(outcomeRow[0].trim());
       }
-    }
+    });
+    Promise.all(createOutcomesPromises).then(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'success',
+          title: 'Tạo mới thành công'
+        });
+      });
+      this.copyFromWordForm.reset();
+    }).catch(() => {
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        Toast.fire({
+          type: 'error',
+          title: 'Tạo mới thất bại'
+        });
+      });
+    });
   }
 }
