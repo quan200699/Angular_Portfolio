@@ -21,7 +21,7 @@ export class EditClassComponent implements OnInit {
   programId: number;
   classForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    program: new FormControl('')
+    program: new FormControl()
   });
   sub: Subscription;
   programList: Program[];
