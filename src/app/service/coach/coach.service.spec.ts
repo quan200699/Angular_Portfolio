@@ -42,7 +42,7 @@ describe('CoachService', () => {
     coachService = TestBed.get(CoachService);
     httpMock = TestBed.get(HttpTestingController);
   });
-  it(`should return a list coach`, async(inject([HttpTestingController, CoachService],
+  it(`should return a list coach when findAll`, async(inject([HttpTestingController, CoachService],
     (httpClient: HttpTestingController, coachService: CoachService) => {
       coachService.getAllCoach()
         .subscribe((coach: any) => {
@@ -54,5 +54,11 @@ describe('CoachService', () => {
 
       req.flush(coachList);
       httpMock.verify();
+    })));
+  it('should return a coach has id = 1 when using findById function with id = 1', async(inject([HttpTestingController, CoachService],
+    (httpClient: HttpTestingController, coachService: CoachService) => {
+      coachService.getCoach(1).subscribe((coach: any) => {
+        expect(coach.name).toBe('Nguyen Minh Quan');
+      });
     })));
 });
