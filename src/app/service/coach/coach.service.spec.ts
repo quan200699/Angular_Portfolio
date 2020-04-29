@@ -80,4 +80,16 @@ describe('CoachService', () => {
         expect(coachList.length).toBe(4);
       });
     })));
+  it('should return a coach with new name when update coach has id = 1', async(inject([HttpTestingController, CoachService],
+    (httpClient: HttpTestingController, coachService: CoachService) => {
+      const coach: Coach = {
+        id: 1,
+        coachId: '001',
+        name: 'Nguyễn Minh Quân',
+        email: 'quan.nguyen@codegym.vn'
+      };
+      coachService.updateCoachInfo(1, coach).subscribe(() => {
+        expect(coach.name).toBe('Nguyễn Minh Quân');
+      });
+    })));
 });
