@@ -92,4 +92,10 @@ describe('CoachService', () => {
         expect(coach.name).toBe('Nguyễn Minh Quân');
       });
     })));
+  it('should return a list has size decease when delete coach has id = 1', async(inject([HttpTestingController, CoachService],
+    (httpClient: HttpTestingController, coachService: CoachService) => {
+      coachService.deleteCoach(1).subscribe(() => {
+        expect(coachList.length).toBe(2);
+      });
+    })));
 });
