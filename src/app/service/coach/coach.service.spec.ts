@@ -57,8 +57,14 @@ describe('CoachService', () => {
     })));
   it('should return a coach has id = 1 when using findById function with id = 1', async(inject([HttpTestingController, CoachService],
     (httpClient: HttpTestingController, coachService: CoachService) => {
-      coachService.getCoach(1).subscribe((coach: any) => {
+      coachService.getCoach(1).subscribe(coach => {
         expect(coach.name).toBe('Nguyen Minh Quan');
+      });
+    })));
+  it('should return null when using findById function with id = 0', async(inject([HttpTestingController, CoachService],
+    (httpClient: HttpTestingController, coachService: CoachService) => {
+      coachService.getCoach(0).subscribe(coach => {
+        expect(coach).toBeNull();
       });
     })));
 });
