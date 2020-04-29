@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CoachService} from '../../service/coach.service';
+import {CoachService} from '../../service/coach/coach.service';
 import {Coach} from '../../model/coach';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 

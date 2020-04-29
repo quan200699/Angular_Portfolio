@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CoachService} from '../../service/coach.service';
+import {CoachService} from '../../service/coach/coach.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';

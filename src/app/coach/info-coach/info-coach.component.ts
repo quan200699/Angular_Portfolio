@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs';
-import {CoachService} from '../../service/coach.service';
+import {CoachService} from '../../service/coach/coach.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
