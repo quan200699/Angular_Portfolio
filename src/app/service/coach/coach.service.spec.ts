@@ -2,6 +2,7 @@ import {TestBed, async, inject} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {environment} from '../../../environments/environment';
 import {CoachService} from './coach.service';
+import {Coach} from '../../model/coach';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -65,6 +66,18 @@ describe('CoachService', () => {
     (httpClient: HttpTestingController, coachService: CoachService) => {
       coachService.getCoach(0).subscribe(coach => {
         expect(coach).toBeNull();
+      });
+    })));
+  it('should return a list coach has size increase when create new coach', async(inject([HttpTestingController, CoachService],
+    (httpClient: HttpTestingController, coachService: CoachService) => {
+      const coach: Coach = {
+        id: 4,
+        coachId: '004',
+        name: 'quan',
+        email: 'quan.nguyen@codegym.vn'
+      };
+      coachService.createNewCoach(coach).subscribe(() => {
+        expect(coachList.length).toBe(4);
       });
     })));
 });
