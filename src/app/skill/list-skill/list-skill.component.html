@@ -13,6 +13,7 @@
         <thead>
         <tr>
           <th style="width: 10px">#</th>
+          <th>Mã kỹ năng</th>
           <th>Tên kỹ năng</th>
           <th>Danh mục</th>
           <th style="width: 160px" *ngIf="hasRoleAdmin"></th>
@@ -21,6 +22,7 @@
         <tbody>
         <tr *ngFor="let skill of listSkill; index as i">
           <td>{{i + 1}}</td>
+          <td>{{skill.skillId}}</td>
           <td>{{skill.name}}</td>
           <td *ngIf="skill.categories != null">{{skill.categories.name}}</td>
           <td *ngIf="skill.categories == null"></td>

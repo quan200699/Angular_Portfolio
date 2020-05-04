@@ -50,9 +50,9 @@ export class CreateSkillComponent implements OnInit {
 
   createSkill(skillRow: string) {
     let listCategory = this.getCategoryName();
-    let isSkill = /[1-9].[0-9]{1,2}.[0-9]{1,2}/;
-    let row = skillRow.split(isSkill);
+    let row = skillRow.split("\t");
     const skill: Skill = {
+      skillId: row[0].trim(),
       name: row[1].trim()
     };
     for (let category of listCategory) {
