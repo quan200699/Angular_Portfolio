@@ -53,9 +53,9 @@ export class CreateCategoryComponent implements OnInit {
     let isInOutcomeFirst = /1.[0-9]{1,2}/;
     let isInOutcomeSecond = /2.[0-9]{1,2}/;
     let isInOutcomeThird = /3.[0-9]{1,2}/;
-    let isCategory = /[1-9].[0-9]{1,2}/;
-    let row = categoryRow.split(isCategory);
+    let row = categoryRow.split('\t');
     const category: Category = {
+      categoryId: row[0].trim(),
       name: row[1].trim()
     };
     if (isInOutcomeFirst.test(categoryRow)) {
