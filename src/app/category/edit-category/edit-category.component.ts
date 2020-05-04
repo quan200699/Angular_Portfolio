@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Outcome} from '../../model/outcome';
 import {Category} from '../../model/category';
-import {OutcomeService} from '../../service/outcome.service';
-import {CategoryService} from '../../service/category.service';
+import {OutcomeService} from '../../service/outcome/outcome.service';
+import {CategoryService} from '../../service/category/category.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 

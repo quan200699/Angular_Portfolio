@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserToken} from '../../model/user-token';
 import {Coach} from '../../model/coach';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 
 @Component({
   selector: 'app-sidebar',

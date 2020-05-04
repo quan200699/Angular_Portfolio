@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Coach} from '../../model/coach';
 import {CoachService} from '../../service/coach/coach.service';
 import {UserToken} from '../../model/user-token';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 
 declare var $: any;
 

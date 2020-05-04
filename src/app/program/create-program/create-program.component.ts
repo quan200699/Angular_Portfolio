@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ProgramService} from '../../service/program.service';
+import {ProgramService} from '../../service/program/program.service';
 import {Program} from '../../model/program';
 
 declare var $: any;

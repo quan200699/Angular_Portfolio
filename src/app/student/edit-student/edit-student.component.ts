@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {StudentService} from '../../service/student.service';
+import {StudentService} from '../../service/student/student.service';
 import {Student} from '../../model/student';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Classes} from '../../model/classes';
-import {ClassesService} from '../../service/classes.service';
+import {ClassesService} from '../../service/classes/classes.service';
 
 declare var $: any;
 declare var Swal: any;

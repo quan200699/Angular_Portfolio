@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Skill} from '../../model/skill';
-import {SkillService} from '../../service/skill.service';
+import {SkillService} from '../../service/skill/skill.service';
 import {UserToken} from '../../model/user-token';
-import {CategoryService} from '../../service/category.service';
-import {AuthenticationService} from '../../service/authentication.service';
+import {CategoryService} from '../../service/category/category.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 
 declare var $: any;
 

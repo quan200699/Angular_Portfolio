@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from '../../service/student.service';
+import {StudentService} from '../../service/student/student.service';
 import {Student} from '../../model/student';
 
 declare var $: any;

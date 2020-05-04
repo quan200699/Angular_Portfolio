@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Program} from '../../model/program';
 import {Subscription} from 'rxjs';
 import {FormControl, FormGroup} from '@angular/forms';
-import {TemplateService} from '../../service/template.service';
-import {ProgramService} from '../../service/program.service';
+import {TemplateService} from '../../service/template/template.service';
+import {ProgramService} from '../../service/program/program.service';
 import {Template} from '../../model/template';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 

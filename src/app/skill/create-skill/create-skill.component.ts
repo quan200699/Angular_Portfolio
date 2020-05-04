@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Skill} from '../../model/skill';
-import {SkillService} from '../../service/skill.service';
-import {CategoryService} from '../../service/category.service';
+import {SkillService} from '../../service/skill/skill.service';
+import {CategoryService} from '../../service/category/category.service';
 
 declare var $: any;
 

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Student} from '../../model/student';
 import {Subscription} from 'rxjs';
-import {ClassesService} from '../../service/classes.service';
+import {ClassesService} from '../../service/classes/classes.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 import {UserToken} from '../../model/user-token';
 
 declare var $: any;

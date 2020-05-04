@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Classes} from '../../model/classes';
 import {Subscription} from 'rxjs';
-import {ProgramService} from '../../service/program.service';
+import {ProgramService} from '../../service/program/program.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {ClassesService} from '../../service/classes.service';
+import {ClassesService} from '../../service/classes/classes.service';
 
 @Component({
   selector: 'app-info-program',

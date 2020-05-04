@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {SkillService} from '../../service/skill.service';
+import {SkillService} from '../../service/skill/skill.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;

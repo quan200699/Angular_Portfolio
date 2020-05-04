@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {ClassesService} from '../../service/classes.service';
+import {ClassesService} from '../../service/classes/classes.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;

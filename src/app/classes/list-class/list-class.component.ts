@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ClassesService} from '../../service/classes.service';
+import {ClassesService} from '../../service/classes/classes.service';
 import {Classes} from '../../model/classes';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 import {CoachService} from '../../service/coach/coach.service';
 import {UserToken} from '../../model/user-token';
 

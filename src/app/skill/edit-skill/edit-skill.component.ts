@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Skill} from '../../model/skill';
 import {Category} from '../../model/category';
 import {Subscription} from 'rxjs';
-import {SkillService} from '../../service/skill.service';
-import {CategoryService} from '../../service/category.service';
+import {SkillService} from '../../service/skill/skill.service';
+import {CategoryService} from '../../service/category/category.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 

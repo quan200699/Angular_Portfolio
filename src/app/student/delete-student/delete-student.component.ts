@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Student} from '../../model/student';
 import {Subscription} from 'rxjs';
-import {StudentService} from '../../service/student.service';
+import {StudentService} from '../../service/student/student.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;

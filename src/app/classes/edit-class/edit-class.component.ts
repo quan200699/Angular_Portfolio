@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ClassesService} from '../../service/classes.service';
+import {ClassesService} from '../../service/classes/classes.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Classes} from '../../model/classes';
-import {ProgramService} from '../../service/program.service';
+import {ProgramService} from '../../service/program/program.service';
 import {Program} from '../../model/program';
 
 declare var $: any;

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {TemplateService} from '../../service/template.service';
+import {TemplateService} from '../../service/template/template.service';
 import {Template} from '../../model/template';
 import {Program} from '../../model/program';
-import {ProgramService} from '../../service/program.service';
+import {ProgramService} from '../../service/program/program.service';
 
 declare var $: any;
 

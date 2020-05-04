@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CategoryService} from '../../service/category.service';
+import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../model/category';
-import {OutcomeService} from '../../service/outcome.service';
+import {OutcomeService} from '../../service/outcome/outcome.service';
 
 declare var $: any;
 

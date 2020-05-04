@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Program} from '../../model/program';
-import {ProgramService} from '../../service/program.service';
+import {ProgramService} from '../../service/program/program.service';
 import {UserToken} from '../../model/user-token';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 
 declare var $: any;
 

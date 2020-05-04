@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../../model/category';
 import {Subscription} from 'rxjs';
-import {CategoryService} from '../../service/category.service';
+import {CategoryService} from '../../service/category/category.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 declare var $: any;
