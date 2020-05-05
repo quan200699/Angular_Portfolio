@@ -1,0 +1,51 @@
+<section class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Cập nhật bản đánh giá</h3>
+  </div>
+  <form [formGroup]="evaluationForm" id="evaluation-form" (ngSubmit)="editEvaluation(id)">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Tên bản đánh giá</label>
+        <input type="text" id="name" name="name" formControlName="name" class="form-control" [value]="name">
+      </div>
+      <div class="form-group" *ngIf="classes!=null">
+        <label for="classes">Lớp</label>
+        <input type="text" id="classes" name="classes" formControlName="classes"
+               class="form-control" [value]="classes.name" disabled>
+      </div>
+      <div class="form-group" *ngIf="student!=null">
+        <label for="student">Lớp</label>
+        <input type="text" id="student" name="student" formControlName="student"
+               class="form-control" [value]="student.name" disabled>
+      </div>
+      <div class="form-group">
+        <label for="templates">Bản mẫu: </label>
+        <select class="custom-select" id="templates" name="templates" formControlName="templates"
+                *ngIf="evaluationTemplates!=null">
+          <option [ngValue]="null" disabled>Chọn bản mẫu</option>
+          <option *ngFor="let template of listTemplate" [value]="template.id"
+                  [selected]="template.id === evaluationTemplates.id">{{template.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="evaluation">Mức đánh giá: </label>
+        <select class="custom-select" id="evaluation" name="evaluation" formControlName="evaluation">
+          <option [ngValue]="null" disabled>Chọn mức đánh giá</option>
+          <option *ngFor="let evaluation of listEvaluation" [value]="evaluation"
+                  [selected]="evaluation === currentEvaluation">{{evaluation}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Gợi ý cho doanh nghiệp</label>
+        <textarea id="description" name="description" formControlName="description" class="form-control"
+                  rows="4" [value]="description"></textarea>
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</section>
+

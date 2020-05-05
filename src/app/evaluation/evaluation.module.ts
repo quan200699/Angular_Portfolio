@@ -4,6 +4,7 @@ import {ListEvaluationComponent} from './list-evaluation/list-evaluation.compone
 import {EvaluationRoutingModule} from './evaluation-routing.module';
 import {CreateEvaluationComponent} from './create-evaluation/create-evaluation.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EditEvaluationComponent} from './edit-evaluation/edit-evaluation.component';
 
 
 
@@ -11,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ListEvaluationComponent,
     CreateEvaluationComponent,
+    EditEvaluationComponent,
   ],
   imports: [
     CommonModule,

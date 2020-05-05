@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from '../helper/auth-guard';
 import {ListEvaluationComponent} from './list-evaluation/list-evaluation.component';
 import {CreateEvaluationComponent} from './create-evaluation/create-evaluation.component';
+import {EditEvaluationComponent} from './edit-evaluation/edit-evaluation.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'create',
     canActivate: [AuthGuard],
     component: CreateEvaluationComponent
+  },
+  {
+    path: 'edit/:id',
+    canActivate: [AuthGuard],
+    component: EditEvaluationComponent
   }
 ];
 
