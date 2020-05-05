@@ -4,6 +4,8 @@ import {Template} from '../../model/template';
 import {TemplateService} from '../../service/template/template.service';
 import {EvaluationService} from '../../service/evaluation/evaluation.service';
 import {Evaluations} from '../../model/evaluations';
+import {Classes} from '../../model/classes';
+import {ClassesService} from '../../service/classes/classes.service';
 
 declare var $: any;
 declare var Swal: any;
@@ -23,15 +25,19 @@ export class CreateEvaluationComponent implements OnInit {
     classes: new FormControl(),
   });
   listTemplate: Template[];
+  listClasses: Classes[];
   listEvaluation: string[];
 
   constructor(private templateService: TemplateService,
-              private evaluationService: EvaluationService) {
+              private evaluationService: EvaluationService,
+              private classesService: ClassesService) {
     this.getAllTemplate();
+    this.getAllClasses();
     this.listEvaluation = ['Xuất sắc', 'Tốt', 'Đạt', 'Chưa đạt'];
   }
 
   ngOnInit() {
+    $('.select2').select2()
     $(document).ready(function() {
       $('#evaluation-form').validate({
         rules: {
@@ -136,6 +142,12 @@ export class CreateEvaluationComponent implements OnInit {
   getAllTemplate() {
     this.templateService.getAllTemplate().subscribe(listTemplate => {
       this.listTemplate = listTemplate;
+    });
+  }
+
+  getAllClasses() {
+    this.classesService.getAllClasses().subscribe(listClasses => {
+      this.listClasses = listClasses;
     });
   }
 }

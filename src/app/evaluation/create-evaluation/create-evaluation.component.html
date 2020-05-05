@@ -9,12 +9,17 @@
         <input type="text" id="name" name="name" formControlName="name" class="form-control">
       </div>
       <div class="form-group">
-        <label for="student">Học viên</label>
-        <input type="text" id="student" name="student" formControlName="student" class="form-control">
+        <label for="classes">Lớp</label>
+        <select class="form-control select2 select2-primary" id="classes" name="classes"
+                formControlName="classes" data-dropdown-css-class="select2-primary"
+                style="width: 100%;">
+          <option [ngValue]="null" disabled>Chọn lớp</option>
+          <option *ngFor="let classes of listClasses" [value]="classes.id">{{classes.name}}</option>
+        </select>
       </div>
       <div class="form-group">
-        <label for="classes">Lớp</label>
-        <input type="text" id="classes" name="classes" formControlName="classes" class="form-control">
+        <label for="student">Học viên</label>
+        <input type="text" id="student" name="student" formControlName="student" class="form-control">
       </div>
       <div class="form-group">
         <label for="template">Bản mẫu: </label>
