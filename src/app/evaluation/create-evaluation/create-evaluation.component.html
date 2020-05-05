@@ -2,7 +2,7 @@
   <div class="card-header">
     <h3 class="card-title">Tạo bản đánh giá</h3>
   </div>
-  <form [formGroup]="evaluationForm" id="evaluation-form">
+  <form [formGroup]="evaluationForm" id="evaluation-form" (ngSubmit)="createEvaluation()">
     <div class="card-body">
       <div class="form-group">
         <label for="name">Tên bản đánh giá</label>

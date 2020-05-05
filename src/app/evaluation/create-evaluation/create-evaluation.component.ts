@@ -8,6 +8,8 @@ import {Classes} from '../../model/classes';
 import {ClassesService} from '../../service/classes/classes.service';
 import {Student} from '../../model/student';
 import {StudentService} from '../../service/student/student.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
+import {UserToken} from '../../model/user-token';
 
 declare var $: any;
 declare var Swal: any;
@@ -30,15 +32,18 @@ export class CreateEvaluationComponent implements OnInit {
   listClasses: Classes[];
   listEvaluation: string[];
   listStudent: Student[];
+  currentUser: UserToken;
 
   constructor(private templateService: TemplateService,
               private evaluationService: EvaluationService,
               private classesService: ClassesService,
-              private studentService: StudentService) {
+              private studentService: StudentService,
+              private authenticationService: AuthenticationService) {
     this.getAllTemplate();
     this.getAllClasses();
     this.getAllStudent();
     this.listEvaluation = ['Xuất sắc', 'Tốt', 'Đạt', 'Chưa đạt'];
+    this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
   }
 
   ngOnInit() {
@@ -106,9 +111,18 @@ export class CreateEvaluationComponent implements OnInit {
       name: this.evaluationForm.value.name,
       description: this.evaluationForm.value.description,
       evaluation: this.evaluationForm.value.evaluation,
-      student: this.evaluationForm.value.student,
-      classes: this.evaluationForm.value.classes,
-      templates: this.evaluationForm.value.template
+      student: {
+        id: this.evaluationForm.value.student
+      },
+      classes: {
+        id: this.evaluationForm.value.classes
+      },
+      templates: {
+        id: this.evaluationForm.value.template
+      },
+      coach: {
+        id: this.currentUser.id
+      }
     };
     if (evaluation.name !== '') {
       this.evaluationService.createNewEvaluation(evaluation).subscribe(() => {
