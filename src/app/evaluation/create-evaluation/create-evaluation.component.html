@@ -1,0 +1,46 @@
+<section class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Tạo bản đánh giá</h3>
+  </div>
+  <form [formGroup]="evaluationForm" id="evaluation-form">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Tên bản đánh giá</label>
+        <input type="text" id="name" name="name" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="student">Học viên</label>
+        <input type="text" id="student" name="student" formControlName="student" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="classes">Lớp</label>
+        <input type="text" id="classes" name="classes" formControlName="classes" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="template">Bản mẫu: </label>
+        <select class="custom-select" id="template" name="template" formControlName="templates">
+          <option [ngValue]="null" disabled>Chọn bản mẫu</option>
+          <option *ngFor="let template of listTemplate" [value]="template.id">{{template.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="evaluation">Bản đánh giá: </label>
+        <select class="custom-select" id="evaluation" name="evaluation" formControlName="evaluation">
+          <option [ngValue]="null" disabled>Chọn mức đánh giá</option>
+          <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Gợi ý cho doanh nghiệp</label>
+        <textarea id="description" name="description" formControlName="description" class="form-control"
+                  rows="4"></textarea>
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Tạo mới</button>
+    </div>
+  </form>
+</section>
+
