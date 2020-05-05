@@ -13,6 +13,8 @@ import {UserToken} from '../../model/user-token';
 
 declare var $: any;
 declare var Swal: any;
+let classId: number;
+let studentId: number;
 
 @Component({
   selector: 'app-create-evaluation',
@@ -20,6 +22,11 @@ declare var Swal: any;
   styleUrls: ['./create-evaluation.component.css']
 })
 export class CreateEvaluationComponent implements OnInit {
+  listTemplate: Template[];
+  listClasses: Classes[];
+  listEvaluation: string[];
+  listStudent: Student[];
+  currentUser: UserToken;
   evaluationForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
@@ -28,11 +35,6 @@ export class CreateEvaluationComponent implements OnInit {
     templates: new FormControl(),
     classes: new FormControl(),
   });
-  listTemplate: Template[];
-  listClasses: Classes[];
-  listEvaluation: string[];
-  listStudent: Student[];
-  currentUser: UserToken;
 
   constructor(private templateService: TemplateService,
               private evaluationService: EvaluationService,
@@ -42,13 +44,21 @@ export class CreateEvaluationComponent implements OnInit {
     this.getAllTemplate();
     this.getAllClasses();
     this.getAllStudent();
+    studentId = null;
+    classId = null;
     this.listEvaluation = ['Xuất sắc', 'Tốt', 'Đạt', 'Chưa đạt'];
     this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
   }
 
   ngOnInit() {
-    $('.select2').select2();
     $(document).ready(function() {
+      $('.select2').select2();
+      $('#classes').on('select2:select', function(e, source) {
+        classId = $(e.currentTarget).val();
+      });
+      $('#student').on('select2:select', function(e, source) {
+        studentId = $(e.currentTarget).val();
+      });
       $('#evaluation-form').validate({
         rules: {
           name: {
@@ -107,18 +117,17 @@ export class CreateEvaluationComponent implements OnInit {
 
   createEvaluation() {
     const evaluation: Evaluations = {
-      id: this.evaluationForm.value.id,
       name: this.evaluationForm.value.name,
       description: this.evaluationForm.value.description,
       evaluation: this.evaluationForm.value.evaluation,
       student: {
-        id: this.evaluationForm.value.student
-      },
-      classes: {
-        id: this.evaluationForm.value.classes
+        id: studentId
       },
       templates: {
-        id: this.evaluationForm.value.template
+        id: this.evaluationForm.value.templates
+      },
+      classes: {
+        id: classId
       },
       coach: {
         id: this.currentUser.id

@@ -27,8 +27,8 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="template">Bản mẫu: </label>
-        <select class="custom-select" id="template" name="template" formControlName="templates">
+        <label for="templates">Bản mẫu: </label>
+        <select class="custom-select" id="templates" name="templates" formControlName="templates">
           <option [ngValue]="null" disabled>Chọn bản mẫu</option>
           <option *ngFor="let template of listTemplate" [value]="template.id">{{template.name}}</option>
         </select>
