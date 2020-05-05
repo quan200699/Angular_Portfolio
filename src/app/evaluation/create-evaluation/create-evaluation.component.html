@@ -19,7 +19,12 @@
       </div>
       <div class="form-group">
         <label for="student">Học viên</label>
-        <input type="text" id="student" name="student" formControlName="student" class="form-control">
+        <select class="form-control select2 select2-primary" id="student" name="student"
+                formControlName="student" data-dropdown-css-class="select2-primary"
+                style="width: 100%;">
+          <option [ngValue]="null" disabled>Họ tên học viên</option>
+          <option *ngFor="let student of listStudent" [value]="student.id">{{student.name}}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="template">Bản mẫu: </label>
@@ -29,7 +34,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="evaluation">Bản đánh giá: </label>
+        <label for="evaluation">Mức đánh giá: </label>
         <select class="custom-select" id="evaluation" name="evaluation" formControlName="evaluation">
           <option [ngValue]="null" disabled>Chọn mức đánh giá</option>
           <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
