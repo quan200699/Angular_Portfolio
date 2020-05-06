@@ -126,6 +126,9 @@ export class CreateEvaluationDetailComponent implements OnInit {
       if (this.listEvaluationDetail[i] == undefined) {
         return false;
       }
+      if (this.listEvaluationDetail[i].evaluation == null) {
+        return false;
+      }
     }
     return true;
   }
