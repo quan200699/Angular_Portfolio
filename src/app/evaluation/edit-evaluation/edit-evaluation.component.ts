@@ -10,6 +10,8 @@ import {Student} from '../../model/student';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Evaluations} from '../../model/evaluations';
 import {Subscription} from 'rxjs';
+import {UserToken} from '../../model/user-token';
+import {Coach} from '../../model/coach';
 
 declare var $: any;
 declare var Swal: any;
@@ -30,15 +32,15 @@ export class EditEvaluationComponent implements OnInit {
   currentEvaluation: string;
   student: Student;
   classes: Classes;
+  coach: Coach;
   evaluationTemplates: Template;
   evaluationForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
     evaluation: new FormControl(''),
-    student: new FormControl(),
     templates: new FormControl(),
-    classes: new FormControl(),
   });
+  currentUser: UserToken;
   sub: Subscription;
 
   constructor(private templateService: TemplateService,
@@ -48,15 +50,7 @@ export class EditEvaluationComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
-      this.evaluationService.getEvaluation(id).subscribe(evaluation => {
-        this.id = evaluation.id;
-        this.name = evaluation.name;
-        this.description = evaluation.description;
-        this.currentEvaluation = evaluation.evaluation;
-        this.student = evaluation.student;
-        this.evaluationTemplates = evaluation.templates;
-        this.classes = evaluation.classes;
-      });
+      this.getEvaluation(id);
     });
     this.getAllTemplate();
     this.getAllClasses();
@@ -64,17 +58,24 @@ export class EditEvaluationComponent implements OnInit {
     this.listEvaluation = ['Xuất sắc', 'Tốt', 'Đạt', 'Chưa đạt'];
   }
 
+  private getEvaluation(id: number) {
+    this.evaluationService.getEvaluation(id).subscribe(evaluation => {
+      this.id = evaluation.id;
+      this.name = evaluation.name;
+      this.description = evaluation.description;
+      this.currentEvaluation = evaluation.evaluation;
+      this.student = evaluation.student;
+      this.evaluationTemplates = evaluation.templates;
+      this.classes = evaluation.classes;
+      this.coach = evaluation.coach;
+    });
+  }
+
   ngOnInit() {
     $(document).ready(function() {
       $('#evaluation-form').validate({
         rules: {
           name: {
-            required: true
-          },
-          student: {
-            required: true
-          },
-          classes: {
             required: true
           },
           template: {
@@ -90,12 +91,6 @@ export class EditEvaluationComponent implements OnInit {
         messages: {
           name: {
             required: 'Nhập tên bản đánh giá'
-          },
-          student: {
-            required: 'Nhập tên học viên'
-          },
-          classes: {
-            required: 'Nhập tên lớp'
           },
           template: {
             required: 'Chọn bản mẫu'
@@ -124,12 +119,13 @@ export class EditEvaluationComponent implements OnInit {
 
   editEvaluation(id: number) {
     const evaluations: Evaluations = {
+      id: this.evaluationForm.value.id,
       name: this.evaluationForm.value.name === '' ? this.name : this.evaluationForm.value.name,
       description: this.evaluationForm.value.description === '' ? this.description : this.evaluationForm.value.description,
       evaluation: this.evaluationForm.value.evaluation === '' ? this.currentEvaluation : this.evaluationForm.value.evaluation,
       templates: {
-        id: this.evaluationForm.value.templates === null ? this.evaluationTemplates : this.evaluationForm.value.templates
-      }
+        id: this.evaluationForm.value.templates === null ? this.evaluationTemplates.id : this.evaluationForm.value.templates
+      },
     };
     this.evaluationService.updateEvaluationInfo(id, evaluations).subscribe(() => {
       $(function() {
