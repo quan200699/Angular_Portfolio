@@ -55,13 +55,15 @@ export class CreateSkillComponent implements OnInit {
       skillId: row[0].trim(),
       name: row[1].trim()
     };
+    let regex = /\.$/;
     for (let category of listCategory) {
       const categoryRow = category.split('\t');
+      let isCorrect = regex.test(row[0].substring(0, 4));
       let skillId;
-      if (row[0].length === 5) {
+      if (row[0].length === 5 || isCorrect) {
         skillId = row[0].substring(0, 3);
       }
-      if (row[0].length === 6) {
+      if (row[0].length === 6 && !isCorrect) {
         skillId = row[0].substring(0, 4);
       }
       if (skillId === categoryRow[0]) {
