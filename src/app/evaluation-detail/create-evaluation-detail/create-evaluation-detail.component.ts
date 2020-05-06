@@ -6,11 +6,12 @@ import {EvaluationDetailService} from '../../service/evaluation-detail/evaluatio
 import {EvaluationService} from '../../service/evaluation/evaluation.service';
 import {SkillService} from '../../service/skill/skill.service';
 import {EvaluationDetail} from '../../model/evaluation-detail';
+import {Category} from '../../model/category';
+import {CategoryService} from '../../service/category/category.service';
 
 declare var $: any;
 declare var Swal: any;
 let evaluationsId: number;
-let evaluation: string;
 let skillId: number;
 
 @Component({
@@ -33,12 +34,15 @@ export class CreateEvaluationDetailComponent implements OnInit {
     evaluation: ''
   }];
   evaluationChoice = null;
+  listCategory: Category[];
 
   constructor(private evaluationDetailService: EvaluationDetailService,
               private evaluationService: EvaluationService,
-              private skillService: SkillService) {
+              private skillService: SkillService,
+              private categoryService: CategoryService) {
     this.getAllEvaluation();
     this.getAllSkill();
+    this.getAllCategory();
     this.listEvaluation = ['Xuất sắc', 'Tốt', 'Đạt', 'Chưa đạt', 'N/A'];
   }
 
@@ -148,6 +152,21 @@ export class CreateEvaluationDetailComponent implements OnInit {
         };
         this.listEvaluationDetail[i] = evaluationDetail;
       }
+    });
+  }
+
+  getAllCategory() {
+    this.categoryService.getAllCategory().subscribe(listCategory => {
+      this.listCategory = listCategory;
+      for (let category of listCategory) {
+        this.addSkillToCategory(category);
+      }
+    });
+  }
+
+  addSkillToCategory(category: Category) {
+    this.categoryService.getAllSkillByCategory(category.id).subscribe(listSkill => {
+      category.skills = listSkill;
     });
   }
 }

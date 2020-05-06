@@ -3,4 +3,5 @@ export interface Category {
   categoryId?: string;
   name?: string;
   outComes?: any;
+  skills?: any[];
 }
