@@ -32,7 +32,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
     skills: null,
     evaluation: ''
   }];
-  evaluationChoice = '';
+  evaluationChoice = null;
 
   constructor(private evaluationDetailService: EvaluationDetailService,
               private evaluationService: EvaluationService,
