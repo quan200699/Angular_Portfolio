@@ -17,13 +17,21 @@
         <label for="evaluation_choice">Đánh giá tất cả</label>
         <select class="custom-select" id="evaluation_choice" name="evaluation_choice" [(ngModel)]="evaluationChoice"
                 [ngModelOptions]="{standalone: true}" (change)="setAllEvaluation()">
-          <option [ngValue]="null" >Chọn mức đánh giá</option>
+          <option [ngValue]="null">Chọn mức đánh giá</option>
           <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
         </select>
       </div>
       <div class="row" *ngFor="let category of listCategory">
-        <div class="col-7">
-          <label>{{category.name}}</label>
+        <div class="col-12">
+          <div class="row">
+            <label class="col-7">{{category.name}}</label>
+            <div class="form-group col-5">
+              <select class="custom-select" [(ngModel)]="evaluationChoice" [ngModelOptions]="{standalone: true}">
+                <option [ngValue]="null">Chọn mức đánh giá</option>
+                <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
+              </select>
+            </div>
+          </div>
           <div class="row" *ngFor="let skill of category.skills; index as i">
             <div class="form-group col-7">
               <input type="text" id="skills" name="skills" formControlName="skills" class="form-control"
@@ -42,11 +50,6 @@
             </div>
           </div>
         </div>
-        <div class="col-5">
-          <label></label>
-        </div>
-
-
       </div>
     </div>
     <!-- /.card-body -->
