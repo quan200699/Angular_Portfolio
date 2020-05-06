@@ -27,6 +27,11 @@ export class CreateEvaluationDetailComponent implements OnInit {
   listEvaluations: Evaluations[];
   listSkill: Skill[];
   listEvaluation: string[];
+  listEvaluationDetail: EvaluationDetail[] = [{
+    evaluations: null,
+    skills: null,
+    evaluation: ''
+  }];
 
   constructor(private evaluationDetailService: EvaluationDetailService,
               private evaluationService: EvaluationService,
@@ -41,9 +46,6 @@ export class CreateEvaluationDetailComponent implements OnInit {
       $('.select2').select2();
       $('#evaluations').on('select2:select', function(e, source) {
         evaluationsId = $(e.currentTarget).val();
-      });
-      $('#evaluation').on('select2:select', function(e, source) {
-        evaluation = $(e.currentTarget).val();
       });
       $('#skills').on('select2:select', function(e, source) {
         skillId = $(e.currentTarget).val();
@@ -63,32 +65,18 @@ export class CreateEvaluationDetailComponent implements OnInit {
     });
   }
 
-  createEvaluationDetail() {
-    const evaluationDetail: EvaluationDetail = {
-      evaluations: {
-        id: evaluationsId
-      },
-      skills: {
-        id: skillId
-      },
-      evaluation: evaluation
-    };
-    this.evaluationDetailService.createNewEvaluationDetail(evaluationDetail).subscribe(() => {
-      $(function() {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000
-        });
+  createEvaluationDetail(evaluationDetail: EvaluationDetail) {
+    if (evaluationDetail.evaluations != null) {
+      this.evaluationDetailService.createNewEvaluationDetail(evaluationDetail).subscribe();
+    }
+  }
 
-        Toast.fire({
-          type: 'success',
-          title: 'Tạo mới thành công'
-        });
-      });
-      this.evaluationDetailForm.reset();
-    }, () => {
+  createManyEvaluationDetail() {
+    if (this.isFilledAllEvaluation()) {
+      for (let evaluationDetail of this.listEvaluationDetail) {
+        this.createEvaluationDetail(evaluationDetail);
+      }
+    } else {
       $(function() {
         const Toast = Swal.mixin({
           toast: true,
@@ -99,9 +87,31 @@ export class CreateEvaluationDetailComponent implements OnInit {
 
         Toast.fire({
           type: 'error',
-          title: 'Tạo mới thất bại'
+          title: 'Chưa đánh giá hết các kỹ năng'
         });
       });
-    });
+    }
+  }
+
+  addEvaluationDetailToList(index: number) {
+    const evaluationDetail: EvaluationDetail = {
+      evaluations: {
+        id: evaluationsId
+      },
+      skills: {
+        id: this.listSkill[index].id
+      },
+      evaluation: this.evaluationDetailForm.value.evaluation
+    };
+    this.listEvaluationDetail[index] = evaluationDetail;
+  }
+
+  isFilledAllEvaluation(): boolean {
+    for (let evaluationDetail of this.listEvaluationDetail) {
+      if (evaluationDetail == undefined) {
+        return false;
+      }
+    }
+    return true;
   }
 }
