@@ -14,16 +14,20 @@
         </select>
       </div>
       <div class="form-group row">
-        <div class="col-6">
+        <div class="col-7">
           <label for="skills">Kỹ năng: </label>
-          <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary"
-                  style="width: 100%;" id="skills" name="skills" formControlName="skills">
-            <option [ngValue]="null" disabled>Chọn kỹ năng</option>
-            <option *ngFor="let skill of listSkill" [value]="skill.id">{{skill.name}}</option>
-          </select>
         </div>
-        <div class="col-6">
+        <div class="col-5">
           <label for="evaluation">Mức đánh giá: </label>
+        </div>
+      </div>
+      <div class="row" *ngFor="let skill of listSkill">
+        <div class="form-group col-7">
+          <input type="text" id="skills" name="skills" formControlName="skills" class="form-control"
+                 [value]="skill.name" disabled>
+        </div>
+        <div class="form-group col-5">
+
           <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary"
                   style="width: 100%;" id="evaluation" name="evaluation" formControlName="evaluation">
             <option [ngValue]="null" disabled>Chọn mức đánh giá</option>
