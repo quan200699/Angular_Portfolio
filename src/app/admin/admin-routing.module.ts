@@ -40,10 +40,6 @@ const routes: Routes = [
   {
     path: 'evaluation-form',
     loadChildren: () => import('../evaluation-form/evaluation-form.module').then(module => module.EvaluationFormModule)
-  },
-  {
-    path: 'evaluation',
-    loadChildren: () => import('../evaluation/evaluation.module').then(module => module.EvaluationModule)
   }
 ];
 

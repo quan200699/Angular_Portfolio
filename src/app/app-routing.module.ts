@@ -16,6 +16,14 @@ const routes: Routes = [
       {
         path: 'coach',
         loadChildren: () => import('./coach/coach.module').then(module => module.CoachModule)
+      },
+      {
+        path: 'evaluation',
+        loadChildren: () => import('./evaluation/evaluation.module').then(module => module.EvaluationModule)
+      },
+      {
+        path: 'evaluation-detail',
+        loadChildren: () => import('./evaluation-detail/evaluation-detail.module').then(module => module.EvaluationDetailModule)
       }
     ]
   },
