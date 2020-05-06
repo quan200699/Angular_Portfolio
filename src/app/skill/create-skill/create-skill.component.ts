@@ -50,14 +50,20 @@ export class CreateSkillComponent implements OnInit {
 
   createSkill(skillRow: string) {
     let listCategory = this.getCategoryName();
-    let row = skillRow.split("\t");
+    let row = skillRow.split('\t');
     const skill: Skill = {
       skillId: row[0].trim(),
       name: row[1].trim()
     };
     for (let category of listCategory) {
       const categoryRow = category.split('\t');
-      const skillId = skillRow.substring(0, 3);
+      let skillId;
+      if (row[0].length === 5) {
+        skillId = row[0].substring(0, 3);
+      }
+      if (row[0].length === 6) {
+        skillId = row[0].substring(0, 4);
+      }
       if (skillId === categoryRow[0]) {
         this.categoryService.findByCategoryName(categoryRow[1].trim()).subscribe(category => {
           skill.categories = category;
