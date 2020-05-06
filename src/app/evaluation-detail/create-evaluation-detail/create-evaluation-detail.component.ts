@@ -22,7 +22,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
   evaluationDetailForm: FormGroup = new FormGroup({
     evaluations: new FormControl(),
     skills: new FormControl(),
-    evaluation: new FormControl('')
+    evaluation: new FormControl()
   });
   listEvaluations: Evaluations[];
   listSkill: Skill[];
@@ -32,6 +32,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
     skills: null,
     evaluation: ''
   }];
+  evaluationChoice = '';
 
   constructor(private evaluationDetailService: EvaluationDetailService,
               private evaluationService: EvaluationService,
@@ -127,5 +128,23 @@ export class CreateEvaluationDetailComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  setAllEvaluation() {
+    this.skillService.getAllSkill().subscribe(listSkill => {
+      this.listSkill = listSkill;
+      for (let i = 0; i < this.listSkill.length; i++) {
+        const evaluationDetail: EvaluationDetail = {
+          evaluations: {
+            id: evaluationsId
+          },
+          skills: {
+            id: this.listSkill[i].id
+          },
+          evaluation: this.evaluationChoice
+        };
+        this.listEvaluationDetail[i] = evaluationDetail;
+      }
+    });
   }
 }

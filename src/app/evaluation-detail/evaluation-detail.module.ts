@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {EvaluationDetailRoutingModule} from './evaluation-detail-routing.module';
 import {ListEvaluationDetailComponent} from './list-evaluation-detail/list-evaluation-detail.component';
 import {CreateEvaluationDetailComponent} from './create-evaluation-detail/create-evaluation-detail.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -15,7 +15,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     EvaluationDetailRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class EvaluationDetailModule { }

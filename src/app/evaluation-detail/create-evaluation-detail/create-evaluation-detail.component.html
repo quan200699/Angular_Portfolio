@@ -13,6 +13,14 @@
           <option *ngFor="let evaluations of listEvaluations" [value]="evaluations.id">{{evaluations.name}}</option>
         </select>
       </div>
+      <div class="form-group">
+        <label for="evaluation_choice">Đánh giá tất cả</label>
+        <select class="custom-select" id="evaluation_choice" name="evaluation_choice" [(ngModel)]="evaluationChoice"
+                [ngModelOptions]="{standalone: true}" (change)="setAllEvaluation()">
+          <option [ngValue]="null" disabled selected>Chọn mức đánh giá</option>
+          <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
+        </select>
+      </div>
       <div class="form-group row">
         <div class="col-7">
           <label for="skills">Kỹ năng: </label>
@@ -29,8 +37,12 @@
         <div class="form-group col-5">
           <select class="custom-select" id="evaluation" name="evaluation" formControlName="evaluation"
                   (change)="addEvaluationDetailToList(i)">
-            <option [ngValue]="null" disabled>Chọn mức đánh giá</option>
-            <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
+            <option [ngValue]="null" disabled selected>Chọn mức đánh giá</option>
+            <option value="Xuất sắc" [selected]="evaluationChoice=='Xuất sắc'">Xuất sắc</option>
+            <option value="Tốt" [selected]="evaluationChoice=='Tốt'">Tốt</option>
+            <option value="Đạt" [selected]="evaluationChoice=='Đạt'">Đạt</option>
+            <option value="Chưa đạt" [selected]="evaluationChoice=='Chưa đạt'">Chưa đạt</option>
+            <option value="N/A" [selected]="evaluationChoice=='N/A'">N/A</option>
           </select>
         </div>
       </div>
