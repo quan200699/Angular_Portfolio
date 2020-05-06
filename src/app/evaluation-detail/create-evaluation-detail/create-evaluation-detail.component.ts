@@ -120,8 +120,9 @@ export class CreateEvaluationDetailComponent implements OnInit {
   }
 
   isFilledAllEvaluation(): boolean {
-    for (let evaluationDetail of this.listEvaluationDetail) {
-      if (evaluationDetail == undefined) {
+    for (let i = 0; i < this.listSkill.length; i++) {
+      console.log(this.listEvaluationDetail[i]);
+      if (this.listEvaluationDetail[i] == undefined) {
         return false;
       }
     }
