@@ -44,23 +44,8 @@
                 <option [ngValue]="null" disabled
                         [selected]="evaluationChoice==null || evaluationCategoryChoice[j] == null">Chọn mức đánh giá
                 </option>
-                <option value="Xuất sắc"
-                        [selected]="evaluationChoice=='Xuất sắc'|| evaluationCategoryChoice[j] == 'Xuất sắc'">
-                  Xuất sắc
-                </option>
-                <option value="Tốt" [selected]="evaluationChoice=='Tốt'|| evaluationCategoryChoice[j] == 'Tốt'">
-                  Tốt
-                </option>
-                <option value="Đạt" [selected]="evaluationChoice=='Đạt'|| evaluationCategoryChoice[j] == 'Đạt'">
-                  Đạt
-                </option>
-                <option value="Chưa đạt"
-                        [selected]="evaluationChoice=='Chưa đạt' || evaluationCategoryChoice[j] == 'Chưa đạt'">
-                  Chưa đạt
-                </option>
-                <option value="N/A" [selected]="evaluationChoice=='N/A' || evaluationCategoryChoice[j] == 'N/A'">
-                  N/A
-                </option>
+                <option *ngFor="let evaluation of listEvaluation" [value]="evaluation"
+                        [selected]="evaluationChoice==evaluation|| evaluationCategoryChoice[j] == evaluation">{{evaluation}}</option>
               </select>
             </div>
           </div>
