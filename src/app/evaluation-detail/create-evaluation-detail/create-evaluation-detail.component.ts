@@ -34,6 +34,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
     evaluation: ''
   }];
   evaluationChoice = null;
+  evaluationCategoryChoice: string[] = [''];
   listCategory: Category[];
 
   constructor(private evaluationDetailService: EvaluationDetailService,
@@ -126,7 +127,6 @@ export class CreateEvaluationDetailComponent implements OnInit {
 
   isFilledAllEvaluation(): boolean {
     for (let i = 0; i < this.listSkill.length; i++) {
-      console.log(this.listEvaluationDetail[i]);
       if (this.listEvaluationDetail[i] == undefined) {
         return false;
       }
@@ -155,13 +155,38 @@ export class CreateEvaluationDetailComponent implements OnInit {
     });
   }
 
+  setAllEvaluationByCategory(id: number, index: number) {
+    this.categoryService.getAllSkillByCategory(id).subscribe(listSkill => {
+      this.listSkill = listSkill;
+      for (let j = 0; j < this.listSkill.length; j++) {
+        const evaluationDetail: EvaluationDetail = {
+          evaluations: {
+            id: evaluationsId
+          },
+          skills: {
+            id: this.listSkill[j].id
+          },
+          evaluation: this.evaluationCategoryChoice[index]
+        };
+        this.listEvaluationDetail[j] = evaluationDetail;
+      }
+    });
+  }
+
   getAllCategory() {
     this.categoryService.getAllCategory().subscribe(listCategory => {
       this.listCategory = listCategory;
       for (let category of listCategory) {
         this.addSkillToCategory(category);
       }
+      this.createAllCategoryChoice();
     });
+  }
+
+  createAllCategoryChoice() {
+    for (let i = 0; i < this.listCategory.length; i++) {
+      this.evaluationCategoryChoice[i] = null;
+    }
   }
 
   addSkillToCategory(category: Category) {

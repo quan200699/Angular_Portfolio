@@ -21,31 +21,46 @@
           <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
         </select>
       </div>
-      <div class="row" *ngFor="let category of listCategory">
+      <div class="row" *ngFor="let category of listCategory; index as j">
         <div class="col-12">
           <div class="row">
-            <label class="col-7">{{category.name}}</label>
-            <div class="form-group col-5">
-              <select class="custom-select" [(ngModel)]="evaluationChoice" [ngModelOptions]="{standalone: true}">
+            <label class="col-10">{{category.name}}</label>
+            <div class="form-group col-2">
+              <select class="custom-select" [(ngModel)]="evaluationCategoryChoice[j]"
+                      [ngModelOptions]="{standalone: true}" (change)="setAllEvaluationByCategory(category.id, j)">
                 <option [ngValue]="null">Chọn mức đánh giá</option>
                 <option *ngFor="let evaluation of listEvaluation" [value]="evaluation">{{evaluation}}</option>
               </select>
             </div>
           </div>
           <div class="row" *ngFor="let skill of category.skills; index as i">
-            <div class="form-group col-7">
-              <input type="text" id="skills" name="skills" formControlName="skills" class="form-control"
+            <div class="form-group col-10">
+              <input type="text" id="skills_{{i}}" formControlName="skills" class="form-control"
                      [value]="skill.name" disabled>
             </div>
-            <div class="form-group col-5">
-              <select class="custom-select" id="evaluation" name="evaluation" formControlName="evaluation"
+            <div class="form-group col-2">
+              <select class="custom-select" id="evaluation_{{i}}" formControlName="evaluation"
                       (change)="addEvaluationDetailToList(i)">
-                <option [ngValue]="null" disabled [selected]="evaluationChoice==null">Chọn mức đánh giá</option>
-                <option value="Xuất sắc" [selected]="evaluationChoice=='Xuất sắc'">Xuất sắc</option>
-                <option value="Tốt" [selected]="evaluationChoice=='Tốt'">Tốt</option>
-                <option value="Đạt" [selected]="evaluationChoice=='Đạt'">Đạt</option>
-                <option value="Chưa đạt" [selected]="evaluationChoice=='Chưa đạt'">Chưa đạt</option>
-                <option value="N/A" [selected]="evaluationChoice=='N/A'">N/A</option>
+                <option [ngValue]="null" disabled
+                        [selected]="evaluationChoice==null || evaluationCategoryChoice[j] == null">Chọn mức đánh giá
+                </option>
+                <option value="Xuất sắc"
+                        [selected]="evaluationChoice=='Xuất sắc'|| evaluationCategoryChoice[j] == 'Xuất sắc'">
+                  Xuất sắc
+                </option>
+                <option value="Tốt" [selected]="evaluationChoice=='Tốt'|| evaluationCategoryChoice[j] == 'Tốt'">
+                  Tốt
+                </option>
+                <option value="Đạt" [selected]="evaluationChoice=='Đạt'|| evaluationCategoryChoice[j] == 'Đạt'">
+                  Đạt
+                </option>
+                <option value="Chưa đạt"
+                        [selected]="evaluationChoice=='Chưa đạt' || evaluationCategoryChoice[j] == 'Chưa đạt'">
+                  Chưa đạt
+                </option>
+                <option value="N/A" [selected]="evaluationChoice=='N/A' || evaluationCategoryChoice[j] == 'N/A'">
+                  N/A
+                </option>
               </select>
             </div>
           </div>
