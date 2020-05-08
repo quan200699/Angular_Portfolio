@@ -130,7 +130,8 @@ export class EvaluationFormComponent implements OnInit {
           text: '\nHà Nội, ngày ' + date.getDay() + ' tháng ' + date.getMonth() + ' năm ' + date.getFullYear(),
           alignment: 'right',
           fontSize: 12,
-          margin: [0, 0, 0, 20]
+          margin: [0, 0, 0, 20],
+          pageBreak: 'after'
         },
         {
           text: 'II. CHI TIẾT\n' +
