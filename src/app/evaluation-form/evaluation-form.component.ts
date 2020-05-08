@@ -5,6 +5,8 @@ import {Evaluations} from '../model/evaluations';
 import {EvaluationService} from '../service/evaluation/evaluation.service';
 import {EvaluationDetail} from '../model/evaluation-detail';
 import {EvaluationDetailService} from '../service/evaluation-detail/evaluation-detail.service';
+import {Outcome} from '../model/outcome';
+import {OutcomeService} from '../service/outcome/outcome.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -17,10 +19,13 @@ export class EvaluationFormComponent implements OnInit {
   evaluationList: Evaluations[];
   evaluation: Evaluations;
   evaluationDetailList: EvaluationDetail[];
+  outcomeList: Outcome[];
 
   constructor(private evaluationService: EvaluationService,
-              private evaluationDetailService: EvaluationDetailService) {
+              private evaluationDetailService: EvaluationDetailService,
+              private outcomeService: OutcomeService) {
     this.getAllEvaluation();
+    this.getAllOutcome();
     this.getAllEvaluationDetail();
   }
 
@@ -164,11 +169,21 @@ export class EvaluationFormComponent implements OnInit {
               alignment: 'center'
             }
           ],
-          [
-            // ...this.evaluationDetailList.map(evaluationDetail => {
-            //   return [evaluationDetail.skills.name, evaluationDetail.evaluation]
-            // })
-          ]
+          // ...this.evaluationDetailList.map(evaluationDetail => {
+          //   return [evaluationDetail.skills.name, evaluationDetail.evaluation]
+          // })
+          ...this.outcomeList.map(outcome => {
+            return [
+              {
+                text: outcome.title,
+                style: 'tableHeader',
+                colSpan: 3,
+                alignment: 'center'
+              },
+              {},
+              {}
+            ];
+          })
         ],
       }
     };
@@ -185,6 +200,12 @@ export class EvaluationFormComponent implements OnInit {
   getAllEvaluationDetail() {
     this.evaluationDetailService.getAllEvaluationDetail().subscribe(evaluationDetailList => {
       this.evaluationDetailList = evaluationDetailList;
+    });
+  }
+
+  getAllOutcome() {
+    this.outcomeService.getAllOutcome().subscribe(outcomeList => {
+      this.outcomeList = outcomeList;
     });
   }
 }
