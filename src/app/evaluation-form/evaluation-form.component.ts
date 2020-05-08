@@ -148,21 +148,28 @@ export class EvaluationFormComponent implements OnInit {
   getEvaluationDetailObject() {
     return {
       table: {
-        widths: ['*', 100],
+        widths: ['*', 'auto', 100],
         body: [
-          [{
-            text: 'CHUẨN ĐẦU RA',
-            style: 'tableHeader'
-          },
+          [
+            {
+              text: 'CHUẨN ĐẦU RA',
+              style: 'tableHeader',
+              colSpan: 2,
+              alignment: 'center'
+            },
+            {},
             {
               text: 'ĐÁNH GIÁ',
-              style: 'tableHeader'
+              style: 'tableHeader',
+              alignment: 'center'
             }
           ],
-          ...this.evaluationDetailList.map(evaluationDetail => {
-            return [evaluationDetail.skills.name, evaluationDetail.evaluation];
-          })
-        ]
+          [
+            // ...this.evaluationDetailList.map(evaluationDetail => {
+            //   return [evaluationDetail.skills.name, evaluationDetail.evaluation]
+            // })
+          ]
+        ],
       }
     };
 
