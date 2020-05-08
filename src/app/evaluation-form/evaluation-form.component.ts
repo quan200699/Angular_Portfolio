@@ -154,6 +154,7 @@ export class EvaluationFormComponent implements OnInit {
     return {
       table: {
         widths: ['*', 'auto', 100],
+        headerRows: 2,
         body: [
           [
             {
@@ -169,20 +170,28 @@ export class EvaluationFormComponent implements OnInit {
               alignment: 'center'
             }
           ],
-          // ...this.evaluationDetailList.map(evaluationDetail => {
-          //   return [evaluationDetail.skills.name, evaluationDetail.evaluation]
-          // })
           ...this.outcomeList.map(outcome => {
+            return [{
+              text: outcome.title,
+              style: 'tableHeader',
+              colSpan: 3,
+              alignment: 'center'
+            }, {}, {}];
+          }),
+          ...this.evaluationDetailList.map(evaluationDetail => {
             return [
               {
-                text: outcome.title,
-                style: 'tableHeader',
-                colSpan: 3,
-                alignment: 'center'
+                text: evaluationDetail.skills.skillId,
+                alignment: 'right'
               },
-              {},
-              {}
-            ];
+              {
+                text: evaluationDetail.skills.name,
+                alignment: 'left'
+              },
+              {
+                text: evaluationDetail.evaluation,
+                alignment: 'left'
+              }];
           })
         ],
       }
@@ -206,6 +215,15 @@ export class EvaluationFormComponent implements OnInit {
   getAllOutcome() {
     this.outcomeService.getAllOutcome().subscribe(outcomeList => {
       this.outcomeList = outcomeList;
+      this.outcomeList.map(outcome => {
+        this.getAllCategoryByOutcome(outcome);
+      });
+    });
+  }
+
+  getAllCategoryByOutcome(outcome: Outcome) {
+    this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
+      outcome.categories = categoryList;
     });
   }
 }
