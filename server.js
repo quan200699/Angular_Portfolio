@@ -14,10 +14,10 @@ function createPdfBinary(pdfDoc, callback) {
 
   var fontDescriptors = {
     Roboto: {
-      normal: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Regular.ttf'),
-      bold: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Bold.ttf'),
-      italics: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Italic.ttf'),
-      bolditalics: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Bold Italic.ttf')
+      normal: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Regular.ttf'),
+      bold: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Bold.ttf'),
+      italics: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Italic.ttf'),
+      bolditalics: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Bold Italic.ttf')
     }
   };
 
