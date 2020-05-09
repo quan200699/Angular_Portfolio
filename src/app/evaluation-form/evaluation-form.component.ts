@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {Evaluations} from '../model/evaluations';
 import {EvaluationService} from '../service/evaluation/evaluation.service';
 import {EvaluationDetail} from '../model/evaluation-detail';
@@ -8,7 +6,20 @@ import {EvaluationDetailService} from '../service/evaluation-detail/evaluation-d
 import {Outcome} from '../model/outcome';
 import {OutcomeService} from '../service/outcome/outcome.service';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import * as pdfMakeConfig from 'pdfmake/build/pdfmake.js';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+
+pdfMakeConfig.vfs = pdfFonts.pdfMake.vfs;
+import * as pdfMake from 'pdfmake/build/pdfmake';
+
+pdfMakeConfig.fonts = {
+  MyriadPro: {
+    normal: 'Myriad Pro Regular.ttf',
+    bold: 'Myriad Pro Bold.ttf',
+    italics: 'Myriad Pro Italic.ttf',
+    bolditalics: 'Myriad Pro Bold Italic.ttf'
+  }
+};
 
 @Component({
   selector: 'app-evaluation-form',
@@ -194,7 +205,10 @@ export class EvaluationFormComponent implements OnInit {
           margin: [0, 0, 0, 20]
         },
         this.getEvaluationDetailObject(),
-      ]
+      ],
+      defaultStyle: {
+        font: 'MyriadPro'
+      }
     };
   }
 

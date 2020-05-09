@@ -720,7 +720,7 @@ var DateTimePicker = function ($, moment) {
         DateTimePicker.prototype._indexGivenDates = function _indexGivenDates(givenDatesArray) {
             // Store given enabledDates and disabledDates as keys.
             // This way we can check their existence in O(1) time instead of looping through whole array.
-            // (for example: options.enabledDates['2014-02-27'] === true)
+            // (for examples: options.enabledDates['2014-02-27'] === true)
             var givenDatesIndexed = {},
                 self = this;
             $.each(givenDatesArray, function () {
@@ -735,7 +735,7 @@ var DateTimePicker = function ($, moment) {
         DateTimePicker.prototype._indexGivenHours = function _indexGivenHours(givenHoursArray) {
             // Store given enabledHours and disabledHours as keys.
             // This way we can check their existence in O(1) time instead of looping through whole array.
-            // (for example: options.enabledHours['2014-02-27'] === true)
+            // (for examples: options.enabledHours['2014-02-27'] === true)
             var givenHoursIndexed = {};
             $.each(givenHoursArray, function () {
                 givenHoursIndexed[this] = true;

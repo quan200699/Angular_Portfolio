@@ -804,7 +804,7 @@ var renderContainer = function renderContainer(instance, params) {
 
 /**
  * This module containts `WeakMap`s for each effectively-"private  property" that a `Swal` has.
- * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
+ * For examples, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
  * This is the approach that Babel will probably take to implement private methods/fields
  *   https://github.com/tc39/proposal-private-methods
  *   https://github.com/babel/babel/pull/7555
@@ -1269,7 +1269,7 @@ function fire() {
  * Returns an extended version of `Swal` containing `params` as defaults.
  * Useful for reusing Swal configuration.
  *
- * For example:
+ * For examples:
  *
  * Before:
  * const textPromptOptions = { input: 'text', showCancelButton: true }
@@ -1821,7 +1821,7 @@ var unsetAriaHidden = function unsetAriaHidden() {
 
 /**
  * This module containts `WeakMap`s for each effectively-"private  property" that a `Swal` has.
- * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
+ * For examples, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
  * This is the approach that Babel will probably take to implement private methods/fields
  *   https://github.com/tc39/proposal-private-methods
  *   https://github.com/babel/babel/pull/7555
@@ -2162,7 +2162,7 @@ function setParameters(params) {
   setDefaultInputValidators(params); // showLoaderOnConfirm && preConfirm
 
   if (params.showLoaderOnConfirm && !params.preConfirm) {
-    warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://sweetalert2.github.io/#ajax-request');
+    warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage examples:\n' + 'https://sweetalert2.github.io/#ajax-request');
   } // params.animation will be actually used in renderPopup.js
   // but in case when params.animation is a function, we need to call that function
   // before popup (re)initialization, so it'll be possible to check Swal.isVisible()

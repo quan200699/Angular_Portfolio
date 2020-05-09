@@ -26,6 +26,7 @@
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
+    "gulp": "^4.0.2",
     "js-base64": "^2.5.2",
     "pdfmake": "^0.1.65",
     "rxjs": "~6.4.0",
