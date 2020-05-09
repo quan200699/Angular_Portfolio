@@ -242,7 +242,8 @@ export class EvaluationFormComponent implements OnInit {
               text: outcome.title,
               style: 'tableHeader',
               colSpan: 3,
-              alignment: 'center',
+              alignment: 'left',
+              bold: true
             }, {}, {}];
           }),
           ...this.evaluationDetailList.map(evaluationDetail => {
@@ -285,6 +286,7 @@ export class EvaluationFormComponent implements OnInit {
       // this.outcomeList.map(outcome => {
       //   this.getAllCategoryByOutcome(outcome);
       // });
+      this.sortOutcome();
     });
   }
 
@@ -293,4 +295,17 @@ export class EvaluationFormComponent implements OnInit {
   //     outcome.categories = categoryList;
   //   });
   // }
+  sortOutcome() {
+    for (let i = 0; i < this.outcomeList.length; i++) {
+      for (let j = i + 1; j < this.outcomeList.length; j++) {
+        let indexFirst = this.outcomeList[i].title.split('')[5];
+        let indexSecond = this.outcomeList[j].title.split('')[5];
+        if (Number(indexFirst) > Number(indexSecond)) {
+          let temp = this.outcomeList[i];
+          this.outcomeList[i] = this.outcomeList[j];
+          this.outcomeList[j] = temp;
+        }
+      }
+    }
+  }
 }
