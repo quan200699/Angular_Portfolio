@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var pdfMakePrinter = require('../src/printer');
+var pdfMakePrinter = require('./node_modules/pdfmake');
 const app = express();
 
 app.use(express.static(path.join('ePortfolio', 'public')));
