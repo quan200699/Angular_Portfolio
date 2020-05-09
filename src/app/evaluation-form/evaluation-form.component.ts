@@ -221,7 +221,7 @@ export class EvaluationFormComponent implements OnInit {
   getEvaluationDetailObject() {
     return {
       table: {
-        widths: ['*', 'auto', 100],
+        widths: ['*', 'auto', 80],
         body: [
           [
             {
@@ -257,7 +257,7 @@ export class EvaluationFormComponent implements OnInit {
               },
               {
                 text: evaluationDetail.evaluation,
-                alignment: 'left'
+                alignment: 'center'
               }];
           })
         ],
