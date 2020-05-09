@@ -175,7 +175,7 @@ export class EvaluationFormComponent implements OnInit {
         {
           text: this.evaluation.description + '\n',
           fontSize: 12,
-          margin: [0, 0, 0, 180]
+          margin: [0, 0, 0, 120]
         },
         {
           text: '\nHà Nội, ngày ' + date.getDay() + ' tháng ' + date.getMonth() + ' năm ' + date.getFullYear(),
