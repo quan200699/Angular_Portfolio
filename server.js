@@ -66,10 +66,7 @@ app.use(express.static('./dist/ePortfolio'));
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join('ePortfolio', '/dist/ePortfolio/index.html'));
-});
-app.all('*', (req, res) => {
-  res.status(200).sendFile('ePortfolio' + '/dist/ePortfolio/index.html');
-});
+})
 app.use(forceSSL());
 
 // Start the app by listening on the default Heroku port
