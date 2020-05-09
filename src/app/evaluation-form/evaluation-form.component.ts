@@ -106,7 +106,8 @@ export class EvaluationFormComponent implements OnInit {
           bold: true,
           fontSize: 24,
           alignment: 'center',
-          color: '#090e91'
+          color: '#090e91',
+          margin: [0, 0, 0, 5]
         },
         {
           text: '(Dành cho Huấn luyện viên)\n' +
@@ -116,6 +117,7 @@ export class EvaluationFormComponent implements OnInit {
           italics: true,
           fontSize: 12,
           alignment: 'center',
+          margin: [0, 0, 0, 5]
         },
         {
           text: '1.\tKết quả bài thi lý thuyết và thực hành cuối module của học viên\n' +
@@ -131,32 +133,38 @@ export class EvaluationFormComponent implements OnInit {
               {
                 text: 'Huấn luyện viên : ' + this.evaluation.coach.name,
                 fontSize: 12,
-                bold: true
+                bold: true,
+                margin: [0, 0, 0, 5]
               },
               {
                 text: 'Học viên : ' + this.evaluation.student.name,
                 fontSize: 12,
-                bold: true
+                bold: true,
+                margin: [0, 0, 0, 5]
               },
               {
                 text: 'Mã học viên : ' + this.evaluation.student.studentId,
                 fontSize: 12,
-                bold: true
+                bold: true,
+                margin: [0, 0, 0, 5]
               },
               {
                 text: 'Lớp : ' + this.evaluation.classes.name,
                 fontSize: 12,
-                bold: true
+                bold: true,
+                margin: [0, 0, 0, 5]
               },
               {
                 text: 'Chương trình học : BOOTCAMP JAVA',
                 fontSize: 12,
-                bold: true
+                bold: true,
+                margin: [0, 0, 0, 5]
               },
               {
                 text: 'Hình thức đào tạo : <Full-time 8x5, Part-time 4x5, Part-time 3x3>',
                 fontSize: 12,
-                bold: true
+                bold: true,
+                margin: [0, 0, 0, 5]
               }]
           ]
         },
