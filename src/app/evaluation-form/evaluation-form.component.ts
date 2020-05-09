@@ -294,6 +294,7 @@ export class EvaluationFormComponent implements OnInit {
 
   getAllCategoryByOutcome(outcome: Outcome) {
     this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
+      this.sortCategory(categoryList);
       outcome.categories = categoryList;
       this.array.push(outcome);
       categoryList.map(category => {
@@ -311,6 +312,20 @@ export class EvaluationFormComponent implements OnInit {
           let temp = this.outcomeList[i];
           this.outcomeList[i] = this.outcomeList[j];
           this.outcomeList[j] = temp;
+        }
+      }
+    }
+  }
+
+  sortCategory(categoryList) {
+    for (let i = 0; i < categoryList.length; i++) {
+      for (let j = i + 1; j < categoryList.length; j++) {
+        let indexFirst = categoryList[i].categoryId.split('.')[1];
+        let indexSecond = categoryList[j].categoryId.split('.')[1];
+        if (Number(indexFirst) > Number(indexSecond)) {
+          let temp = categoryList[i];
+          categoryList[i] = categoryList[j];
+          categoryList[j] = temp;
         }
       }
     }
