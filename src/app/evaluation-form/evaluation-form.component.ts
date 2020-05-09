@@ -262,15 +262,15 @@ export class EvaluationFormComponent implements OnInit {
   getAllOutcome() {
     this.outcomeService.getAllOutcome().subscribe(outcomeList => {
       this.outcomeList = outcomeList;
-      this.outcomeList.map(outcome => {
-        this.getAllCategoryByOutcome(outcome);
-      });
+      // this.outcomeList.map(outcome => {
+      //   this.getAllCategoryByOutcome(outcome);
+      // });
     });
   }
 
-  getAllCategoryByOutcome(outcome: Outcome) {
-    this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
-      outcome.categories = categoryList;
-    });
-  }
+  // getAllCategoryByOutcome(outcome: Outcome) {
+  //   this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
+  //     outcome.categories = categoryList;
+  //   });
+  // }
 }
