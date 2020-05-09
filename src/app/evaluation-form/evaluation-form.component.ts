@@ -258,6 +258,7 @@ export class EvaluationFormComponent implements OnInit {
                 text: array.name,
                 style: 'tableHeader',
                 alignment: 'left',
+                colSpan: 2,
                 bold: true
               }, {}];
           })
