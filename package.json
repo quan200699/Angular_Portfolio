@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "install": "npm install --prefix ./node_modules/pdfmake"
+    "postinstall": "npm install --prefix ./node_modules/pdfmake"
   },
   "engines": {
     "node": "10.16.0",
