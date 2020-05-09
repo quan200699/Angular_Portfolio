@@ -31,6 +31,7 @@ export class EvaluationFormComponent implements OnInit {
   evaluation: Evaluations;
   evaluationDetailList: EvaluationDetail[];
   outcomeList: Outcome[];
+  array: any[] = [];
 
   constructor(private evaluationService: EvaluationService,
               private evaluationDetailService: EvaluationDetailService,
@@ -221,7 +222,7 @@ export class EvaluationFormComponent implements OnInit {
   getEvaluationDetailObject() {
     return {
       table: {
-        widths: ['*', 'auto', 80],
+        widths: [40, '*', 'auto'],
         body: [
           [
             {
@@ -237,29 +238,28 @@ export class EvaluationFormComponent implements OnInit {
               alignment: 'center'
             }
           ],
-          ...this.outcomeList.map(outcome => {
+          ...this.array.map(array => {
+            if (array.title != undefined) {
+              return [{
+                text: array.title,
+                style: 'tableHeader',
+                colSpan: 3,
+                alignment: 'left',
+                bold: true
+              }, {}, {}];
+            }
             return [{
-              text: outcome.title,
+              text: array.categoryId,
               style: 'tableHeader',
-              colSpan: 3,
               alignment: 'left',
               bold: true
-            }, {}, {}];
-          }),
-          ...this.evaluationDetailList.map(evaluationDetail => {
-            return [
+            },
               {
-                text: evaluationDetail.skills.skillId,
-                alignment: 'right'
-              },
-              {
-                text: evaluationDetail.skills.name,
-                alignment: 'left'
-              },
-              {
-                text: evaluationDetail.evaluation,
-                alignment: 'center'
-              }];
+                text: array.name,
+                style: 'tableHeader',
+                alignment: 'left',
+                bold: true
+              }, {}];
           })
         ],
       }
@@ -283,18 +283,24 @@ export class EvaluationFormComponent implements OnInit {
   getAllOutcome() {
     this.outcomeService.getAllOutcome().subscribe(outcomeList => {
       this.outcomeList = outcomeList;
-      // this.outcomeList.map(outcome => {
-      //   this.getAllCategoryByOutcome(outcome);
-      // });
       this.sortOutcome();
+      this.outcomeList.map(outcome => {
+        this.getAllCategoryByOutcome(outcome);
+      });
+
     });
   }
 
-  // getAllCategoryByOutcome(outcome: Outcome) {
-  //   this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
-  //     outcome.categories = categoryList;
-  //   });
-  // }
+  getAllCategoryByOutcome(outcome: Outcome) {
+    this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
+      outcome.categories = categoryList;
+      this.array.push(outcome);
+      categoryList.map(category => {
+        this.array.push(category);
+      });
+    });
+  }
+
   sortOutcome() {
     for (let i = 0; i < this.outcomeList.length; i++) {
       for (let j = i + 1; j < this.outcomeList.length; j++) {
