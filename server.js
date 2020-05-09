@@ -2,7 +2,54 @@
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
+var bodyParser = require('body-parser');
+var pdfMakePrinter = require('./node_modules/pdfmake/src');
 const app = express();
+
+app.use(express.static(path.join('ePortfolio', 'public')));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({extended: false}));
+
+function createPdfBinary(pdfDoc, callback) {
+
+  var fontDescriptors = {
+    Roboto: {
+      normal: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Regular.ttf'),
+      bold: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Bold.ttf'),
+      italics: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Italic.ttf'),
+      bolditalics: path.join(__dirname, '..', 'examples', '/fonts/Myriad Pro Bold Italic.ttf')
+    }
+  };
+
+  var printer = new pdfMakePrinter(fontDescriptors);
+
+  var doc = printer.createPdfKitDocument(pdfDoc);
+
+  var chunks = [];
+  var result;
+
+  doc.on('data', function (chunk) {
+    chunks.push(chunk);
+  });
+  doc.on('end', function () {
+    result = Buffer.concat(chunks);
+    callback('data:application/pdf;base64,' + result.toString('base64'));
+  });
+  doc.end();
+
+}
+
+app.post('/pdf', function (req, res) {
+  eval(req.body.content);
+
+  createPdfBinary(dd, function (binary) {
+    res.contentType('application/pdf');
+    res.send(binary);
+  }, function (error) {
+    res.send('ERROR:' + error);
+  });
+
+});
 
 const forceSSL = function () {
   return function (req, res, next) {

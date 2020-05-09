@@ -64,7 +64,7 @@ export class EvaluationFormComponent implements OnInit {
   getDocumentDefinition() {
     const date = new Date(this.evaluation.createDate);
     return {
-      pageMargins: [40, 120, 40, 60],
+      pageMargins: [70, 120, 70, 60],
       header: function(currentPage, pageCount, pageSize) {
         return [
           {
@@ -106,7 +106,6 @@ export class EvaluationFormComponent implements OnInit {
           bold: true,
           fontSize: 24,
           alignment: 'center',
-          margin: [0, 0, 0, 20],
           color: '#090e91'
         },
         {
@@ -117,7 +116,6 @@ export class EvaluationFormComponent implements OnInit {
           italics: true,
           fontSize: 12,
           alignment: 'center',
-          margin: [0, 0, 0, 30]
         },
         {
           text: '1.\tKết quả bài thi lý thuyết và thực hành cuối module của học viên\n' +
@@ -125,7 +123,7 @@ export class EvaluationFormComponent implements OnInit {
           italics: true,
           fontSize: 11,
           alignment: 'left',
-          margin: [50, 0, 0, 30]
+          margin: [30, 0, 0, 30]
         },
         {
           columns: [
