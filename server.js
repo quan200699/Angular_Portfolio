@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var pdfMakePrinter = require('./node_modules/pdfmake/src');
+var pdfMakePrinter = require('../src/printer');
 const app = express();
 
 app.use(express.static(path.join('ePortfolio', 'public')));
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 function createPdfBinary(pdfDoc, callback) {
 
   var fontDescriptors = {
-    Roboto: {
+    MyriadPro: {
       normal: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Regular.ttf'),
       bold: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Bold.ttf'),
       italics: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Italic.ttf'),
@@ -67,7 +67,9 @@ app.use(express.static('./dist/ePortfolio'));
 app.get('/*', function (req, res) {
   res.sendFile(path.join('ePortfolio', '/dist/ePortfolio/index.html'));
 });
-
+app.all('*', (req, res) => {
+  res.status(200).sendFile('ePortfolio' + '/dist/index.html');
+});
 app.use(forceSSL());
 
 // Start the app by listening on the default Heroku port
