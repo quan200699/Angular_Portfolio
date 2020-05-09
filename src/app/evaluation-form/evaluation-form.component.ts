@@ -107,7 +107,7 @@ export class EvaluationFormComponent implements OnInit {
           fontSize: 24,
           alignment: 'center',
           margin: [0, 0, 0, 20],
-          color: 'indigo'
+          color: '#090e91'
         },
         {
           text: '(Dành cho Huấn luyện viên)\n' +
