@@ -224,7 +224,7 @@ export class EvaluationFormComponent implements OnInit {
   getEvaluationDetailObject() {
     return {
       table: {
-        widths: [40, '*', 'auto'],
+        widths: [40, '*', 80],
         body: [
           [
             {
@@ -233,6 +233,7 @@ export class EvaluationFormComponent implements OnInit {
               colSpan: 2,
               alignment: 'center',
               fontSize: 11,
+              bold: true
             },
             {},
             {
@@ -240,6 +241,7 @@ export class EvaluationFormComponent implements OnInit {
               style: 'tableHeader',
               alignment: 'center',
               fontSize: 11,
+              bold: true
             }
           ],
           ...this.array.map(array => {
