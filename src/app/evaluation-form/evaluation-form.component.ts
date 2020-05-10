@@ -11,6 +11,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 
 pdfMakeConfig.vfs = pdfFonts.pdfMake.vfs;
 import * as pdfMake from 'pdfmake/build/pdfmake';
+import {CategoryService} from '../service/category/category.service';
 
 pdfMakeConfig.fonts = {
   MyriadPro: {
@@ -35,7 +36,8 @@ export class EvaluationFormComponent implements OnInit {
 
   constructor(private evaluationService: EvaluationService,
               private evaluationDetailService: EvaluationDetailService,
-              private outcomeService: OutcomeService) {
+              private outcomeService: OutcomeService,
+              private categoryService: CategoryService) {
     this.getAllEvaluation();
     this.getAllOutcome();
     this.getAllEvaluationDetail();
@@ -229,13 +231,15 @@ export class EvaluationFormComponent implements OnInit {
               text: 'CHUẨN ĐẦU RA',
               style: 'tableHeader',
               colSpan: 2,
-              alignment: 'center'
+              alignment: 'center',
+              fontSize: 11,
             },
             {},
             {
               text: 'ĐÁNH GIÁ',
               style: 'tableHeader',
-              alignment: 'center'
+              alignment: 'center',
+              fontSize: 11,
             }
           ],
           ...this.array.map(array => {
@@ -245,22 +249,41 @@ export class EvaluationFormComponent implements OnInit {
                 style: 'tableHeader',
                 colSpan: 3,
                 alignment: 'left',
-                bold: true
+                bold: true,
+                fontSize: 11,
               }, {}, {}];
+            } else if (array.categoryId != undefined) {
+              return [{
+                text: array.categoryId,
+                style: 'tableHeader',
+                alignment: 'right',
+                bold: true,
+                fontSize: 11,
+              },
+                {
+                  text: array.name,
+                  style: 'tableHeader',
+                  alignment: 'left',
+                  colSpan: 2,
+                  bold: true,
+                  fontSize: 11,
+                }, {}];
             }
             return [{
-              text: array.categoryId,
-              style: 'tableHeader',
-              alignment: 'left',
-              bold: true
+              text: array.skillId,
+              alignment: 'right',
+              fontSize: 10,
             },
               {
                 text: array.name,
-                style: 'tableHeader',
                 alignment: 'left',
-                colSpan: 2,
-                bold: true
-              }, {}];
+                fontSize: 10,
+              },
+              {
+                text: '',
+                alignment: 'left',
+                fontSize: 10,
+              }];
           })
         ],
       }
@@ -298,7 +321,12 @@ export class EvaluationFormComponent implements OnInit {
       outcome.categories = categoryList;
       this.array.push(outcome);
       categoryList.map(category => {
-        this.array.push(category);
+        this.categoryService.getAllSkillByCategory(category.id).subscribe(skillList => {
+          this.array.push(category);
+          skillList.map(skill => {
+            this.array.push(skill);
+          });
+        });
       });
     });
   }
