@@ -318,16 +318,21 @@ export class EvaluationFormComponent implements OnInit {
   }
 
   getAllCategoryByOutcome(outcome: Outcome) {
+    let outcomeRow = [];
+    let i = 0;
     this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
       this.sortCategory(categoryList);
-      outcome.categories = categoryList;
-      this.array.push(outcome);
+      outcomeRow.push(outcome);
       categoryList.map(category => {
         this.categoryService.getAllSkillByCategory(category.id).subscribe(skillList => {
+          if (outcomeRow[i] != undefined) {
+            this.array.push(outcomeRow[i]);
+          }
           this.array.push(category);
           skillList.map(skill => {
             this.array.push(skill);
           });
+          i++;
         });
       });
     });
