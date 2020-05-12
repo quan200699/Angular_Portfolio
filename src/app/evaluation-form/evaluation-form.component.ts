@@ -306,47 +306,32 @@ export class EvaluationFormComponent implements OnInit {
     });
   }
 
-  getAllOutcome() {
-    this.outcomeService.getAllOutcome().subscribe(outcomeList => {
-      this.outcomeList = outcomeList;
-      this.sortOutcome();
-      this.outcomeList.map(outcome => {
-        this.getAllCategoryByOutcome(outcome);
-      });
-
-    });
-  }
-
-  getAllCategoryByOutcome(outcome: Outcome) {
-    let outcomeRow = [];
-    let i = 0;
-    this.outcomeService.getAllCategoryByOutcome(outcome.id).subscribe(categoryList => {
+  async getAllOutcome() {
+    let outcomeList = await this.outcomeService.getAllOutcome().toPromise();
+    this.sortOutcome(outcomeList);
+    for (let i = 0; i < outcomeList.length; i++) {
+      this.array.push(outcomeList[i]);
+      let categoryList = await this.outcomeService.getAllCategoryByOutcome(outcomeList[i].id).toPromise();
       this.sortCategory(categoryList);
-      outcomeRow.push(outcome);
-      categoryList.map(category => {
-        this.categoryService.getAllSkillByCategory(category.id).subscribe(skillList => {
-          if (outcomeRow[i] != undefined) {
-            this.array.push(outcomeRow[i]);
-          }
-          this.array.push(category);
-          skillList.map(skill => {
-            this.array.push(skill);
-          });
-          i++;
+      for (let j = 0; j < categoryList.length; j++) {
+        this.array.push(categoryList[j]);
+        let skillList = await this.categoryService.getAllSkillByCategory(categoryList[j].id).toPromise();
+        skillList.map(skill => {
+          this.array.push(skill);
         });
-      });
-    });
+      }
+    }
   }
 
-  sortOutcome() {
-    for (let i = 0; i < this.outcomeList.length; i++) {
-      for (let j = i + 1; j < this.outcomeList.length; j++) {
-        let indexFirst = this.outcomeList[i].title.split('')[5];
-        let indexSecond = this.outcomeList[j].title.split('')[5];
+  sortOutcome(outcomeList) {
+    for (let i = 0; i < outcomeList.length; i++) {
+      for (let j = i + 1; j < outcomeList.length; j++) {
+        let indexFirst = outcomeList[i].title.split('')[5];
+        let indexSecond = outcomeList[j].title.split('')[5];
         if (Number(indexFirst) > Number(indexSecond)) {
-          let temp = this.outcomeList[i];
-          this.outcomeList[i] = this.outcomeList[j];
-          this.outcomeList[j] = temp;
+          let temp = outcomeList[i];
+          outcomeList[i] = outcomeList[j];
+          outcomeList[j] = temp;
         }
       }
     }
