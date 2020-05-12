@@ -1,1 +1,47 @@
-<p>info-evaluation works!</p>
+<section class="content">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">{{name}}</h3>
+      <div class="card-tools">
+        <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
+          Tạo mới
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered" id="table-evaluation-detail">
+        <thead>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Mã kỹ năng</th>
+          <th>Kỹ năng</th>
+          <th>Đánh giá</th>
+          <th style="width: 160px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let evaluationDetail of evaluationDetailList; index as i">
+          <td>{{i + 1}}</td>
+          <td *ngIf="evaluationDetail.skills != null">{{evaluationDetail.skills.skillId}}</td>
+          <td *ngIf="evaluationDetail.skills!=null">{{evaluationDetail.skills.name}}</td>
+          <td>{{evaluationDetail.evaluation}}</td>
+          <td>
+            <div class="row">
+              <div class="col-6">
+                <a [routerLink]="['edit',evaluationDetail.id]" class="btn btn-block btn-primary" style="color: white">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </div>
+              <div class="col-6">
+                <a [routerLink]="['delete',evaluationDetail.id]" class="btn btn-block btn-danger" style="color: white">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

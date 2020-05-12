@@ -24,7 +24,9 @@
         <tbody>
         <tr *ngFor="let evaluation of evaluationList; index as i">
           <td>{{i + 1}}</td>
-          <td>{{evaluation.name}}</td>
+          <td>
+            <a [routerLink]="['info', evaluation.id]">{{evaluation.name}}</a>
+          </td>
           <td *ngIf="evaluation.student!=null">{{evaluation.student.name}}</td>
           <td *ngIf="evaluation.classes">{{evaluation.classes.name}}</td>
           <td>{{evaluation.evaluation}}</td>

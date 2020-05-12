@@ -18,6 +18,10 @@ export class EvaluationService {
     return this.http.get<Evaluations[]>(API_URL + '/evaluations');
   }
 
+  getAllEvaluationDetailByEvaluation(id: number): Observable<Evaluations[]> {
+    return this.http.get<Evaluations[]>(API_URL + `/evaluations/${id}/details`);
+  }
+
   getEvaluation(id: number): Observable<Evaluations> {
     return this.http.get<Evaluations>(API_URL + `/evaluations/${id}`);
   }
