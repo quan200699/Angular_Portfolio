@@ -68,15 +68,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/admin/evaluation-form" class="nav-link">
-            <i class="nav-icon fa fa-list"></i>
-            <p>
-              Bản mẫu đánh giá
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="hasRoleAdmin">
           <a routerLink="/admin/template-management" class="nav-link">
             <i class="nav-icon fa fa-list"></i>
             <p>
