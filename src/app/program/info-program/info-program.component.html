@@ -3,34 +3,34 @@
     <div class="card-header">
       <h3 class="card-title">Danh sách học viên lớp {{programName}}</h3>
     </div>
-  </div>
-  <div class="card-body">
-    <table id="table-class" class="table table-bordered table-hover">
-      <thead>
-      <tr>
-        <th style="width: 10px">#</th>
-        <th>Tên lớp</th>
-        <th>Chương trình học</th>
-        <th style="width: 80px">Sĩ số</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let classes of listClass; index as i">
-        <td>{{i + 1}}</td>
-        <td>{{classes.name}}</td>
-        <td *ngIf="classes.programs !=null">{{classes.programs.name}}</td>
-        <td *ngIf="classes.students !=null">{{classes.students.length}}</td>
-      </tr>
-      <tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <th>#</th>
-        <th>Tên lớp</th>
-        <th>Chương trình học</th>
-        <th>Sĩ số</th>
-      </tr>
-      </tfoot>
-    </table>
+    <div class="card-body">
+      <table id="table-class" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Tên lớp</th>
+          <th>Chương trình học</th>
+          <th style="width: 80px">Sĩ số</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let classes of listClass; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{classes.name}}</td>
+          <td *ngIf="classes.programs !=null">{{classes.programs.name}}</td>
+          <td *ngIf="classes.students !=null">{{classes.students.length}}</td>
+        </tr>
+        <tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <th>#</th>
+          <th>Tên lớp</th>
+          <th>Chương trình học</th>
+          <th>Sĩ số</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </section>
