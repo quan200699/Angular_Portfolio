@@ -6,8 +6,7 @@ import {CreateTemplateComponent} from './create-template/create-template.compone
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditTemplateComponent} from './edit-template/edit-template.component';
 import {DeleteTemplateComponent} from './delete-template/delete-template.component';
-
-
+import {InfoTemplateComponent} from './info-template/info-template.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +14,7 @@ import {DeleteTemplateComponent} from './delete-template/delete-template.compone
     CreateTemplateComponent,
     EditTemplateComponent,
     DeleteTemplateComponent,
+    InfoTemplateComponent,
   ],
   imports: [
     CommonModule,

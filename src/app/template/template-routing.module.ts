@@ -7,6 +7,7 @@ import {CreateTemplateComponent} from './create-template/create-template.compone
 import {AdminAuthGuard} from '../helper/admin-auth-guard';
 import {EditTemplateComponent} from './edit-template/edit-template.component';
 import {DeleteTemplateComponent} from './delete-template/delete-template.component';
+import {InfoTemplateComponent} from './info-template/info-template.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,11 @@ const routes: Routes = [
     path: 'delete/:id',
     component: DeleteTemplateComponent,
     canActivate: [AdminAuthGuard]
+  },
+  {
+    path: 'info/:id',
+    component: InfoTemplateComponent,
+    canActivate: [AuthGuard]
   }];
 
 @NgModule({

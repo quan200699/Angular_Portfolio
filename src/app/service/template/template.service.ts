@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Template} from '../../model/template';
+import {Evaluations} from '../../model/evaluations';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -16,6 +17,10 @@ export class TemplateService {
 
   getAllTemplate(): Observable<Template[]> {
     return this.http.get<Template[]>(API_URL + '/templates');
+  }
+
+  getAllEvaluationsByTemplate(id: number): Observable<Evaluations[]> {
+    return this.http.get<Evaluations[]>(API_URL + `/templates/${id}/evaluations`);
   }
 
   createNewTemplate(template: Template): Observable<Template> {
