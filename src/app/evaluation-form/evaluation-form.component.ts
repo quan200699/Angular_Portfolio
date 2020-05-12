@@ -316,6 +316,7 @@ export class EvaluationFormComponent implements OnInit {
       for (let j = 0; j < categoryList.length; j++) {
         this.array.push(categoryList[j]);
         let skillList = await this.categoryService.getAllSkillByCategory(categoryList[j].id).toPromise();
+        this.sortSkill(skillList);
         skillList.map(skill => {
           this.array.push(skill);
         });
@@ -346,6 +347,31 @@ export class EvaluationFormComponent implements OnInit {
           let temp = categoryList[i];
           categoryList[i] = categoryList[j];
           categoryList[j] = temp;
+        }
+      }
+    }
+  }
+
+  sortSkill(skillList) {
+    for (let i = 0; i < skillList.length; i++) {
+      for (let j = i + 1; j < skillList.length; j++) {
+        let indexFirst = skillList[i].skillId.split('.')[1];
+        let indexSecond = skillList[j].skillId.split('.')[1];
+        if (Number(indexFirst) > Number(indexSecond)) {
+          let temp = skillList[i];
+          skillList[i] = skillList[j];
+          skillList[j] = temp;
+        }
+      }
+    }
+    for (let i = 0; i < skillList.length; i++) {
+      for (let j = i + 1; j < skillList.length; j++) {
+        let indexFirst = skillList[i].skillId.split('.')[2];
+        let indexSecond = skillList[j].skillId.split('.')[2];
+        if (Number(indexFirst) > Number(indexSecond)) {
+          let temp = skillList[i];
+          skillList[i] = skillList[j];
+          skillList[j] = temp;
         }
       }
     }
