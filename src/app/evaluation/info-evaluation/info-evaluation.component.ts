@@ -345,7 +345,36 @@ export class InfoEvaluationComponent implements OnInit {
               ]
             ]
           }
-        }
+        },
+        {
+          text: 'III. PHỤ LỤC',
+          fontSize: 12,
+          bold: true,
+          margin: [0, 0, 0, 20],
+          pageBreak: 'before'
+        },
+        {
+          text: 'Chú thích: \n' +
+            '(1) Mức độ đánh giá chuẩn đầu ra\n' +
+            '•\tChưa đạt: Học viên chưa có đủ khả năng để giải quyết các vấn đề liên quan đến năng lực đang được đánh giá.\n' +
+            '•\tĐạt: Học viên có đủ khả năng để giải quyết các vấn đề đơn giản liên quan đến năng lực đang được đánh giá, tuy nhiên chưa đủ năng lực để giải quyết các vấn đề phức tạp hơn hoặc giải quyết các vấn đề một cách hiệu quả, nhanh chóng\n' +
+            '•\tTốt: Học viên có đủ khả năng để giải quyết phần lớn các vấn đề liên quan đến năng lực đang được đánh giá với một mức độ hiệu quả và thời gian chấp nhận được.\n' +
+            '•\tXuất sắc: Học viên có đủ khả năng để giải quyết hầu hết tất cả các vấn đề liên quan đến năng lực đang được đánh giá với mức độ hiệu quả cao trong một khoảng thời gian nhanh chóng.\n' +
+            ' (2) Chuẩn đầu ra\n' +
+            '•\tCác chuẩn đầu ra không đánh dấu sao là các chuẩn đầu ra mức cơ bản, bắt\n' +
+            'buộc dành cho tất cả các học viên\n' +
+            '•\tCác chuẩn đầu ra đánh dấu 1 sao (*) là dành cho các học viên có năng lực\n' +
+            'khá, có thể dành thêm thời để luyện tập mở rộng\n' +
+            '•\tCác chuẩn đầu ra đánh dấu 2 sao (**) là dành cho các học viên có năng lực rất khá, có thể dành thêm nhiều thời gian để luyện tập mở rộng\n' +
+            '(3) Mức đánh giá năng lực khi kết thúc cả chương trình\n' +
+            '•\tChưa đạt: Không đạt được 100% năng lực bắt buộc\n' +
+            '•\tĐạt: 100% năng lực bắt buộc.\n' +
+            '•\tTốt: 100% năng lực bắt buộc và >= 80% năng lực 1 sao (*)\n' +
+            '•\tXuất sắc: 100% năng lực bắt buộc và 100% năng lực 1 sao và >= 80% năng\n' +
+            '•\tlực 2 sao (**)\n',
+          fontSize: 12,
+          margin: [0, 0, 0, 20]
+        },
       ],
       defaultStyle: {
         font: 'MyriadPro'
