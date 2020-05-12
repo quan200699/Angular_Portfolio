@@ -6,12 +6,8 @@
     <div class="card-body">
       <div class="form-group">
         <label for="evaluations">Tên bản đánh giá</label>
-        <select class="form-control select2 select2-primary" id="evaluations" name="evaluations"
-                formControlName="evaluations" data-dropdown-css-class="select2-primary"
-                style="width: 100%;">
-          <option [ngValue]="null" disabled>Chọn bản đánh giá</option>
-          <option *ngFor="let evaluations of listEvaluations" [value]="evaluations.id">{{evaluations.name}}</option>
-        </select>
+        <input type="text" id="evaluations" class="form-control"
+               [value]="evaluation.name" disabled>
       </div>
       <div class="form-group">
         <label for="evaluation_choice">Đánh giá tất cả</label>

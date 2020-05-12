@@ -8,10 +8,11 @@ import {SkillService} from '../../service/skill/skill.service';
 import {EvaluationDetail} from '../../model/evaluation-detail';
 import {Category} from '../../model/category';
 import {CategoryService} from '../../service/category/category.service';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 declare var $: any;
 declare var Swal: any;
-let evaluationsId: number;
 let skillId: number;
 
 @Component({
@@ -36,23 +37,27 @@ export class CreateEvaluationDetailComponent implements OnInit {
   evaluationChoice = null;
   evaluationCategoryChoice: string[] = [''];
   listCategory: Category[];
+  sub: Subscription;
+  evaluation: Evaluations;
 
   constructor(private evaluationDetailService: EvaluationDetailService,
               private evaluationService: EvaluationService,
               private skillService: SkillService,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private activatedRoute: ActivatedRoute) {
     this.getAllEvaluation();
     this.getAllSkill();
     this.getAllCategory();
+    this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      const id = +paramMap.get('id');
+      this.getEvaluation(id);
+    });
     this.listEvaluation = ['Xuất sắc', 'Tốt', 'Đạt', 'Chưa đạt', 'N/A'];
   }
 
   ngOnInit() {
     $(document).ready(function() {
       $('.select2').select2();
-      $('#evaluations').on('select2:select', function(e, source) {
-        evaluationsId = $(e.currentTarget).val();
-      });
       $('#skills').on('select2:select', function(e, source) {
         skillId = $(e.currentTarget).val();
       });
@@ -115,7 +120,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
   addEvaluationDetailToList(index: number) {
     const evaluationDetail: EvaluationDetail = {
       evaluations: {
-        id: evaluationsId
+        id: this.evaluation.id
       },
       skills: {
         id: this.listSkill[index].id
@@ -143,7 +148,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
       for (let i = 0; i < this.listSkill.length; i++) {
         const evaluationDetail: EvaluationDetail = {
           evaluations: {
-            id: evaluationsId
+            id: this.evaluation.id
           },
           skills: {
             id: this.listSkill[i].id
@@ -161,7 +166,7 @@ export class CreateEvaluationDetailComponent implements OnInit {
       for (let j = 0; j < this.listSkill.length; j++) {
         const evaluationDetail: EvaluationDetail = {
           evaluations: {
-            id: evaluationsId
+            id: this.evaluation.id
           },
           skills: {
             id: this.listSkill[j].id
@@ -192,6 +197,12 @@ export class CreateEvaluationDetailComponent implements OnInit {
   addSkillToCategory(category: Category) {
     this.categoryService.getAllSkillByCategory(category.id).subscribe(listSkill => {
       category.skills = listSkill;
+    });
+  }
+
+  getEvaluation(id: number) {
+    this.evaluationService.getEvaluation(id).subscribe(evaluation => {
+      this.evaluation = evaluation;
     });
   }
 }

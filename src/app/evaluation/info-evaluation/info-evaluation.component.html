@@ -7,7 +7,8 @@
            class="btn btn-xs btn-primary float-lg-right">
           Tạo mới
         </a>
-        <button (click)="generatePdf('open')" class="btn btn-xs btn-primary float-lg-right">
+        <button *ngIf="skillListLength === evaluationDetailLength" (click)="generatePdf('open')"
+                class="btn btn-xs btn-primary float-lg-right">
           Xuất file PDF
         </button>
       </div>

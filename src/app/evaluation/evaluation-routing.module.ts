@@ -8,6 +8,7 @@ import {EditEvaluationComponent} from './edit-evaluation/edit-evaluation.compone
 import {DeleteEvaluationComponent} from './delete-evaluation/delete-evaluation.component';
 import {InfoEvaluationComponent} from './info-evaluation/info-evaluation.component';
 import {EvaluationFormComponent} from './evaluation-form/evaluation-form.component';
+import {CreateEvaluationDetailComponent} from './create-evaluation-detail/create-evaluation-detail.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,11 @@ const routes: Routes = [
       path: 'info/:id',
       canActivate: [AuthGuard],
       component: InfoEvaluationComponent
+    },
+    {
+      path: 'info/:id/create',
+      canActivate: [AuthGuard],
+      component: CreateEvaluationDetailComponent
     },
     {
       path: 'info/:id/form',
