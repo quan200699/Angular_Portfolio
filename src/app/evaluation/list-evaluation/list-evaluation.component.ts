@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {EvaluationService} from '../../service/evaluation/evaluation.service';
 import {AuthenticationService} from '../../service/authentication/authentication.service';
 import {UserToken} from '../../model/user-token';
 import {Evaluations} from '../../model/evaluations';
+import {CoachService} from '../../service/coach/coach.service';
 
 declare var $: any;
 
@@ -15,17 +15,19 @@ export class ListEvaluationComponent implements OnInit {
   evaluationList: Evaluations[];
   currentUser: UserToken;
 
-  constructor(private evaluationService: EvaluationService,
+  constructor(private coachService: CoachService,
               private authenticationService: AuthenticationService) {
-    this.authenticationService.currentUser.subscribe(value => this.currentUser = value);
+    this.authenticationService.currentUser.subscribe(value => {
+      this.currentUser = value;
+      this.getAllEvaluation(this.currentUser.id);
+    });
   }
 
   ngOnInit() {
-    this.getAllEvaluation();
   }
 
-  getAllEvaluation() {
-    return this.evaluationService.getAllEvaluation().subscribe(evaluationList => {
+  getAllEvaluation(id: number) {
+    return this.coachService.getAllEvaluationByCoach(id).subscribe(evaluationList => {
       this.evaluationList = evaluationList;
       $(function() {
         $('#table-evaluation').DataTable({

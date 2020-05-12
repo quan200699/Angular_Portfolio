@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Coach} from '../../model/coach';
 import {Classes} from '../../model/classes';
+import {Evaluations} from '../../model/evaluations';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -17,6 +18,10 @@ export class CoachService {
 
   getAllCoach(): Observable<Coach[]> {
     return this.http.get<Coach[]>(API_URL + '/coaches');
+  }
+
+  getAllEvaluationByCoach(id: number): Observable<Evaluations[]> {
+    return this.http.get<Evaluations[]>(API_URL + `/coaches/${id}/evaluations`);
   }
 
   getCoach(id: number): Observable<Coach> {
