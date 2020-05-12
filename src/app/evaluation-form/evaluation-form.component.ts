@@ -272,17 +272,17 @@ export class EvaluationFormComponent implements OnInit {
                 }, {}];
             }
             return [{
-              text: array.skillId,
+              text: array.skills.skillId,
               alignment: 'right',
               fontSize: 10,
             },
               {
-                text: array.name,
+                text: array.skills.name,
                 alignment: 'left',
                 fontSize: 10,
               },
               {
-                text: '',
+                text: array.evaluation,
                 alignment: 'left',
                 fontSize: 10,
               }];
@@ -316,9 +316,14 @@ export class EvaluationFormComponent implements OnInit {
       for (let j = 0; j < categoryList.length; j++) {
         this.array.push(categoryList[j]);
         let skillList = await this.categoryService.getAllSkillByCategory(categoryList[j].id).toPromise();
+        let evaluationDetailList = await this.evaluationDetailService.getAllEvaluationDetail().toPromise();
         this.sortSkill(skillList);
         skillList.map(skill => {
-          this.array.push(skill);
+          evaluationDetailList.map(evaluationDetail => {
+            if (evaluationDetail.skills.skillId == skill.skillId) {
+              this.array.push(evaluationDetail);
+            }
+          });
         });
       }
     }
