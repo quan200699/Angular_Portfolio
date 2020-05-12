@@ -3,9 +3,13 @@
     <div class="card-header">
       <h3 class="card-title">{{name}}</h3>
       <div class="card-tools">
-        <a routerLink="create" class="btn btn-xs btn-primary float-lg-right">
+        <a routerLink="create" *ngIf="skillListLength !== evaluationDetailLength"
+           class="btn btn-xs btn-primary float-lg-right">
           Tạo mới
         </a>
+        <button (click)="generatePdf('open')" class="btn btn-xs btn-primary float-lg-right">
+          Xuất file PDF
+        </button>
       </div>
     </div>
     <div class="card-body">
