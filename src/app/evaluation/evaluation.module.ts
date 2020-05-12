@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {EditEvaluationComponent} from './edit-evaluation/edit-evaluation.component';
 import {DeleteEvaluationComponent} from './delete-evaluation/delete-evaluation.component';
 import {InfoEvaluationComponent} from './info-evaluation/info-evaluation.component';
+import {EvaluationFormComponent} from './evaluation-form/evaluation-form.component';
 
 
 
@@ -17,6 +18,7 @@ import {InfoEvaluationComponent} from './info-evaluation/info-evaluation.compone
     EditEvaluationComponent,
     DeleteEvaluationComponent,
     InfoEvaluationComponent,
+    EvaluationFormComponent,
   ],
   imports: [
     CommonModule,

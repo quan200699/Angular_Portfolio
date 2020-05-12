@@ -1,17 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {Evaluations} from '../model/evaluations';
-import {EvaluationService} from '../service/evaluation/evaluation.service';
-import {EvaluationDetail} from '../model/evaluation-detail';
-import {EvaluationDetailService} from '../service/evaluation-detail/evaluation-detail.service';
-import {Outcome} from '../model/outcome';
-import {OutcomeService} from '../service/outcome/outcome.service';
+import {Evaluations} from '../../model/evaluations';
+import {EvaluationService} from '../../service/evaluation/evaluation.service';
+import {EvaluationDetail} from '../../model/evaluation-detail';
+import {EvaluationDetailService} from '../../service/evaluation-detail/evaluation-detail.service';
+import {OutcomeService} from '../../service/outcome/outcome.service';
 
 import * as pdfMakeConfig from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 
 pdfMakeConfig.vfs = pdfFonts.pdfMake.vfs;
 import * as pdfMake from 'pdfmake/build/pdfmake';
-import {CategoryService} from '../service/category/category.service';
+import {CategoryService} from '../../service/category/category.service';
+import {CoachService} from '../../service/coach/coach.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 pdfMakeConfig.fonts = {
   MyriadPro: {
@@ -28,19 +30,23 @@ pdfMakeConfig.fonts = {
   styleUrls: ['./evaluation-form.component.css']
 })
 export class EvaluationFormComponent implements OnInit {
-  evaluationList: Evaluations[];
   evaluation: Evaluations;
   evaluationDetailList: EvaluationDetail[];
-  outcomeList: Outcome[];
   array: any[] = [];
+  sub: Subscription;
 
   constructor(private evaluationService: EvaluationService,
               private evaluationDetailService: EvaluationDetailService,
               private outcomeService: OutcomeService,
-              private categoryService: CategoryService) {
-    this.getAllEvaluation();
-    this.getAllOutcome();
-    this.getAllEvaluationDetail();
+              private categoryService: CategoryService,
+              private coachService: CoachService,
+              private activatedRoute: ActivatedRoute) {
+    this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      const id = +paramMap.get('id');
+      this.getEvaluation(id);
+      this.getAllOutcome();
+      this.getAllEvaluationDetail();
+    });
   }
 
   ngOnInit() {
@@ -298,10 +304,9 @@ export class EvaluationFormComponent implements OnInit {
 
   }
 
-  getAllEvaluation() {
-    this.evaluationService.getAllEvaluation().subscribe(evaluationList => {
-      this.evaluationList = evaluationList;
-      this.evaluation = evaluationList[0];
+  getEvaluation(id: number) {
+    this.evaluationService.getEvaluation(id).subscribe(evaluation => {
+      this.evaluation = evaluation;
     });
   }
 

@@ -36,10 +36,6 @@ const routes: Routes = [
   {
     path: 'skill-management',
     loadChildren: () => import('../skill/skill.module').then(module => module.SkillModule)
-  },
-  {
-    path: 'evaluation-form',
-    loadChildren: () => import('../evaluation-form/evaluation-form.module').then(module => module.EvaluationFormModule)
   }
 ];
 

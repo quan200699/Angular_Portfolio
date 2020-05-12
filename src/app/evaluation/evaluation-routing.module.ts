@@ -7,35 +7,42 @@ import {CreateEvaluationComponent} from './create-evaluation/create-evaluation.c
 import {EditEvaluationComponent} from './edit-evaluation/edit-evaluation.component';
 import {DeleteEvaluationComponent} from './delete-evaluation/delete-evaluation.component';
 import {InfoEvaluationComponent} from './info-evaluation/info-evaluation.component';
+import {EvaluationFormComponent} from './evaluation-form/evaluation-form.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    canActivate: [AuthGuard],
-    component: ListEvaluationComponent
-  },
-  {
-    path: 'create',
-    canActivate: [AuthGuard],
-    component: CreateEvaluationComponent
-  },
-  {
-    path: 'edit/:id',
-    canActivate: [AuthGuard],
-    component: EditEvaluationComponent
-  },
-  {
-    path: 'delete/:id',
-    canActivate: [AuthGuard],
-    component: DeleteEvaluationComponent
-  },
-  {
-    path: 'info/:id',
-    canActivate: [AuthGuard],
-    component: InfoEvaluationComponent
-  }
-];
+    {
+      path: '',
+      canActivate: [AuthGuard],
+      component: ListEvaluationComponent
+    },
+    {
+      path: 'create',
+      canActivate: [AuthGuard],
+      component: CreateEvaluationComponent
+    },
+    {
+      path: 'edit/:id',
+      canActivate: [AuthGuard],
+      component: EditEvaluationComponent
+    },
+    {
+      path: 'delete/:id',
+      canActivate: [AuthGuard],
+      component: DeleteEvaluationComponent
+    },
+    {
+      path: 'info/:id',
+      canActivate: [AuthGuard],
+      component: InfoEvaluationComponent
+    },
+    {
+      path: 'info/:id/form',
+      component: EvaluationFormComponent,
+      canActivate: [AuthGuard]
+    }
+  ]
+;
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
