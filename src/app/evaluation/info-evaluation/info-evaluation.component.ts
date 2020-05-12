@@ -258,6 +258,94 @@ export class InfoEvaluationComponent implements OnInit {
           margin: [0, 0, 0, 20]
         },
         this.getEvaluationDetailObject(),
+        {
+          text: '2/  HOÀN THÀNH CÁC KHOÁ HỌC ONLINE',
+          fontSize: 12,
+          bold: true,
+          margin: [0, 30, 0, 20]
+        },
+        {
+          table: {
+            widths: [40, '*', 80],
+            heights: [30],
+            body: [
+              [
+                {
+                  text: 'STT',
+                  style: 'tableHeader',
+                  alignment: 'center',
+                  fontSize: 11,
+                  bold: true,
+                },
+                {
+                  text: 'KHÓA HỌC',
+                  style: 'tableHeader',
+                  alignment: 'center',
+                  fontSize: 11,
+                  bold: true,
+                },
+                {
+                  text: 'ĐÁNH GIÁ ',
+                  style: 'tableHeader',
+                  alignment: 'center',
+                  fontSize: 11,
+                  bold: true,
+                },
+              ],
+              [
+                {
+                  text: '1',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+                {
+                  text: 'Học cách học',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+                {
+                  text: 'Đã hoàn thành',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+              ],
+              [
+                {
+                  text: '2',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+                {
+                  text: 'Hoàn thành mọi việc với Kanban',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+                {
+                  text: 'Đã hoàn thành',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+              ],
+              [
+                {
+                  text: '3',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+                {
+                  text: 'Scrum Essence',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+                {
+                  text: 'Đã hoàn thành',
+                  alignment: 'center',
+                  fontSize: 11,
+                },
+              ]
+            ]
+          }
+        }
       ],
       defaultStyle: {
         font: 'MyriadPro'
