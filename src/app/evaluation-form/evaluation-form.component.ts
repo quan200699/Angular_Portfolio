@@ -225,6 +225,7 @@ export class EvaluationFormComponent implements OnInit {
     return {
       table: {
         widths: [40, '*', 80],
+        heights: [20],
         body: [
           [
             {
@@ -233,7 +234,9 @@ export class EvaluationFormComponent implements OnInit {
               colSpan: 2,
               alignment: 'center',
               fontSize: 11,
-              bold: true
+              bold: true,
+              fillColor: '#2e6ad1',
+              color: 'white'
             },
             {},
             {
@@ -241,7 +244,9 @@ export class EvaluationFormComponent implements OnInit {
               style: 'tableHeader',
               alignment: 'center',
               fontSize: 11,
-              bold: true
+              bold: true,
+              fillColor: '#2e6ad1',
+              color: 'white'
             }
           ],
           ...this.array.map(array => {
