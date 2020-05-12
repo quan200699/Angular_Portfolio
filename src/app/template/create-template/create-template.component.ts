@@ -6,6 +6,7 @@ import {Program} from '../../model/program';
 import {ProgramService} from '../../service/program/program.service';
 
 declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-create-template',
@@ -68,7 +69,34 @@ export class CreateTemplateComponent implements OnInit {
     };
     if (template.name !== '') {
       this.templateService.createNewTemplate(template).subscribe(() => {
+        $(function() {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          Toast.fire({
+            type: 'success',
+            title: 'Tạo mới thành công'
+          });
+        });
         this.templateForm.reset();
+      }, () => {
+        $(function() {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          Toast.fire({
+            type: 'error',
+            title: 'Tạo mới thất bại'
+          });
+        });
       });
     }
   }
