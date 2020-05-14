@@ -3,16 +3,15 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var pdfMakePrinter = require('./node_modules/pdfmake');
 const app = express();
-
+var pdfmake = require('./index');
 app.use(express.static(path.join('ePortfolio', 'public')));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: false}));
 
-function createPdfBinary(pdfDoc, callback) {
+function createPdfBinary(docDefinition) {
 
-  var fontDescriptors = {
+  var fonts = {
     MyriadPro: {
       normal: path.join('./src/assets/examples/fonts/Myriad Pro Regular.ttf'),
       bold: path.join('./src/assets/examples/fonts/Myriad Pro Bold.ttf'),
@@ -20,35 +19,21 @@ function createPdfBinary(pdfDoc, callback) {
       bolditalics: path.join('./src/assets/examples/fonts/Myriad Pro Bold Italic.ttf')
     }
   };
+  pdfmake.setFonts(fonts);
 
-  var printer = new pdfMakePrinter(fontDescriptors);
-
-  var doc = printer.createPdfKitDocument(pdfDoc);
-
-  var chunks = [];
-  var result;
-
-  doc.on('data', function (chunk) {
-    chunks.push(chunk);
-  });
-  doc.on('end', function () {
-    result = Buffer.concat(chunks);
-    callback('data:application/pdf;base64,' + result.toString('base64'));
-  });
-  doc.end();
-
+  var pdf = pdfmake.createPdf(docDefinition);
+  return pdf.getDataUrl();
 }
 
 app.post('/pdf', function (req, res) {
   eval(req.body.content);
 
-  createPdfBinary(dd, function (binary) {
+  createPdfBinary(dd).then(function (binary) {
     res.contentType('application/pdf');
     res.send(binary);
   }, function (error) {
     res.send('ERROR:' + error);
   });
-
 });
 
 const forceSSL = function () {
