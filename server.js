@@ -14,10 +14,10 @@ function createPdfBinary(pdfDoc, callback) {
 
   var fontDescriptors = {
     MyriadPro: {
-      normal: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Regular.ttf'),
-      bold: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Bold.ttf'),
-      italics: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Italic.ttf'),
-      bolditalics: path.join('ePortfolio', '..', 'examples', '/fonts/Myriad Pro Bold Italic.ttf')
+      normal: path.join('./src/assets/examples/fonts/Myriad Pro Regular.ttf'),
+      bold: path.join('./src/assets/examples/fonts/Myriad Pro Bold.ttf'),
+      italics: path.join('./src/assets/examples/fonts/Myriad Pro Italic.ttf'),
+      bolditalics: path.join('./src/assets/examples/fonts/Myriad Pro Bold Italic.ttf')
     }
   };
 
