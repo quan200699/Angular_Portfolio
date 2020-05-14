@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js && installv2",
+    "start": "node server.js && ./node_modules/pdfmake/build && gulp buildFonts &&npm install --prefix ./node_modules/pdfmake",
     "build": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "installv2": "npm install --prefix ./node_modules/pdfmake"
+    "e2e": "ng e2e"
   },
   "engines": {
     "node": "10.16.0",
