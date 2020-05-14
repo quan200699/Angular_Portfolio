@@ -52,9 +52,8 @@ describe('CoachService', () => {
         });
 
       let req = httpMock.expectOne(API_URL + '/coaches');
-      expect(req.request.method).toBe('GET');
-
       req.flush(coachList);
+      expect(req.request.method).toBe('GET');
       httpMock.verify();
     })));
   it('should return a coach has id = 1 when using findById function with id = 1', async(inject([HttpTestingController, CoachService],
