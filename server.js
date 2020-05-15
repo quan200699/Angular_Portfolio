@@ -5,7 +5,6 @@ const favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var pdfmake = require('./index');
 const app = express();
-app.use(express.static('./dist/ePortfolio'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -13,10 +12,10 @@ function createPdfBinary(docDefinition) {
 
   var fonts = {
     MyriadPro: {
-      normal: path.join('./dist/ePortfolio/assets/examples/fonts/Myriad Pro Regular.ttf'),
-      bold: path.join('./dist/ePortfolio/assets/examples/fonts/Myriad Pro Bold.ttf'),
-      italics: path.join('./dist/ePortfolio/assets/examples/fonts/Myriad Pro Italic.ttf'),
-      bolditalics: path.join('./dist/ePortfolio/assets/examples/fonts/Myriad Pro Bold Italic.ttf')
+      normal: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Regular.ttf',
+      bold: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Bold.ttf',
+      italics: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Italic.ttf',
+      bolditalics: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Bold Italic.ttf'
     }
   };
   pdfmake.setFonts(fonts);
@@ -47,6 +46,7 @@ const forceSSL = function () {
   }
 };
 
+app.use(express.static('./dist/ePortfolio'));
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join('ePortfolio', '/dist/ePortfolio/index.html'));
