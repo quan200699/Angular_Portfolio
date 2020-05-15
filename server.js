@@ -12,10 +12,10 @@ function createPdfBinary(docDefinition) {
 
   var fonts = {
     MyriadPro: {
-      normal: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Regular.ttf',
-      bold: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Bold.ttf',
-      italics: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Italic.ttf',
-      bolditalics: './dist/ePortfolio/assets/examples/fonts/Myriad Pro Bold Italic.ttf'
+      normal: path.join('./src/assets/examples/fonts/Myriad Pro Regular.ttf'),
+      bold: path.join('./src/assets/examples/fonts/Myriad Pro Bold.ttf'),
+      italics: path.join('./src/assets/examples/fonts/Myriad Pro Italic.ttf'),
+      bolditalics: path.join('./src/assets/examples/fonts/Myriad Pro Bold Italic.ttf')
     }
   };
   pdfmake.setFonts(fonts);
