@@ -3,8 +3,8 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var pdfmake = require('./index');
 const app = express();
+var pdfmake = require('./index');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: false}));
 
