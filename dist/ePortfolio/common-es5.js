@@ -551,6 +551,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.http.get(API_URL + '/coaches');
         }
       }, {
+        key: "getAllEvaluationByCoach",
+        value: function getAllEvaluationByCoach(id) {
+          return this.http.get(API_URL + "/coaches/".concat(id, "/evaluations"));
+        }
+      }, {
         key: "getCoach",
         value: function getCoach(id) {
           return this.http.get(API_URL + "/coaches/".concat(id));
@@ -594,196 +599,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     CoachService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     })], CoachService);
-    /***/
-  },
-
-  /***/
-  "./src/app/service/evaluation-detail/evaluation-detail.service.ts":
-  /*!************************************************************************!*\
-    !*** ./src/app/service/evaluation-detail/evaluation-detail.service.ts ***!
-    \************************************************************************/
-
-  /*! exports provided: EvaluationDetailService */
-
-  /***/
-  function srcAppServiceEvaluationDetailEvaluationDetailServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "EvaluationDetailService", function () {
-      return EvaluationDetailService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ../../../environments/environment */
-    "./src/environments/environment.ts");
-    /* harmony import */
-
-
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @angular/common/http */
-    "./node_modules/@angular/common/fesm2015/http.js");
-
-    var API_URL = "".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl);
-
-    var EvaluationDetailService = /*#__PURE__*/function () {
-      function EvaluationDetailService(http) {
-        _classCallCheck(this, EvaluationDetailService);
-
-        this.http = http;
-      }
-
-      _createClass(EvaluationDetailService, [{
-        key: "getAllEvaluationDetail",
-        value: function getAllEvaluationDetail() {
-          return this.http.get(API_URL + '/evaluationDetails');
-        }
-      }, {
-        key: "getEvaluationDetail",
-        value: function getEvaluationDetail(id) {
-          return this.http.get(API_URL + "/evaluationDetails/".concat(id));
-        }
-      }, {
-        key: "createNewEvaluationDetail",
-        value: function createNewEvaluationDetail(evaluationDetail) {
-          return this.http.post(API_URL + '/evaluationDetails', evaluationDetail);
-        }
-      }, {
-        key: "editEvaluationDetail",
-        value: function editEvaluationDetail(id, evaluationDetail) {
-          return this.http.put(API_URL + "/evaluationDetails/".concat(id), evaluationDetail);
-        }
-      }, {
-        key: "deleteEvaluationDetail",
-        value: function deleteEvaluationDetail(id) {
-          return this.http["delete"](API_URL + "/evaluationDetails/".concat(id));
-        }
-      }]);
-
-      return EvaluationDetailService;
-    }();
-
-    EvaluationDetailService.ctorParameters = function () {
-      return [{
-        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
-      }];
-    };
-
-    EvaluationDetailService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], EvaluationDetailService);
-    /***/
-  },
-
-  /***/
-  "./src/app/service/evaluation/evaluation.service.ts":
-  /*!**********************************************************!*\
-    !*** ./src/app/service/evaluation/evaluation.service.ts ***!
-    \**********************************************************/
-
-  /*! exports provided: EvaluationService */
-
-  /***/
-  function srcAppServiceEvaluationEvaluationServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "EvaluationService", function () {
-      return EvaluationService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ../../../environments/environment */
-    "./src/environments/environment.ts");
-    /* harmony import */
-
-
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @angular/common/http */
-    "./node_modules/@angular/common/fesm2015/http.js");
-
-    var API_URL = "".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl);
-
-    var EvaluationService = /*#__PURE__*/function () {
-      function EvaluationService(http) {
-        _classCallCheck(this, EvaluationService);
-
-        this.http = http;
-      }
-
-      _createClass(EvaluationService, [{
-        key: "getAllEvaluation",
-        value: function getAllEvaluation() {
-          return this.http.get(API_URL + '/evaluations');
-        }
-      }, {
-        key: "getEvaluation",
-        value: function getEvaluation(id) {
-          return this.http.get(API_URL + "/evaluations/".concat(id));
-        }
-      }, {
-        key: "createNewEvaluation",
-        value: function createNewEvaluation(evaluations) {
-          return this.http.post(API_URL + '/evaluations', evaluations);
-        }
-      }, {
-        key: "updateEvaluationInfo",
-        value: function updateEvaluationInfo(id, evaluations) {
-          return this.http.put(API_URL + "/evaluations/".concat(id), evaluations);
-        }
-      }, {
-        key: "deleteEvaluation",
-        value: function deleteEvaluation(id) {
-          return this.http["delete"](API_URL + "/evaluations/".concat(id));
-        }
-      }]);
-
-      return EvaluationService;
-    }();
-
-    EvaluationService.ctorParameters = function () {
-      return [{
-        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
-      }];
-    };
-
-    EvaluationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], EvaluationService);
     /***/
   },
 
@@ -1244,6 +1059,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "getAllTemplate",
         value: function getAllTemplate() {
           return this.http.get(API_URL + '/templates');
+        }
+      }, {
+        key: "getAllEvaluationsByTemplate",
+        value: function getAllEvaluationsByTemplate(id) {
+          return this.http.get(API_URL + "/templates/".concat(id, "/evaluations"));
         }
       }, {
         key: "createNewTemplate",

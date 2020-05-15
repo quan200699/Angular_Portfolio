@@ -134,17 +134,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return module.SkillModule;
         });
       }
-    }, {
-      path: 'evaluation-form',
-      loadChildren: function loadChildren() {
-        return Promise.all(
-        /*! import() | evaluation-form-evaluation-form-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("evaluation-form-evaluation-form-module")]).then(__webpack_require__.bind(null,
-        /*! ../evaluation-form/evaluation-form.module */
-        "./src/app/evaluation-form/evaluation-form.module.ts")).then(function (module) {
-          return module.EvaluationFormModule;
-        });
-      }
     }];
 
     var AdminRoutingModule = function AdminRoutingModule() {

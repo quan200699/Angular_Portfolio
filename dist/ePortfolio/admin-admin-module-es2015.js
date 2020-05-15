@@ -51,10 +51,6 @@ const routes = [
     {
         path: 'skill-management',
         loadChildren: () => Promise.all(/*! import() | skill-skill-module */[__webpack_require__.e("common"), __webpack_require__.e("skill-skill-module")]).then(__webpack_require__.bind(null, /*! ../skill/skill.module */ "./src/app/skill/skill.module.ts")).then(module => module.SkillModule)
-    },
-    {
-        path: 'evaluation-form',
-        loadChildren: () => Promise.all(/*! import() | evaluation-form-evaluation-form-module */[__webpack_require__.e("common"), __webpack_require__.e("evaluation-form-evaluation-form-module")]).then(__webpack_require__.bind(null, /*! ../evaluation-form/evaluation-form.module */ "./src/app/evaluation-form/evaluation-form.module.ts")).then(module => module.EvaluationFormModule)
     }
 ];
 let AdminRoutingModule = class AdminRoutingModule {

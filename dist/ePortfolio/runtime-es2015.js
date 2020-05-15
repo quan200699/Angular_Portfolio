@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","admin-admin-module":"admin-admin-module","coach-coach-module":"coach-coach-module","evaluation-detail-evaluation-detail-module":"evaluation-detail-evaluation-detail-module","evaluation-evaluation-module":"evaluation-evaluation-module","category-category-module":"category-category-module","classes-classes-module":"classes-classes-module","evaluation-form-evaluation-form-module":"evaluation-form-evaluation-form-module","outcome-outcome-module":"outcome-outcome-module","program-program-module":"program-program-module","skill-skill-module":"skill-skill-module","student-student-module":"student-student-module","template-template-module":"template-template-module"}[chunkId]||chunkId) + "-es2015.js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","admin-admin-module":"admin-admin-module","coach-coach-module":"coach-coach-module","evaluation-evaluation-module":"evaluation-evaluation-module","category-category-module":"category-category-module","classes-classes-module":"classes-classes-module","outcome-outcome-module":"outcome-outcome-module","program-program-module":"program-program-module","skill-skill-module":"skill-skill-module","student-student-module":"student-student-module","template-template-module":"template-template-module"}[chunkId]||chunkId) + "-es2015.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
