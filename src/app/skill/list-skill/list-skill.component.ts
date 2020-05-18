@@ -23,7 +23,7 @@ export class ListSkillComponent implements OnInit {
     if (this.currentUser) {
       const roleList = this.currentUser.roles;
       for (const role of roleList) {
-        if (role.authority === 'ADMIN') {
+        if (role.authority === 'ROLE_ADMIN') {
           this.hasRoleAdmin = true;
         }
       }
